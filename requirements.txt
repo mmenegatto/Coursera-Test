@@ -1,0 +1,3 @@
+# Biblioteca que expõe a API SimConnect do Microsoft Flight Simulator para Python.
+# Requer o SimConnect.dll do SDK do MSFS (2020/2024) instalado no sistema (Windows).
+SimConnect>=0.4.26
