@@ -21,6 +21,7 @@ Os módulos principais são:
 from .connection import SimConnection, SimConnectionError
 from .controller import MSFSController
 from .automation import Sequence, Step, wait_until
+from .telemetry import Telemetry, TelemetryReader
 
 __all__ = [
     "SimConnection",
@@ -29,6 +30,8 @@ __all__ = [
     "Sequence",
     "Step",
     "wait_until",
+    "Telemetry",
+    "TelemetryReader",
 ]
 
 __version__ = "0.1.0"

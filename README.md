@@ -75,11 +75,46 @@ with MSFSController() as msfs:
     seq.run(msfs)
 ```
 
+## Telemetria ao vivo no console
+
+Painel que atualiza em tempo real com altitude, velocidade, posição, rumo e
+atitude — sem dependências externas:
+
+```bash
+python -m scripts.live_telemetry           # 4 atualizações/segundo (padrão)
+python -m scripts.live_telemetry --hz 5    # 5 atualizações/segundo
+```
+
+```
++--------------------------------------------------+
+|          MSFS 2024 - TELEMETRIA AO VIVO          |
++--------------------------------------------------+
+|  Estado        : EM VOO                          |
+|  Altitude MSL  :       3500 ft                   |
+|  Vel. indicada :        250 kt                   |
+|  Rumo (mag)    :        272 deg                  |
+|  Latitude      :   23.5432° S                    |
+|  Longitude     :   46.6541° W                    |
++--------------------------------------------------+
+```
+
+Para uso programático, leia um snapshot com `TelemetryReader`:
+
+```python
+from msfs_control import SimConnection, TelemetryReader
+
+with SimConnection() as conn:
+    snap = TelemetryReader(conn).read()
+    print(snap.altitude_ft, snap.airspeed_kt, snap.heading_deg)
+    print(snap.as_dict())   # todos os campos como dicionário
+```
+
 ## Scripts de exemplo prontos
 
 Rode com o simulador aberto, a partir da raiz do projeto:
 
 ```bash
+python -m scripts.live_telemetry  # painel de telemetria ao vivo
 python -m scripts.demo_commands   # envia comandos simples de demonstração
 python -m scripts.auto_takeoff    # sequência automatizada de decolagem
 python -m scripts.landing_prep    # preparação automatizada para pouso
@@ -92,12 +127,15 @@ msfs_control/
   connection.py   # conexão de baixo nível com o SimConnect
   controller.py   # API de alto nível para enviar comandos
   automation.py   # framework de sequências (Step, Sequence, wait_until)
+  telemetry.py    # leitura de telemetria (Telemetry, TelemetryReader)
 scripts/
+  live_telemetry.py
   demo_commands.py
   auto_takeoff.py
   landing_prep.py
 tests/
   test_conversions.py  # testes que rodam sem o simulador
+  test_telemetry.py    # testes de telemetria (conexão falsa)
 ```
 
 ## Testes
