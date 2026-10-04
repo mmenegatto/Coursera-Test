@@ -1,0 +1,666 @@
+{
+  "Name": "PMDG 737-800 - WINCTRL 32 TCAS",
+  "ConfigFiles": [
+    {
+      "Label": "WINCTRL 32 TCAS",
+      "ReferenceOnly": false,
+      "EmbedContent": true,
+      "ConfigItems": [
+        {
+          "button": {
+            "onPress": {
+              "Command": "(L:MF_TCAS_N, number) 4 < if{ (L:MF_TCAS_BUF, number) 10 * 1 + (>L:MF_TCAS_BUF, number) (L:MF_TCAS_N, number) 1 + (>L:MF_TCAS_N, number) } (L:MF_TCAS_N, number) 4 == if{ (L:MF_TCAS_BUF, number) s1 l1 1000 / flr 4096 * l1 100 / flr 10 % 256 * + l1 10 / flr 10 % 16 * + l1 10 % + (>K:XPNDR_SET) 0 (>L:MF_TCAS_BUF, number) 0 (>L:MF_TCAS_N, number) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "Key 1"
+          },
+          "GUID": "80c0a5db-ea90-5090-b66a-8aee4f386d3d",
+          "Active": true,
+          "Name": "Key 1 -> digita squawk",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "(L:MF_TCAS_N, number) 4 < if{ (L:MF_TCAS_BUF, number) 10 * 2 + (>L:MF_TCAS_BUF, number) (L:MF_TCAS_N, number) 1 + (>L:MF_TCAS_N, number) } (L:MF_TCAS_N, number) 4 == if{ (L:MF_TCAS_BUF, number) s1 l1 1000 / flr 4096 * l1 100 / flr 10 % 256 * + l1 10 / flr 10 % 16 * + l1 10 % + (>K:XPNDR_SET) 0 (>L:MF_TCAS_BUF, number) 0 (>L:MF_TCAS_N, number) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "Key 2"
+          },
+          "GUID": "8aed02eb-3f64-5801-b7a4-7a194d059093",
+          "Active": true,
+          "Name": "Key 2 -> digita squawk",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "(L:MF_TCAS_N, number) 4 < if{ (L:MF_TCAS_BUF, number) 10 * 3 + (>L:MF_TCAS_BUF, number) (L:MF_TCAS_N, number) 1 + (>L:MF_TCAS_N, number) } (L:MF_TCAS_N, number) 4 == if{ (L:MF_TCAS_BUF, number) s1 l1 1000 / flr 4096 * l1 100 / flr 10 % 256 * + l1 10 / flr 10 % 16 * + l1 10 % + (>K:XPNDR_SET) 0 (>L:MF_TCAS_BUF, number) 0 (>L:MF_TCAS_N, number) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "Key 3"
+          },
+          "GUID": "675c53e2-8679-5b13-b9b1-970e28d0d7f2",
+          "Active": true,
+          "Name": "Key 3 -> digita squawk",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "(L:MF_TCAS_N, number) 4 < if{ (L:MF_TCAS_BUF, number) 10 * 4 + (>L:MF_TCAS_BUF, number) (L:MF_TCAS_N, number) 1 + (>L:MF_TCAS_N, number) } (L:MF_TCAS_N, number) 4 == if{ (L:MF_TCAS_BUF, number) s1 l1 1000 / flr 4096 * l1 100 / flr 10 % 256 * + l1 10 / flr 10 % 16 * + l1 10 % + (>K:XPNDR_SET) 0 (>L:MF_TCAS_BUF, number) 0 (>L:MF_TCAS_N, number) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "Key 4"
+          },
+          "GUID": "10994b46-d83b-58ef-9978-cd616471ef20",
+          "Active": true,
+          "Name": "Key 4 -> digita squawk",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "(L:MF_TCAS_N, number) 4 < if{ (L:MF_TCAS_BUF, number) 10 * 5 + (>L:MF_TCAS_BUF, number) (L:MF_TCAS_N, number) 1 + (>L:MF_TCAS_N, number) } (L:MF_TCAS_N, number) 4 == if{ (L:MF_TCAS_BUF, number) s1 l1 1000 / flr 4096 * l1 100 / flr 10 % 256 * + l1 10 / flr 10 % 16 * + l1 10 % + (>K:XPNDR_SET) 0 (>L:MF_TCAS_BUF, number) 0 (>L:MF_TCAS_N, number) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "Key 5"
+          },
+          "GUID": "d6f586bd-c6d2-567f-8851-507d17f7ef87",
+          "Active": true,
+          "Name": "Key 5 -> digita squawk",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "(L:MF_TCAS_N, number) 4 < if{ (L:MF_TCAS_BUF, number) 10 * 6 + (>L:MF_TCAS_BUF, number) (L:MF_TCAS_N, number) 1 + (>L:MF_TCAS_N, number) } (L:MF_TCAS_N, number) 4 == if{ (L:MF_TCAS_BUF, number) s1 l1 1000 / flr 4096 * l1 100 / flr 10 % 256 * + l1 10 / flr 10 % 16 * + l1 10 % + (>K:XPNDR_SET) 0 (>L:MF_TCAS_BUF, number) 0 (>L:MF_TCAS_N, number) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "Key 6"
+          },
+          "GUID": "a6a61201-a74c-5380-a39f-e519a21ee49a",
+          "Active": true,
+          "Name": "Key 6 -> digita squawk",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "(L:MF_TCAS_N, number) 4 < if{ (L:MF_TCAS_BUF, number) 10 * 7 + (>L:MF_TCAS_BUF, number) (L:MF_TCAS_N, number) 1 + (>L:MF_TCAS_N, number) } (L:MF_TCAS_N, number) 4 == if{ (L:MF_TCAS_BUF, number) s1 l1 1000 / flr 4096 * l1 100 / flr 10 % 256 * + l1 10 / flr 10 % 16 * + l1 10 % + (>K:XPNDR_SET) 0 (>L:MF_TCAS_BUF, number) 0 (>L:MF_TCAS_N, number) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "Key 7"
+          },
+          "GUID": "dc64f8c1-0d06-58d1-8d33-9b944e328890",
+          "Active": true,
+          "Name": "Key 7 -> digita squawk",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "(L:MF_TCAS_N, number) 4 < if{ (L:MF_TCAS_BUF, number) 10 * 0 + (>L:MF_TCAS_BUF, number) (L:MF_TCAS_N, number) 1 + (>L:MF_TCAS_N, number) } (L:MF_TCAS_N, number) 4 == if{ (L:MF_TCAS_BUF, number) s1 l1 1000 / flr 4096 * l1 100 / flr 10 % 256 * + l1 10 / flr 10 % 16 * + l1 10 % + (>K:XPNDR_SET) 0 (>L:MF_TCAS_BUF, number) 0 (>L:MF_TCAS_N, number) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "Key 0"
+          },
+          "GUID": "0765e912-4fd5-5f2c-a23e-4f627bcf8095",
+          "Active": true,
+          "Name": "Key 0 -> digita squawk",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "(L:MF_TCAS_N, number) 0 > if{ (L:MF_TCAS_BUF, number) 10 / flr (>L:MF_TCAS_BUF, number) (L:MF_TCAS_N, number) 1 - (>L:MF_TCAS_N, number) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "onHold": {
+              "Command": "0 (>L:MF_TCAS_BUF, number) 0 (>L:MF_TCAS_N, number)",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 1000,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "Key CLR"
+          },
+          "GUID": "76f0a77b-0778-5145-98c8-fcfc92719320",
+          "Active": true,
+          "Name": "Key CLR -> apaga ultimo digito | segurar 1 s = cancela edicao",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "80601 (>K:ROTOR_BRAKE)",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "Ident Button"
+          },
+          "GUID": "86268582-da9f-5517-9fcb-6f6ec871b379",
+          "Active": true,
+          "Name": "Ident Button -> IDENT",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "0 (>L:MF_TCAS_XPDR, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "XPDR STBY"
+          },
+          "GUID": "d2f7cf75-56b5-5403-9323-fcd443480968",
+          "Active": true,
+          "Name": "XPDR STBY -> modo STBY",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "1 (>L:MF_TCAS_XPDR, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "XPDR AUTO"
+          },
+          "GUID": "7aa5bb88-bdab-5131-8b40-ee2327006245",
+          "Active": true,
+          "Name": "XPDR AUTO -> transponder ligado",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "2 (>L:MF_TCAS_XPDR, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "XPDR ON"
+          },
+          "GUID": "f9f15eee-5e1f-52e3-9308-5827072e374f",
+          "Active": true,
+          "Name": "XPDR ON -> transponder ligado",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "79801 (>K:ROTOR_BRAKE) 0 s0 l0 0 > if{ 79802 (>K:ROTOR_BRAKE) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "XPDR SYS 1"
+          },
+          "GUID": "c1ad8327-1f6f-5738-b521-2de08f538dd4",
+          "Active": true,
+          "Name": "XPDR SYS 1 -> XPNDR 1",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "79801 (>K:ROTOR_BRAKE) 1 s0 l0 0 > if{ 79802 (>K:ROTOR_BRAKE) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "XPDR SYS 2"
+          },
+          "GUID": "a4df770f-1d47-52c8-b57a-47ea782cd323",
+          "Active": true,
+          "Name": "XPDR SYS 2 -> XPNDR 2",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "0 (>L:MF_TCAS_ALTRPT, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "ALT RPTG OFF"
+          },
+          "GUID": "ddc41952-4232-566c-bf1a-764bf0efb3b3",
+          "Active": true,
+          "Name": "ALT RPTG OFF -> modo ALT RPTG OFF",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "1 (>L:MF_TCAS_ALTRPT, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "ALT RPTG ON"
+          },
+          "GUID": "68ff3063-33cf-5268-89c4-0038870c81ca",
+          "Active": true,
+          "Name": "ALT RPTG ON -> volta ao modo do TCAS",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "0 (>L:MF_TCAS_MODE, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "TCAS STBY"
+          },
+          "GUID": "8345624b-83f7-5830-9407-f4d35f6d2e57",
+          "Active": true,
+          "Name": "TCAS STBY -> modo XPNDR",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "1 (>L:MF_TCAS_MODE, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "TCAS TA"
+          },
+          "GUID": "44730d03-a43a-5abc-a951-926c0d225d97",
+          "Active": true,
+          "Name": "TCAS TA -> modo TA ONLY",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "button": {
+            "onPress": {
+              "Command": "2 (>L:MF_TCAS_MODE, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "LongReleaseDelay": 350,
+            "HoldDelay": 350,
+            "RepeatDelay": 0
+          },
+          "Device": {
+            "Type": "Button",
+            "Name": "TCAS TA/RA"
+          },
+          "GUID": "742dc335-3fd5-5f8c-9072-b408147ba255",
+          "Active": true,
+          "Name": "TCAS TA/RA -> modo TA/RA",
+          "Type": "InputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "Source": {
+            "SimConnectValue": {
+              "UUID": "ce111311-099a-5d8c-a919-0a31e240b2a5",
+              "Value": "(L:MF_TCAS_N, number) 0 > if{ (L:MF_TCAS_N, number) } els{ 4 }",
+              "VarType": 2
+            },
+            "Type": "SimConnectSource"
+          },
+          "TestValue": {
+            "type": 1,
+            "Float64": 4.0
+          },
+          "Device": {
+            "Name": "Number Of Digits",
+            "Address": "Number Of Digits",
+            "Lines": [],
+            "Type": "LcdDisplay"
+          },
+          "DeviceType": "LcdDisplay",
+          "DeviceName": "Number Of Digits",
+          "GUID": "b14b1f74-b454-50d0-8302-48a584dbb7f8",
+          "Active": true,
+          "Name": "Digitos visiveis (edicao do squawk)",
+          "Type": "OutputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "Source": {
+            "SimConnectValue": {
+              "UUID": "7219dd68-8118-5954-8ec7-b09026d9a9bd",
+              "Value": "(L:MF_TCAS_N, number) 0 > if{ (L:MF_TCAS_BUF, number) } els{ (A:TRANSPONDER CODE:1, number) }",
+              "VarType": 2
+            },
+            "Type": "SimConnectSource"
+          },
+          "TestValue": {
+            "type": 1,
+            "Float64": 1200.0
+          },
+          "Device": {
+            "Name": "Ident Value",
+            "Address": "Ident Value",
+            "Lines": [],
+            "Type": "LcdDisplay"
+          },
+          "DeviceType": "LcdDisplay",
+          "DeviceName": "Ident Value",
+          "GUID": "4b7f00a6-9697-5fcc-9ad2-6ade8f432c5c",
+          "Active": true,
+          "Name": "Squawk (ou digitos em edicao)",
+          "Type": "OutputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "Source": {
+            "SimConnectValue": {
+              "UUID": "97737ca3-4064-59e4-b826-f8fc23fb81bd",
+              "Value": "(A:SIM ON GROUND, Bool) ! (L:MF_TCAS_XPDR, number) 0 == and",
+              "VarType": 2
+            },
+            "Type": "SimConnectSource"
+          },
+          "TestValue": {
+            "type": 1,
+            "Float64": 1.0
+          },
+          "Device": {
+            "Name": "ATC_FAIL",
+            "Pin": "ATC_FAIL",
+            "Brightness": 255,
+            "PwmMode": false,
+            "Type": "Output"
+          },
+          "DeviceType": "Output",
+          "DeviceName": "ATC_FAIL",
+          "GUID": "b20344cf-dc56-59ea-907f-a4ee8382e8f0",
+          "Active": true,
+          "Name": "LED ATC FAIL - transponder em STBY com o aviao no ar",
+          "Type": "OutputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "Source": {
+            "SimConnectValue": {
+              "UUID": "375a7b78-3723-5c86-b866-a9498bed8d9d",
+              "Value": "60",
+              "VarType": 2
+            },
+            "Type": "SimConnectSource"
+          },
+          "TestValue": {
+            "type": 1,
+            "Float64": 60.0
+          },
+          "Device": {
+            "Name": "Backlight Percentage",
+            "Pin": "Backlight Percentage",
+            "Brightness": 255,
+            "PwmMode": true,
+            "Type": "Output"
+          },
+          "DeviceType": "Output",
+          "DeviceName": "Backlight Percentage",
+          "GUID": "a7776bd7-ca3a-5b0f-8959-75a89d8b1eae",
+          "Active": true,
+          "Name": "Brilho backlight",
+          "Type": "OutputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "Source": {
+            "SimConnectValue": {
+              "UUID": "11c79658-e3f2-5835-b8f4-b07960f5f52a",
+              "Value": "100",
+              "VarType": 2
+            },
+            "Type": "SimConnectSource"
+          },
+          "TestValue": {
+            "type": 1,
+            "Float64": 100.0
+          },
+          "Device": {
+            "Name": "LCD Percentage",
+            "Pin": "LCD Percentage",
+            "Brightness": 255,
+            "PwmMode": true,
+            "Type": "Output"
+          },
+          "DeviceType": "Output",
+          "DeviceName": "LCD Percentage",
+          "GUID": "055d65ac-6d77-5d6b-b35c-a1779e691e9d",
+          "Active": true,
+          "Name": "Brilho display",
+          "Type": "OutputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "Source": {
+            "SimConnectValue": {
+              "UUID": "32640d1b-5432-5b86-b5e6-6215596c7e92",
+              "Value": "100",
+              "VarType": 2
+            },
+            "Type": "SimConnectSource"
+          },
+          "TestValue": {
+            "type": 1,
+            "Float64": 100.0
+          },
+          "Device": {
+            "Name": "LED Percentage",
+            "Pin": "LED Percentage",
+            "Brightness": 255,
+            "PwmMode": true,
+            "Type": "Output"
+          },
+          "DeviceType": "Output",
+          "DeviceName": "LED Percentage",
+          "GUID": "9b86267c-da4d-5751-9282-ff84c583ab57",
+          "Active": true,
+          "Name": "Brilho LED",
+          "Type": "OutputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        }
+      ]
+    }
+  ],
+  "Sim": "msfs",
+  "Features": {
+    "FSUIPC": false,
+    "ProSim": false
+  },
+  "_version": "0.10"
+}
