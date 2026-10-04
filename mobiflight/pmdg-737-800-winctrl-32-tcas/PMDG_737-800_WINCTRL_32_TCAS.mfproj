@@ -243,7 +243,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "0 (>K:#70931) 0 (>L:MF_TCAS_XPDR, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } (>K:#70432)",
+              "Command": "129908 (>K:ROTOR_BRAKE) 129908 (>K:ROTOR_BRAKE) 0 s0 :1 l0 0 > if{ 129907 (>K:ROTOR_BRAKE) l0 -- s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -266,7 +266,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "2 (>K:#70931) 1 (>L:MF_TCAS_XPDR, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } (>K:#70432)",
+              "Command": "129908 (>K:ROTOR_BRAKE) 129908 (>K:ROTOR_BRAKE) 2 s0 :1 l0 0 > if{ 129907 (>K:ROTOR_BRAKE) l0 -- s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -289,7 +289,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "1 (>K:#70931) 2 (>L:MF_TCAS_XPDR, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } (>K:#70432)",
+              "Command": "129908 (>K:ROTOR_BRAKE) 129908 (>K:ROTOR_BRAKE) 1 s0 :1 l0 0 > if{ 129907 (>K:ROTOR_BRAKE) l0 -- s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -312,7 +312,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "0 (>K:#70430)",
+              "Command": "(L:switch_798_73X, number) 0 > 0 != if{ 79801 (>K:ROTOR_BRAKE) }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -335,7 +335,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "1 (>K:#70430)",
+              "Command": "(L:switch_798_73X, number) 0 > 1 != if{ 79801 (>K:ROTOR_BRAKE) }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -358,7 +358,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "0 (>L:MF_TCAS_ALTRPT, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } (>K:#70432)",
+              "Command": "0 (>L:MF_TCAS_ALTRPT, number) 80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE) (L:MF_TCAS_ALTRPT, number) 0 == if{ 0 } els{ (L:MF_TCAS_MODE, number) 1 + } s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -381,7 +381,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "1 (>L:MF_TCAS_ALTRPT, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } (>K:#70432)",
+              "Command": "1 (>L:MF_TCAS_ALTRPT, number) 80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE) (L:MF_TCAS_ALTRPT, number) 0 == if{ 0 } els{ (L:MF_TCAS_MODE, number) 1 + } s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -404,7 +404,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "0 (>L:MF_TCAS_MODE, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } (>K:#70432)",
+              "Command": "0 (>L:MF_TCAS_MODE, number) 80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE) (L:MF_TCAS_ALTRPT, number) 0 == if{ 0 } els{ (L:MF_TCAS_MODE, number) 1 + } s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -427,7 +427,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "1 (>L:MF_TCAS_MODE, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } (>K:#70432)",
+              "Command": "1 (>L:MF_TCAS_MODE, number) 80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE) (L:MF_TCAS_ALTRPT, number) 0 == if{ 0 } els{ (L:MF_TCAS_MODE, number) 1 + } s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -450,7 +450,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "2 (>L:MF_TCAS_MODE, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } (>K:#70432)",
+              "Command": "2 (>L:MF_TCAS_MODE, number) 80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE) 80008 (>K:ROTOR_BRAKE) (L:MF_TCAS_ALTRPT, number) 0 == if{ 0 } els{ (L:MF_TCAS_MODE, number) 1 + } s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -534,7 +534,7 @@
           "Source": {
             "SimConnectValue": {
               "UUID": "97737ca3-4064-59e4-b826-f8fc23fb81bd",
-              "Value": "(A:SIM ON GROUND, Bool) ! (L:MF_TCAS_XPDR, number) 0 == and",
+              "Value": "(A:SIM ON GROUND, Bool) ! (L:switch_1299_73X, number) 0 == and",
               "VarType": 2
             },
             "Type": "SimConnectSource"
@@ -648,6 +648,98 @@
           "GUID": "9b86267c-da4d-5751-9282-ff84c583ab57",
           "Active": true,
           "Name": "Brilho LED - com bateria ligada",
+          "Type": "OutputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "Source": {
+            "SimConnectValue": {
+              "UUID": "4afc5a99-c1bb-5c7f-b33f-ae86e865675c",
+              "Value": "(L:switch_1299_73X, number)",
+              "VarType": 2
+            },
+            "Type": "SimConnectSource"
+          },
+          "TestValue": {
+            "type": 1,
+            "Float64": 0.0
+          },
+          "DeviceType": "-",
+          "GUID": "78d3c4d3-d511-5004-a775-066994f45605",
+          "Active": true,
+          "Name": "DIAGNOSTICO - seletor STBY/ON/AUTO (L:switch_1299_73X)",
+          "Type": "OutputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "Source": {
+            "SimConnectValue": {
+              "UUID": "edcbd93a-eabb-539e-a66a-f59f9b28fb66",
+              "Value": "(L:switch_800_73X, number)",
+              "VarType": 2
+            },
+            "Type": "SimConnectSource"
+          },
+          "TestValue": {
+            "type": 1,
+            "Float64": 0.0
+          },
+          "DeviceType": "-",
+          "GUID": "36a2d9f2-c042-5408-bcc4-63e105c15072",
+          "Active": true,
+          "Name": "DIAGNOSTICO - seletor de modo (L:switch_800_73X)",
+          "Type": "OutputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "Source": {
+            "SimConnectValue": {
+              "UUID": "b5e0d7c9-2e50-5afe-a361-69c3eb6b972c",
+              "Value": "(L:switch_798_73X, number)",
+              "VarType": 2
+            },
+            "Type": "SimConnectSource"
+          },
+          "TestValue": {
+            "type": 1,
+            "Float64": 0.0
+          },
+          "DeviceType": "-",
+          "GUID": "e8105082-2ae4-5a7e-b04f-1fbc59fcb777",
+          "Active": true,
+          "Name": "DIAGNOSTICO - chave XPNDR 1/2 (L:switch_798_73X)",
+          "Type": "OutputConfigItem",
+          "Controller": {
+            "Name": "WINCTRL 32 TCAS",
+            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+          }
+        },
+        {
+          "Source": {
+            "SimConnectValue": {
+              "UUID": "927685c1-8f9c-5995-ab05-5fd9e79642da",
+              "Value": "(A:TRANSPONDER STATE:1, enum)",
+              "VarType": 2
+            },
+            "Type": "SimConnectSource"
+          },
+          "TestValue": {
+            "type": 1,
+            "Float64": 0.0
+          },
+          "DeviceType": "-",
+          "GUID": "6b70c28b-fdc3-5fb8-b970-27a35cb85ef0",
+          "Active": true,
+          "Name": "DIAGNOSTICO - estado do transponder no sim (A:TRANSPONDER STATE:1)",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 TCAS",

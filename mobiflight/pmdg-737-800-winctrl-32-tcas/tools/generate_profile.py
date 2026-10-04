@@ -16,7 +16,7 @@ import sys
 import uuid
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
-from pmdg737_common import backlight_rpn, powered_rpn, rotor, set_position  # noqa: E402
+from pmdg737_common import backlight_rpn, powered_rpn, rotor, sweep_to, switch_var, toggle_to  # noqa: E402
 
 # --------------------------------------------------------------------------
 # Hardware: definicao oficial do MobiFlight (winwing_tcas.joystick.json)
@@ -63,16 +63,17 @@ BUTTON_LABELS = {
 # ../../pmdg737_common.py
 # --------------------------------------------------------------------------
 
-EVT_TCAS_XPNDR = 70430     # chave XPNDR 1 / 2 (posicao 0 = 1, 1 = 2)
-EVT_TCAS_MODE = 70432      # seletor de modo (0 STBY, 1 ALT RPTG OFF, 2 XPNDR, 3 TA ONLY, 4 TA/RA)
+EVT_TCAS_XPNDR = 70430     # chave XPNDR 1 / 2 (L:switch_798_73X: 0 = 1, nao zero = 2)
+EVT_TCAS_MODE = 70432      # seletor da direita (modo do TCAS)
 EVT_TCAS_IDENT = 70438     # botao IDENT
-EVT_XPDR_STBY_ON = 70931   # seletor STBY / ON / AUTO do transponder do 737-800 do MSFS 2024
-                           # (posicao 0 STBY, 1 ON, 2 AUTO; L:switch_1299_73X = 0 / 50 / 100)
+EVT_XPDR_STBY_ON = 70931   # seletor da esquerda STBY / ON / AUTO (L:switch_1299_73X = 0 / 50 / 100)
 
-# Todos os seletores sao comandados enviando a posicao direto no evento do
-# PMDG (N (>K:#evento)), o metodo relatado para o painel do 737 no MSFS 2024.
-MODE_STBY, MODE_ALT_OFF, MODE_XPNDR, MODE_TA_ONLY, MODE_TA_RA = range(5)
-XPDR_STBY, XPDR_ON, XPDR_AUTO = 0, 1, 2
+# Painel Gables G6992 do 737-800 do MSFS 2024: posicoes de cada seletor, da
+# esquerda para a direita. Se o seu painel tiver outra ordem ou outra
+# quantidade, ajuste estas listas (os valores de diagnostico no MobiFlight
+# mostram a posicao real) e gere de novo.
+XPDR_KNOB = ["STBY", "ON", "AUTO"]
+MODE_KNOB = ["ALT RPTG OFF", "XPNDR", "TA ONLY", "TA/RA"]
 
 # Brilho com a bateria do 737 ligada (0-100 %); o backlight segue o dimmer de painel
 LCD_PCT = 100
@@ -90,29 +91,30 @@ def guid(key):
 
 
 # --------------------------------------------------------------------------
-# Seletor de modo: o 737 tem um unico seletor (STBY / ALT RPTG OFF / XPNDR /
-# TA ONLY / TA/RA). As tres chaves do painel Airbus guardam seu estado em
-# L:vars e a combinacao define a posicao do seletor do 737.
-#   MF_TCAS_XPDR   0 = STBY, 1 = AUTO, 2 = ON
-#   MF_TCAS_ALTRPT 0 = OFF,  1 = ON
-#   MF_TCAS_MODE   0 = STBY, 1 = TA, 2 = TA/RA
+# Seletores do G6992
+#   Esquerda (STBY / ON / AUTO): segue a chave XPDR do painel Airbus.
+#   Direita (ALT RPTG OFF / XPNDR / TA ONLY / TA/RA): combinacao das chaves
+#   ALT RPTG e TCAS, guardadas em L:vars:
+#     MF_TCAS_ALTRPT 0 = OFF,  1 = ON
+#     MF_TCAS_MODE   0 = STBY, 1 = TA, 2 = TA/RA
+# Os dois giram com a roda do mouse (ROTOR_BRAKE 07/08, o mesmo mecanismo
+# usado nos outros paineis) ate o batente da esquerda e depois ate a posicao
+# pedida, sem depender da escala da L:switch do painel.
 # --------------------------------------------------------------------------
 MODE_TARGET = (
-    f"(L:MF_TCAS_XPDR, number) 0 == if{{ {MODE_STBY} }} "
-    f"els{{ (L:MF_TCAS_ALTRPT, number) 0 == if{{ {MODE_ALT_OFF} }} "
-    f"els{{ (L:MF_TCAS_MODE, number) {MODE_XPNDR} + }} }}"
+    f"(L:MF_TCAS_ALTRPT, number) 0 == if{{ {MODE_KNOB.index('ALT RPTG OFF')} }} "
+    f"els{{ (L:MF_TCAS_MODE, number) {MODE_KNOB.index('XPNDR')} + }}"
 )
-APPLY_MODE = set_position(EVT_TCAS_MODE, MODE_TARGET)
+APPLY_MODE = sweep_to(EVT_TCAS_MODE, len(MODE_KNOB), MODE_TARGET)
 
 
 def mode_switch(lvar, value):
     return f"{value} (>L:{lvar}, number) {APPLY_MODE}"
 
 
-def xpdr_switch(value, position):
-    """Chave STBY/AUTO/ON do Airbus: comanda o seletor STBY/ON/AUTO do 737 e
-    reaplica o seletor de modo."""
-    return f"{set_position(EVT_XPDR_STBY_ON, position)} {mode_switch('MF_TCAS_XPDR', value)}"
+def xpdr_switch(position):
+    """Chave STBY/AUTO/ON do Airbus -> seletor STBY/ON/AUTO do 737."""
+    return sweep_to(EVT_XPDR_STBY_ON, len(XPDR_KNOB), str(XPDR_KNOB.index(position)))
 
 
 # --------------------------------------------------------------------------
@@ -228,11 +230,11 @@ inputs += [
     button(9, "Key CLR -> apaga ultimo digito | segurar 1 s = cancela edicao",
            KEY_CLR, on_hold=KEY_CLR_ALL, hold_delay=1000),
     button(10, "Ident Button -> IDENT", rotor(EVT_TCAS_IDENT)),
-    button(11, "XPDR STBY -> transponder STBY", xpdr_switch(0, XPDR_STBY)),
-    button(12, "XPDR AUTO -> transponder AUTO", xpdr_switch(1, XPDR_AUTO)),
-    button(13, "XPDR ON -> transponder ON", xpdr_switch(2, XPDR_ON)),
-    button(14, "XPDR SYS 1 -> XPNDR 1", set_position(EVT_TCAS_XPNDR, 0)),
-    button(15, "XPDR SYS 2 -> XPNDR 2", set_position(EVT_TCAS_XPNDR, 1)),
+    button(11, "XPDR STBY -> transponder STBY", xpdr_switch("STBY")),
+    button(12, "XPDR AUTO -> transponder AUTO", xpdr_switch("AUTO")),
+    button(13, "XPDR ON -> transponder ON", xpdr_switch("ON")),
+    button(14, "XPDR SYS 1 -> XPNDR 1", toggle_to(EVT_TCAS_XPNDR, want_on=False)),
+    button(15, "XPDR SYS 2 -> XPNDR 2", toggle_to(EVT_TCAS_XPNDR, want_on=True)),
     button(16, "ALT RPTG OFF -> modo ALT RPTG OFF", mode_switch("MF_TCAS_ALTRPT", 0)),
     button(17, "ALT RPTG ON -> volta ao modo do TCAS", mode_switch("MF_TCAS_ALTRPT", 1)),
     button(22, "TCAS STBY -> modo XPNDR", mode_switch("MF_TCAS_MODE", 0)),
@@ -250,10 +252,32 @@ outputs = [
             "(L:MF_TCAS_N, number) 0 > if{ (L:MF_TCAS_BUF, number) } "
             "els{ (A:TRANSPONDER CODE:1, number) }", test=1200.0),
     led("ATC_FAIL", "LED ATC FAIL - transponder em STBY com o aviao no ar",
-        "(A:SIM ON GROUND, Bool) ! (L:MF_TCAS_XPDR, number) 0 == and"),
+        f"(A:SIM ON GROUND, Bool) ! {switch_var(EVT_XPDR_STBY_ON)} 0 == and"),
     brightness("Backlight Percentage", "Brilho backlight - dimmer de painel do 737", backlight_rpn(), 50),
     brightness("LCD Percentage", "Brilho display - com bateria ligada", powered_rpn(LCD_PCT), LCD_PCT),
     brightness("LED Percentage", "Brilho LED - com bateria ligada", powered_rpn(LED_PCT), LED_PCT),
+]
+
+def diagnostic(name, rpn):
+    """Saida sem dispositivo: so mostra o valor na coluna de valores do
+    MobiFlight, para conferir as posicoes reais dos seletores no PMDG."""
+    return {
+        "Source": _source(rpn, f"diag-{name}"),
+        "TestValue": {"type": 1, "Float64": 0.0},
+        "DeviceType": "-",
+        "GUID": guid(f"diag-{name}"),
+        "Active": True,
+        "Name": f"DIAGNOSTICO - {name}",
+        "Type": "OutputConfigItem",
+        "Controller": dict(CONTROLLER),
+    }
+
+
+outputs += [
+    diagnostic("seletor STBY/ON/AUTO (L:switch_1299_73X)", switch_var(EVT_XPDR_STBY_ON)),
+    diagnostic("seletor de modo (L:switch_800_73X)", switch_var(EVT_TCAS_MODE)),
+    diagnostic("chave XPNDR 1/2 (L:switch_798_73X)", switch_var(EVT_TCAS_XPNDR)),
+    diagnostic("estado do transponder no sim (A:TRANSPONDER STATE:1)", "(A:TRANSPONDER STATE:1, enum)"),
 ]
 
 project = {

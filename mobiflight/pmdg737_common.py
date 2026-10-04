@@ -48,6 +48,19 @@ def step_to(event_id, target_rpn, label=1):
     )
 
 
+def sweep_to(event_id, positions, target_rpn, label=1):
+    """Leva um seletor a um indice (0 = posicao mais a esquerda) sem ler nada
+    do PMDG: gira com a roda do mouse ate o batente da esquerda e depois sobe
+    'target' posicoes. Funciona qualquer que seja a escala da L:switch do
+    painel, ao custo de passar pelas posicoes intermediarias."""
+    down = rotor(event_id, WHEEL_DOWN)
+    up = rotor(event_id, WHEEL_UP)
+    return (
+        " ".join([down] * (positions - 1))
+        + f" {target_rpn} s0 :{label} l0 0 > if{{ {up} l0 -- s0 g{label} }}"
+    )
+
+
 def set_position(event_id, position_rpn):
     """Coloca um seletor direto numa posicao enviando o evento do PMDG com a
     posicao como parametro (0, 1, 2 ...), sem clique: N (>K:#<event_id>).

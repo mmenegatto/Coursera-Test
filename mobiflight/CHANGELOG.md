@@ -1,5 +1,13 @@
 # Changelog — profiles WINCTRL para o PMDG 737-800 (MSFS 2024)
 
+## v2.2
+
+**TCAS (painel Gables G6992)**
+- Seletor da esquerda STBY / ON / AUTO (`70931`) segue a chave XPDR; seletor da direita ALT RPTG OFF / XPNDR / TA ONLY / TA/RA (`70432`) segue ALT RPTG + TCAS.
+- Os dois giram via ROTOR_BRAKE com a roda do mouse até o batente e depois até a posição, sem depender da escala da L:switch nem do envio direto de posição da v2.1, que não funcionou.
+- Chave XPNDR 1/2 volta a ler `L:switch_798_73X` e clicar só se precisar.
+- Saídas de diagnóstico mostram no MobiFlight as variáveis dos seletores, para conferir as posições reais.
+
 ## v2.1
 
 **TCAS**
