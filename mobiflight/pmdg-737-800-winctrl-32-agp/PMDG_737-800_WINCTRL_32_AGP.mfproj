@@ -8,10 +8,6 @@
       "ConfigItems": [
         {
           "button": {
-            "onPress": {
-              "Command": "(A:BRAKE PARKING POSITION, Bool) ! if{ (>K:PARKING_BRAKES) }",
-              "Type": "MSFS2020CustomInputAction"
-            },
             "LongReleaseDelay": 350,
             "HoldDelay": 350,
             "RepeatDelay": 0
@@ -22,7 +18,7 @@
           },
           "GUID": "5a7ddecf-e8ea-5c29-bf84-c9a51cecac92",
           "Active": true,
-          "Name": "BRK FAN ON -> Parking brake SET",
+          "Name": "BRK FAN ON -> (livre)",
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 AGP Metal",
@@ -31,10 +27,6 @@
         },
         {
           "button": {
-            "onPress": {
-              "Command": "(A:BRAKE PARKING POSITION, Bool) if{ (>K:PARKING_BRAKES) }",
-              "Type": "MSFS2020CustomInputAction"
-            },
             "LongReleaseDelay": 350,
             "HoldDelay": 350,
             "RepeatDelay": 0
@@ -45,7 +37,7 @@
           },
           "GUID": "701437b3-2469-5280-8d8e-d6fad3db8262",
           "Active": true,
-          "Name": "BRK FAN OFF -> Parking brake RELEASE",
+          "Name": "BRK FAN OFF -> (livre)",
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 AGP Metal",

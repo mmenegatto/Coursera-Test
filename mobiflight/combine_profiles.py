@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Junta os profiles do AGP e do TCAS num unico projeto MobiFlight, com um
+Junta os profiles do AGP, do TCAS e do throttle Ursa Minor L num unico projeto MobiFlight, com um
 arquivo de configuracao para cada painel. O MobiFlight executa todos os
 arquivos de configuracao de um projeto ao mesmo tempo.
 
 Uso:
-    python3 combine_profiles.py   # grava PMDG_737-800_WINCTRL_AGP_TCAS.mfproj
+    python3 combine_profiles.py   # grava PMDG_737-800_WINCTRL_COCKPIT.mfproj
 
 Regenere os profiles individuais antes, se tiver alterado algum gerador.
 """
@@ -17,8 +17,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SOURCES = [
     os.path.join(HERE, "pmdg-737-800-winctrl-32-agp", "PMDG_737-800_WINCTRL_32_AGP.mfproj"),
     os.path.join(HERE, "pmdg-737-800-winctrl-32-tcas", "PMDG_737-800_WINCTRL_32_TCAS.mfproj"),
+    os.path.join(HERE, "pmdg-737-800-winctrl-ursa-minor-32-throttle-l",
+                 "PMDG_737-800_WINCTRL_URSA_MINOR_32_THROTTLE_L.mfproj"),
 ]
-OUTPUT = os.path.join(HERE, "PMDG_737-800_WINCTRL_AGP_TCAS.mfproj")
+OUTPUT = os.path.join(HERE, "PMDG_737-800_WINCTRL_COCKPIT.mfproj")
 
 config_files = []
 for path in SOURCES:
@@ -29,7 +31,7 @@ guids = [item["GUID"] for cf in config_files for item in cf["ConfigItems"]]
 assert len(guids) == len(set(guids)), "GUID duplicado entre os profiles"
 
 project = {
-    "Name": "PMDG 737-800 - WINCTRL 32 AGP Metal + 32 TCAS",
+    "Name": "PMDG 737-800 - WINCTRL 32 AGP Metal + 32 TCAS + URSA MINOR 32 Throttle L",
     "ConfigFiles": config_files,
     "Sim": "msfs",
     "Features": {"FSUIPC": False, "ProSim": False},

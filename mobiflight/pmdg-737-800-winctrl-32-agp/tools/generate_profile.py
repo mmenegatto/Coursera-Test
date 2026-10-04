@@ -231,8 +231,6 @@ def display(address, name, rpn, test=12.0):
 # --------------------------------------------------------------------------
 # Entradas (25 botoes do AGP)
 # --------------------------------------------------------------------------
-PARK_SET = "(A:BRAKE PARKING POSITION, Bool) ! if{ (>K:PARKING_BRAKES) }"
-PARK_RELEASE = "(A:BRAKE PARKING POSITION, Bool) if{ (>K:PARKING_BRAKES) }"
 
 CLK_PLUS = rotor(EVT_CHRONO_L_PLUS, LEFT_CLICK)
 CLK_MINUS = rotor(EVT_CHRONO_L_MINUS, LEFT_CLICK)
@@ -243,8 +241,9 @@ def et_select(index):
 
 
 inputs = [
-    button(1, "BRK FAN ON -> Parking brake SET", PARK_SET),
-    button(2, "BRK FAN OFF -> Parking brake RELEASE", PARK_RELEASE),
+    # Parking brake agora vem do throttle Ursa Minor; BRK FAN fica livre
+    button(1, "BRK FAN ON -> (livre)"),
+    button(2, "BRK FAN OFF -> (livre)"),
     button(3, "AUTO BRK LO -> Autobrake 1 (toggle OFF) | segurar 1 s = RTO",
            autobrake_toggle(AB_1),
            on_hold=step_selector(LVAR_AUTOBRAKE, EVT_MPM_AUTOBRAKE_SELECTOR, str(AB_RTO)),

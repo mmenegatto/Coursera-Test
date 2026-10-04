@@ -26,7 +26,7 @@ A primeira coluna usa os nomes exatos dos botões na definição do MobiFlight (
 | GEAR DOWN | Alavanca do trem DN | `K:GEAR_DOWN` |
 | A/SKID OFF | Alavanca do trem **OFF** | ROTOR_BRAKE `455101` (EVT_GEAR_LEVER_OFF) |
 | A/SKID ON | sem ação (só rearma a chave) | — |
-| BRK FAN ON / BRK FAN OFF | Parking brake aplica / solta | `K:PARKING_BRAKES` condicional ao estado |
+| BRK FAN ON / BRK FAN OFF | **Livre** (o parking brake passou para o throttle Ursa Minor) | — |
 | AUTO BRK LO Button | Autobrake **1** (apertar de novo = OFF) | seletor 460 por passos |
 | AUTO BRK LO Button (segurar 1 s) | Autobrake **RTO** | seletor 460 |
 | AUTO BRK MED Button | Autobrake **2** (apertar de novo = OFF) | seletor 460 |
