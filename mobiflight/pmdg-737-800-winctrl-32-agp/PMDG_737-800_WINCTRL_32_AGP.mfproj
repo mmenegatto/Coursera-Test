@@ -47,11 +47,11 @@
         {
           "button": {
             "onPress": {
-              "Command": "(L:switch_460_73X, number) 10 / near 2 == if{ 1 } els{ 2 } (L:switch_460_73X, number) 10 / near - s0 l0 0 > if{ 46002 (>K:ROTOR_BRAKE) } l0 1 > if{ 46002 (>K:ROTOR_BRAKE) } l0 2 > if{ 46002 (>K:ROTOR_BRAKE) } l0 3 > if{ 46002 (>K:ROTOR_BRAKE) } l0 4 > if{ 46002 (>K:ROTOR_BRAKE) } l0 0 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -1 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -2 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -3 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -4 < if{ 46001 (>K:ROTOR_BRAKE) }",
+              "Command": "(L:switch_460_73X, number) 20 == if{ 10 } els{ 20 } (L:switch_460_73X, number) - 10 div s0 :1 l0 0 > if{ 46007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 46008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "onHold": {
-              "Command": "0 (L:switch_460_73X, number) 10 / near - s0 l0 0 > if{ 46002 (>K:ROTOR_BRAKE) } l0 1 > if{ 46002 (>K:ROTOR_BRAKE) } l0 2 > if{ 46002 (>K:ROTOR_BRAKE) } l0 3 > if{ 46002 (>K:ROTOR_BRAKE) } l0 4 > if{ 46002 (>K:ROTOR_BRAKE) } l0 0 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -1 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -2 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -3 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -4 < if{ 46001 (>K:ROTOR_BRAKE) }",
+              "Command": "0 (L:switch_460_73X, number) - 10 div s0 :1 l0 0 > if{ 46007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 46008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -74,7 +74,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "(L:switch_460_73X, number) 10 / near 3 == if{ 1 } els{ 3 } (L:switch_460_73X, number) 10 / near - s0 l0 0 > if{ 46002 (>K:ROTOR_BRAKE) } l0 1 > if{ 46002 (>K:ROTOR_BRAKE) } l0 2 > if{ 46002 (>K:ROTOR_BRAKE) } l0 3 > if{ 46002 (>K:ROTOR_BRAKE) } l0 4 > if{ 46002 (>K:ROTOR_BRAKE) } l0 0 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -1 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -2 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -3 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -4 < if{ 46001 (>K:ROTOR_BRAKE) }",
+              "Command": "(L:switch_460_73X, number) 30 == if{ 10 } els{ 30 } (L:switch_460_73X, number) - 10 div s0 :1 l0 0 > if{ 46007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 46008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -97,7 +97,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "(L:switch_460_73X, number) 10 / near 4 == if{ 1 } els{ 4 } (L:switch_460_73X, number) 10 / near - s0 l0 0 > if{ 46002 (>K:ROTOR_BRAKE) } l0 1 > if{ 46002 (>K:ROTOR_BRAKE) } l0 2 > if{ 46002 (>K:ROTOR_BRAKE) } l0 3 > if{ 46002 (>K:ROTOR_BRAKE) } l0 4 > if{ 46002 (>K:ROTOR_BRAKE) } l0 0 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -1 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -2 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -3 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -4 < if{ 46001 (>K:ROTOR_BRAKE) }",
+              "Command": "(L:switch_460_73X, number) 40 == if{ 10 } els{ 40 } (L:switch_460_73X, number) - 10 div s0 :1 l0 0 > if{ 46007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 46008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -438,7 +438,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "2 (L:switch_321_73X, number) 10 / near - s0 l0 0 > if{ 32102 (>K:ROTOR_BRAKE) } l0 1 > if{ 32102 (>K:ROTOR_BRAKE) } l0 0 < if{ 32101 (>K:ROTOR_BRAKE) } l0 -1 < if{ 32101 (>K:ROTOR_BRAKE) } (L:MF_AGP_ET_STATE, number) 1 != if{ (E:ABSOLUTE TIME, seconds) (L:MF_AGP_ET_HELD, number) - (>L:MF_AGP_ET_START, number) 1 (>L:MF_AGP_ET_STATE, number) }",
+              "Command": "20 (L:switch_321_73X, number) - 10 div s0 :1 l0 0 > if{ 32107 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 32108 (>K:ROTOR_BRAKE) l0 ++ s0 g1 } (L:MF_AGP_ET_STATE, number) 1 != if{ (E:ABSOLUTE TIME, seconds) (L:MF_AGP_ET_HELD, number) - (>L:MF_AGP_ET_START, number) 1 (>L:MF_AGP_ET_STATE, number) }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -461,7 +461,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "1 (L:switch_321_73X, number) 10 / near - s0 l0 0 > if{ 32102 (>K:ROTOR_BRAKE) } l0 1 > if{ 32102 (>K:ROTOR_BRAKE) } l0 0 < if{ 32101 (>K:ROTOR_BRAKE) } l0 -1 < if{ 32101 (>K:ROTOR_BRAKE) } (L:MF_AGP_ET_STATE, number) 1 == if{ (E:ABSOLUTE TIME, seconds) (L:MF_AGP_ET_START, number) - (>L:MF_AGP_ET_HELD, number) 2 (>L:MF_AGP_ET_STATE, number) }",
+              "Command": "10 (L:switch_321_73X, number) - 10 div s0 :1 l0 0 > if{ 32107 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 32108 (>K:ROTOR_BRAKE) l0 ++ s0 g1 } (L:MF_AGP_ET_STATE, number) 1 == if{ (E:ABSOLUTE TIME, seconds) (L:MF_AGP_ET_START, number) - (>L:MF_AGP_ET_HELD, number) 2 (>L:MF_AGP_ET_STATE, number) }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -484,11 +484,11 @@
         {
           "button": {
             "onPress": {
-              "Command": "0 (L:switch_321_73X, number) 10 / near - s0 l0 0 > if{ 32102 (>K:ROTOR_BRAKE) } l0 1 > if{ 32102 (>K:ROTOR_BRAKE) } l0 0 < if{ 32101 (>K:ROTOR_BRAKE) } l0 -1 < if{ 32101 (>K:ROTOR_BRAKE) } 0 (>L:MF_AGP_ET_HELD, number) 0 (>L:MF_AGP_ET_STATE, number)",
+              "Command": "0 (L:switch_321_73X, number) - 10 div s0 :1 l0 0 > if{ 32107 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 32108 (>K:ROTOR_BRAKE) l0 ++ s0 g1 } 0 (>L:MF_AGP_ET_HELD, number) 0 (>L:MF_AGP_ET_STATE, number)",
               "Type": "MSFS2020CustomInputAction"
             },
             "onRelease": {
-              "Command": "1 (L:switch_321_73X, number) 10 / near - s0 l0 0 > if{ 32102 (>K:ROTOR_BRAKE) } l0 1 > if{ 32102 (>K:ROTOR_BRAKE) } l0 0 < if{ 32101 (>K:ROTOR_BRAKE) } l0 -1 < if{ 32101 (>K:ROTOR_BRAKE) }",
+              "Command": "10 (L:switch_321_73X, number) - 10 div s0 :1 l0 0 > if{ 32107 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 32108 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -1077,14 +1077,14 @@
           "Source": {
             "SimConnectValue": {
               "UUID": "de5db833-2522-5813-ad81-a54330d4ebe0",
-              "Value": "60",
+              "Value": "(L:BL_MainCA, number) 50 * 100 min",
               "VarType": 2
             },
             "Type": "SimConnectSource"
           },
           "TestValue": {
             "type": 1,
-            "Float64": 60.0
+            "Float64": 50.0
           },
           "Device": {
             "Name": "Backlight Percentage",
@@ -1097,7 +1097,7 @@
           "DeviceName": "Backlight Percentage",
           "GUID": "b9a5c4bd-8033-5a1b-9ce3-8c1be5160afd",
           "Active": true,
-          "Name": "Brilho backlight",
+          "Name": "Brilho backlight - dimmer de painel do 737",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 AGP Metal",
@@ -1108,7 +1108,7 @@
           "Source": {
             "SimConnectValue": {
               "UUID": "c80a5eed-663e-551e-8af9-651667edf886",
-              "Value": "100",
+              "Value": "(L:switch_01_73X, number) 0 > 100 *",
               "VarType": 2
             },
             "Type": "SimConnectSource"
@@ -1128,7 +1128,7 @@
           "DeviceName": "LCD Percentage",
           "GUID": "e2cdacc0-838c-5191-8e8d-05a7c9fa1309",
           "Active": true,
-          "Name": "Brilho displays",
+          "Name": "Brilho displays - com bateria ligada",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 AGP Metal",
@@ -1139,7 +1139,7 @@
           "Source": {
             "SimConnectValue": {
               "UUID": "7317c55b-60cd-58d9-b726-61cde316101f",
-              "Value": "100",
+              "Value": "(L:switch_01_73X, number) 0 > 100 *",
               "VarType": 2
             },
             "Type": "SimConnectSource"
@@ -1159,7 +1159,7 @@
           "DeviceName": "LED Percentage",
           "GUID": "56352b3f-8edc-56d8-a0d5-b4fa349116a5",
           "Active": true,
-          "Name": "Brilho LEDs",
+          "Name": "Brilho LEDs - com bateria ligada",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 AGP Metal",

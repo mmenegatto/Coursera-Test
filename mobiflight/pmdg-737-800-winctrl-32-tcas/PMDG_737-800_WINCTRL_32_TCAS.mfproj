@@ -243,7 +243,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "0 (>L:MF_TCAS_XPDR, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Command": "0 (>L:MF_TCAS_XPDR, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -266,7 +266,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "1 (>L:MF_TCAS_XPDR, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Command": "1 (>L:MF_TCAS_XPDR, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -289,7 +289,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "2 (>L:MF_TCAS_XPDR, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Command": "2 (>L:MF_TCAS_XPDR, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -312,7 +312,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "79801 (>K:ROTOR_BRAKE) 0 s0 l0 0 > if{ 79802 (>K:ROTOR_BRAKE) }",
+              "Command": "(L:switch_798_73X, number) 0 > 0 != if{ 79801 (>K:ROTOR_BRAKE) }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -335,7 +335,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "79801 (>K:ROTOR_BRAKE) 1 s0 l0 0 > if{ 79802 (>K:ROTOR_BRAKE) }",
+              "Command": "(L:switch_798_73X, number) 0 > 1 != if{ 79801 (>K:ROTOR_BRAKE) }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -358,7 +358,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "0 (>L:MF_TCAS_ALTRPT, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Command": "0 (>L:MF_TCAS_ALTRPT, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -381,7 +381,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "1 (>L:MF_TCAS_ALTRPT, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Command": "1 (>L:MF_TCAS_ALTRPT, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -404,7 +404,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "0 (>L:MF_TCAS_MODE, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Command": "0 (>L:MF_TCAS_MODE, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -427,7 +427,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "1 (>L:MF_TCAS_MODE, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Command": "1 (>L:MF_TCAS_MODE, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -450,7 +450,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "2 (>L:MF_TCAS_MODE, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Command": "2 (>L:MF_TCAS_MODE, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -565,14 +565,14 @@
           "Source": {
             "SimConnectValue": {
               "UUID": "375a7b78-3723-5c86-b866-a9498bed8d9d",
-              "Value": "60",
+              "Value": "(L:BL_MainCA, number) 50 * 100 min",
               "VarType": 2
             },
             "Type": "SimConnectSource"
           },
           "TestValue": {
             "type": 1,
-            "Float64": 60.0
+            "Float64": 50.0
           },
           "Device": {
             "Name": "Backlight Percentage",
@@ -585,7 +585,7 @@
           "DeviceName": "Backlight Percentage",
           "GUID": "a7776bd7-ca3a-5b0f-8959-75a89d8b1eae",
           "Active": true,
-          "Name": "Brilho backlight",
+          "Name": "Brilho backlight - dimmer de painel do 737",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 TCAS",
@@ -596,7 +596,7 @@
           "Source": {
             "SimConnectValue": {
               "UUID": "11c79658-e3f2-5835-b8f4-b07960f5f52a",
-              "Value": "100",
+              "Value": "(L:switch_01_73X, number) 0 > 100 *",
               "VarType": 2
             },
             "Type": "SimConnectSource"
@@ -616,7 +616,7 @@
           "DeviceName": "LCD Percentage",
           "GUID": "055d65ac-6d77-5d6b-b35c-a1779e691e9d",
           "Active": true,
-          "Name": "Brilho display",
+          "Name": "Brilho display - com bateria ligada",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 TCAS",
@@ -627,7 +627,7 @@
           "Source": {
             "SimConnectValue": {
               "UUID": "32640d1b-5432-5b86-b5e6-6215596c7e92",
-              "Value": "100",
+              "Value": "(L:switch_01_73X, number) 0 > 100 *",
               "VarType": 2
             },
             "Type": "SimConnectSource"
@@ -647,7 +647,7 @@
           "DeviceName": "LED Percentage",
           "GUID": "9b86267c-da4d-5751-9282-ff84c583ab57",
           "Active": true,
-          "Name": "Brilho LED",
+          "Name": "Brilho LED - com bateria ligada",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 TCAS",

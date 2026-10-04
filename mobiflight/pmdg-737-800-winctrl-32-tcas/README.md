@@ -50,7 +50,7 @@ O 737 tem um único seletor (STBY / ALT RPTG OFF / XPNDR / TA ONLY / TA/RA), e o
 
 AUTO e ON fazem a mesma coisa, porque o 737 não tem modo automático. No início do voo, mexa uma vez em cada uma das três chaves (ou coloque-as na posição desejada) para o MobiFlight registrar a posição física delas.
 
-Para mudar de posição, o seletor gira até o batente da esquerda e depois avança até a posição pedida. Isso evita depender de ler a posição atual do PMDG, mas faz o seletor passar rapidamente por STBY a cada mudança.
+O seletor lê a posição atual no PMDG (`L:switch_800_73X`) e gira só o necessário com a roda do mouse (eventos 07/08), sem passar por STBY. A chave XPNDR 1/2 só é clicada quando está na posição errada.
 
 ## Mapeamento — saídas
 
@@ -58,12 +58,12 @@ Para mudar de posição, o seletor gira até o batente da esquerda e depois avan
 |---|---|
 | Display de 4 dígitos | O squawk do transponder 1. Durante a digitação, os dígitos aparecem da esquerda para a direita e o resto fica apagado, como no painel real |
 | LED ATC FAIL | Transponder em STBY com o avião no ar |
-| Brilho | Fixo: backlight 60 %, LCD 100 %, LED 100 % (constantes no gerador) |
+| Brilho | Backlight acompanha o dimmer de painel do 737 (`L:BL_MainCA`); displays e LEDs acendem só com a bateria do 737 ligada (`L:switch_01_73X`) |
 
 ## Verifique no primeiro voo
 
 1. **Squawk via `K:XPNDR_SET`.** Se o código digitado não aparecer no painel do PMDG, o 737 está ignorando o evento padrão. Me avise que troco por cliques nos quatro knobs do PMDG (EVT_TCAS_KNOB1 a 4).
-2. **Sentido dos seletores.** Se TA/RA levar o seletor para o lado errado, inverta `LEFT_CLICK` e `RIGHT_CLICK` no gerador.
-3. **Chave XPNDR 1/2.** Se SYS 1 e SYS 2 ficarem trocados, inverta os alvos `"0"` e `"1"` dos botões 14 e 15.
+2. **Posições do seletor de modo** (`L:switch_800_73X`, assumido 0 = STBY, 10 = ALT RPTG OFF, 20 = XPNDR, 30 = TA ONLY, 40 = TA/RA). Confira no *Watch Variable* do MobiFlight.
+3. **Chave XPNDR 1/2.** Se SYS 1 e SYS 2 ficarem trocados, inverta `want_on` dos botões 14 e 15 no gerador.
 
 Depois de qualquer ajuste: `python3 tools/generate_profile.py` e reabra o profile no MobiFlight.

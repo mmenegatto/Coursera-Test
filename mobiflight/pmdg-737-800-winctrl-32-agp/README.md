@@ -60,7 +60,7 @@ O MAX real do autobrake fica no mouse. O seletor de autobrake anda até a posiç
 | Display UTC | Hora UTC do sim (GPS) ou local (INT); com DATE mostra mês/dia/ano |
 | Display CHR | Cronômetro, em sincronia com o botão CHR |
 | Display ET | Tempo decorrido, em sincronia com a chave ET |
-| Brilho | Fixo: backlight 60 %, LCD 100 %, LED 100 % (constantes no gerador) |
+| Brilho | Backlight acompanha o dimmer de painel do 737 (`L:BL_MainCA`); displays e LEDs acendem só com a bateria do 737 ligada (`L:switch_01_73X`) |
 
 O PMDG não expõe os valores do relógio. Por isso CHR e ET são calculados no próprio MobiFlight, com as L:vars `MF_AGP_*` e o tempo do sim, e disparados pelos mesmos botões que comandam o relógio do 737. Se o relógio do PMDG for mexido pelo mouse, os dois deixam de bater; para realinhar, use RST no CHR ou ET RST.
 
@@ -73,11 +73,12 @@ O mesmo vale para o LED TERR ON ND: o MobiFlight inverte o estado a cada toque. 
 
 ## Verifique no primeiro voo
 
-Os IDs de eventos vêm do SDK do PMDG (`PMDG_NG3_SDK.h`) e da lista que vem com o MobiFlight. Algumas convenções do PMDG não pude testar no sim e estão concentradas no topo de `tools/generate_profile.py`:
+Os IDs de eventos vêm do SDK do PMDG (`PMDG_NG3_SDK.h`); os de CHR (`31401`) e TERR (`37501`) foram confirmados num profile testado no 737 do MSFS 2024. Os seletores rotativos leem a posição atual no PMDG (`L:switch_XXX_73X`) e giram só o necessário com a roda do mouse (eventos 07/08), no mesmo padrão de um profile da comunidade testado no PMDG 737-800 do MSFS 2024. As convenções ficam em `../pmdg737_common.py`.
 
-1. **Sentido do seletor de autobrake.** Se apertar MED levar o seletor para o lado errado, inverta `LEFT_CLICK` e `RIGHT_CLICK`.
-2. **L:var de posição do autobrake** (`L:switch_460_73X`, de 0 = RTO a 50 = MAX, em passos de 10). Confira no *Watch Variable* do MobiFlight girando o seletor no cockpit.
-3. **Posições da chave ET** (`L:switch_321_73X`, assumido 0 = RESET, 10 = HLD, 20 = RUN).
-4. **GEAR_UP / GEAR_DOWN.** Se o PMDG ignorar os eventos padrão, troque por ROTOR_BRAKE `45501` / `45502` (EVT_GEAR_LEVER).
+O que ainda vale conferir:
+
+1. **Posições do autobrake** (`L:switch_460_73X`, assumido 0 = RTO, 10 = OFF, 20 = 1 … 50 = MAX). Confira no *Watch Variable* do MobiFlight girando o seletor no cockpit.
+2. **Posições da chave ET** (`L:switch_321_73X`, assumido 0 = RESET, 10 = HLD, 20 = RUN).
+3. **GEAR_UP / GEAR_DOWN.** Se o PMDG ignorar os eventos padrão, troque por ROTOR_BRAKE `45501` / `45502` (EVT_GEAR_LEVER).
 
 Depois de qualquer ajuste: `python3 tools/generate_profile.py` e reabra o profile no MobiFlight.

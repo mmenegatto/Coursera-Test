@@ -47,11 +47,11 @@
         {
           "button": {
             "onPress": {
-              "Command": "(L:switch_460_73X, number) 10 / near 2 == if{ 1 } els{ 2 } (L:switch_460_73X, number) 10 / near - s0 l0 0 > if{ 46002 (>K:ROTOR_BRAKE) } l0 1 > if{ 46002 (>K:ROTOR_BRAKE) } l0 2 > if{ 46002 (>K:ROTOR_BRAKE) } l0 3 > if{ 46002 (>K:ROTOR_BRAKE) } l0 4 > if{ 46002 (>K:ROTOR_BRAKE) } l0 0 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -1 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -2 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -3 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -4 < if{ 46001 (>K:ROTOR_BRAKE) }",
+              "Command": "(L:switch_460_73X, number) 20 == if{ 10 } els{ 20 } (L:switch_460_73X, number) - 10 div s0 :1 l0 0 > if{ 46007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 46008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "onHold": {
-              "Command": "0 (L:switch_460_73X, number) 10 / near - s0 l0 0 > if{ 46002 (>K:ROTOR_BRAKE) } l0 1 > if{ 46002 (>K:ROTOR_BRAKE) } l0 2 > if{ 46002 (>K:ROTOR_BRAKE) } l0 3 > if{ 46002 (>K:ROTOR_BRAKE) } l0 4 > if{ 46002 (>K:ROTOR_BRAKE) } l0 0 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -1 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -2 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -3 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -4 < if{ 46001 (>K:ROTOR_BRAKE) }",
+              "Command": "0 (L:switch_460_73X, number) - 10 div s0 :1 l0 0 > if{ 46007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 46008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -74,7 +74,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "(L:switch_460_73X, number) 10 / near 3 == if{ 1 } els{ 3 } (L:switch_460_73X, number) 10 / near - s0 l0 0 > if{ 46002 (>K:ROTOR_BRAKE) } l0 1 > if{ 46002 (>K:ROTOR_BRAKE) } l0 2 > if{ 46002 (>K:ROTOR_BRAKE) } l0 3 > if{ 46002 (>K:ROTOR_BRAKE) } l0 4 > if{ 46002 (>K:ROTOR_BRAKE) } l0 0 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -1 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -2 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -3 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -4 < if{ 46001 (>K:ROTOR_BRAKE) }",
+              "Command": "(L:switch_460_73X, number) 30 == if{ 10 } els{ 30 } (L:switch_460_73X, number) - 10 div s0 :1 l0 0 > if{ 46007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 46008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -97,7 +97,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "(L:switch_460_73X, number) 10 / near 4 == if{ 1 } els{ 4 } (L:switch_460_73X, number) 10 / near - s0 l0 0 > if{ 46002 (>K:ROTOR_BRAKE) } l0 1 > if{ 46002 (>K:ROTOR_BRAKE) } l0 2 > if{ 46002 (>K:ROTOR_BRAKE) } l0 3 > if{ 46002 (>K:ROTOR_BRAKE) } l0 4 > if{ 46002 (>K:ROTOR_BRAKE) } l0 0 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -1 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -2 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -3 < if{ 46001 (>K:ROTOR_BRAKE) } l0 -4 < if{ 46001 (>K:ROTOR_BRAKE) }",
+              "Command": "(L:switch_460_73X, number) 40 == if{ 10 } els{ 40 } (L:switch_460_73X, number) - 10 div s0 :1 l0 0 > if{ 46007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 46008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -438,7 +438,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "2 (L:switch_321_73X, number) 10 / near - s0 l0 0 > if{ 32102 (>K:ROTOR_BRAKE) } l0 1 > if{ 32102 (>K:ROTOR_BRAKE) } l0 0 < if{ 32101 (>K:ROTOR_BRAKE) } l0 -1 < if{ 32101 (>K:ROTOR_BRAKE) } (L:MF_AGP_ET_STATE, number) 1 != if{ (E:ABSOLUTE TIME, seconds) (L:MF_AGP_ET_HELD, number) - (>L:MF_AGP_ET_START, number) 1 (>L:MF_AGP_ET_STATE, number) }",
+              "Command": "20 (L:switch_321_73X, number) - 10 div s0 :1 l0 0 > if{ 32107 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 32108 (>K:ROTOR_BRAKE) l0 ++ s0 g1 } (L:MF_AGP_ET_STATE, number) 1 != if{ (E:ABSOLUTE TIME, seconds) (L:MF_AGP_ET_HELD, number) - (>L:MF_AGP_ET_START, number) 1 (>L:MF_AGP_ET_STATE, number) }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -461,7 +461,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "1 (L:switch_321_73X, number) 10 / near - s0 l0 0 > if{ 32102 (>K:ROTOR_BRAKE) } l0 1 > if{ 32102 (>K:ROTOR_BRAKE) } l0 0 < if{ 32101 (>K:ROTOR_BRAKE) } l0 -1 < if{ 32101 (>K:ROTOR_BRAKE) } (L:MF_AGP_ET_STATE, number) 1 == if{ (E:ABSOLUTE TIME, seconds) (L:MF_AGP_ET_START, number) - (>L:MF_AGP_ET_HELD, number) 2 (>L:MF_AGP_ET_STATE, number) }",
+              "Command": "10 (L:switch_321_73X, number) - 10 div s0 :1 l0 0 > if{ 32107 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 32108 (>K:ROTOR_BRAKE) l0 ++ s0 g1 } (L:MF_AGP_ET_STATE, number) 1 == if{ (E:ABSOLUTE TIME, seconds) (L:MF_AGP_ET_START, number) - (>L:MF_AGP_ET_HELD, number) 2 (>L:MF_AGP_ET_STATE, number) }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -484,11 +484,11 @@
         {
           "button": {
             "onPress": {
-              "Command": "0 (L:switch_321_73X, number) 10 / near - s0 l0 0 > if{ 32102 (>K:ROTOR_BRAKE) } l0 1 > if{ 32102 (>K:ROTOR_BRAKE) } l0 0 < if{ 32101 (>K:ROTOR_BRAKE) } l0 -1 < if{ 32101 (>K:ROTOR_BRAKE) } 0 (>L:MF_AGP_ET_HELD, number) 0 (>L:MF_AGP_ET_STATE, number)",
+              "Command": "0 (L:switch_321_73X, number) - 10 div s0 :1 l0 0 > if{ 32107 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 32108 (>K:ROTOR_BRAKE) l0 ++ s0 g1 } 0 (>L:MF_AGP_ET_HELD, number) 0 (>L:MF_AGP_ET_STATE, number)",
               "Type": "MSFS2020CustomInputAction"
             },
             "onRelease": {
-              "Command": "1 (L:switch_321_73X, number) 10 / near - s0 l0 0 > if{ 32102 (>K:ROTOR_BRAKE) } l0 1 > if{ 32102 (>K:ROTOR_BRAKE) } l0 0 < if{ 32101 (>K:ROTOR_BRAKE) } l0 -1 < if{ 32101 (>K:ROTOR_BRAKE) }",
+              "Command": "10 (L:switch_321_73X, number) - 10 div s0 :1 l0 0 > if{ 32107 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 32108 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -1077,14 +1077,14 @@
           "Source": {
             "SimConnectValue": {
               "UUID": "de5db833-2522-5813-ad81-a54330d4ebe0",
-              "Value": "60",
+              "Value": "(L:BL_MainCA, number) 50 * 100 min",
               "VarType": 2
             },
             "Type": "SimConnectSource"
           },
           "TestValue": {
             "type": 1,
-            "Float64": 60.0
+            "Float64": 50.0
           },
           "Device": {
             "Name": "Backlight Percentage",
@@ -1097,7 +1097,7 @@
           "DeviceName": "Backlight Percentage",
           "GUID": "b9a5c4bd-8033-5a1b-9ce3-8c1be5160afd",
           "Active": true,
-          "Name": "Brilho backlight",
+          "Name": "Brilho backlight - dimmer de painel do 737",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 AGP Metal",
@@ -1108,7 +1108,7 @@
           "Source": {
             "SimConnectValue": {
               "UUID": "c80a5eed-663e-551e-8af9-651667edf886",
-              "Value": "100",
+              "Value": "(L:switch_01_73X, number) 0 > 100 *",
               "VarType": 2
             },
             "Type": "SimConnectSource"
@@ -1128,7 +1128,7 @@
           "DeviceName": "LCD Percentage",
           "GUID": "e2cdacc0-838c-5191-8e8d-05a7c9fa1309",
           "Active": true,
-          "Name": "Brilho displays",
+          "Name": "Brilho displays - com bateria ligada",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 AGP Metal",
@@ -1139,7 +1139,7 @@
           "Source": {
             "SimConnectValue": {
               "UUID": "7317c55b-60cd-58d9-b726-61cde316101f",
-              "Value": "100",
+              "Value": "(L:switch_01_73X, number) 0 > 100 *",
               "VarType": 2
             },
             "Type": "SimConnectSource"
@@ -1159,7 +1159,7 @@
           "DeviceName": "LED Percentage",
           "GUID": "56352b3f-8edc-56d8-a0d5-b4fa349116a5",
           "Active": true,
-          "Name": "Brilho LEDs",
+          "Name": "Brilho LEDs - com bateria ligada",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 AGP Metal",
@@ -1830,7 +1830,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "0 (>L:MF_TCAS_XPDR, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Command": "0 (>L:MF_TCAS_XPDR, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -1853,7 +1853,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "1 (>L:MF_TCAS_XPDR, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Command": "1 (>L:MF_TCAS_XPDR, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -1876,7 +1876,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "2 (>L:MF_TCAS_XPDR, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Command": "2 (>L:MF_TCAS_XPDR, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -1899,7 +1899,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "79801 (>K:ROTOR_BRAKE) 0 s0 l0 0 > if{ 79802 (>K:ROTOR_BRAKE) }",
+              "Command": "(L:switch_798_73X, number) 0 > 0 != if{ 79801 (>K:ROTOR_BRAKE) }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -1922,7 +1922,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "79801 (>K:ROTOR_BRAKE) 1 s0 l0 0 > if{ 79802 (>K:ROTOR_BRAKE) }",
+              "Command": "(L:switch_798_73X, number) 0 > 1 != if{ 79801 (>K:ROTOR_BRAKE) }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -1945,7 +1945,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "0 (>L:MF_TCAS_ALTRPT, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Command": "0 (>L:MF_TCAS_ALTRPT, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -1968,7 +1968,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "1 (>L:MF_TCAS_ALTRPT, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Command": "1 (>L:MF_TCAS_ALTRPT, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -1991,7 +1991,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "0 (>L:MF_TCAS_MODE, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Command": "0 (>L:MF_TCAS_MODE, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -2014,7 +2014,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "1 (>L:MF_TCAS_MODE, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Command": "1 (>L:MF_TCAS_MODE, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -2037,7 +2037,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "2 (>L:MF_TCAS_MODE, number) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) 80001 (>K:ROTOR_BRAKE) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } s0 l0 0 > if{ 80002 (>K:ROTOR_BRAKE) } l0 1 > if{ 80002 (>K:ROTOR_BRAKE) } l0 2 > if{ 80002 (>K:ROTOR_BRAKE) } l0 3 > if{ 80002 (>K:ROTOR_BRAKE) }",
+              "Command": "2 (>L:MF_TCAS_MODE, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -2152,14 +2152,14 @@
           "Source": {
             "SimConnectValue": {
               "UUID": "375a7b78-3723-5c86-b866-a9498bed8d9d",
-              "Value": "60",
+              "Value": "(L:BL_MainCA, number) 50 * 100 min",
               "VarType": 2
             },
             "Type": "SimConnectSource"
           },
           "TestValue": {
             "type": 1,
-            "Float64": 60.0
+            "Float64": 50.0
           },
           "Device": {
             "Name": "Backlight Percentage",
@@ -2172,7 +2172,7 @@
           "DeviceName": "Backlight Percentage",
           "GUID": "a7776bd7-ca3a-5b0f-8959-75a89d8b1eae",
           "Active": true,
-          "Name": "Brilho backlight",
+          "Name": "Brilho backlight - dimmer de painel do 737",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 TCAS",
@@ -2183,7 +2183,7 @@
           "Source": {
             "SimConnectValue": {
               "UUID": "11c79658-e3f2-5835-b8f4-b07960f5f52a",
-              "Value": "100",
+              "Value": "(L:switch_01_73X, number) 0 > 100 *",
               "VarType": 2
             },
             "Type": "SimConnectSource"
@@ -2203,7 +2203,7 @@
           "DeviceName": "LCD Percentage",
           "GUID": "055d65ac-6d77-5d6b-b35c-a1779e691e9d",
           "Active": true,
-          "Name": "Brilho display",
+          "Name": "Brilho display - com bateria ligada",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 TCAS",
@@ -2214,7 +2214,7 @@
           "Source": {
             "SimConnectValue": {
               "UUID": "32640d1b-5432-5b86-b5e6-6215596c7e92",
-              "Value": "100",
+              "Value": "(L:switch_01_73X, number) 0 > 100 *",
               "VarType": 2
             },
             "Type": "SimConnectSource"
@@ -2234,7 +2234,7 @@
           "DeviceName": "LED Percentage",
           "GUID": "9b86267c-da4d-5751-9282-ff84c583ab57",
           "Active": true,
-          "Name": "Brilho LED",
+          "Name": "Brilho LED - com bateria ligada",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 TCAS",
@@ -2251,7 +2251,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "68801 (>K:ROTOR_BRAKE) 68802 (>K:ROTOR_BRAKE)",
+              "Command": "(L:switch_688_73X, number) 0 > 0 != if{ 68801 (>K:ROTOR_BRAKE) }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -2268,13 +2268,13 @@
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
           "button": {
             "onPress": {
-              "Command": "68801 (>K:ROTOR_BRAKE)",
+              "Command": "(L:switch_688_73X, number) 0 > 1 != if{ 68801 (>K:ROTOR_BRAKE) }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -2291,13 +2291,13 @@
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
           "button": {
             "onPress": {
-              "Command": "68901 (>K:ROTOR_BRAKE) 68902 (>K:ROTOR_BRAKE)",
+              "Command": "(L:switch_689_73X, number) 0 > 0 != if{ 68901 (>K:ROTOR_BRAKE) }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -2314,13 +2314,13 @@
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
           "button": {
             "onPress": {
-              "Command": "68901 (>K:ROTOR_BRAKE)",
+              "Command": "(L:switch_689_73X, number) 0 > 1 != if{ 68901 (>K:ROTOR_BRAKE) }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -2337,13 +2337,13 @@
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
           "button": {
             "onPress": {
-              "Command": "11902 (>K:ROTOR_BRAKE) 11902 (>K:ROTOR_BRAKE) 11902 (>K:ROTOR_BRAKE) 11901 (>K:ROTOR_BRAKE) 11901 (>K:ROTOR_BRAKE) 11901 (>K:ROTOR_BRAKE)",
+              "Command": "0 (L:switch_119_73X, number) - 10 div s0 :1 l0 0 > if{ 11907 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 11908 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -2360,13 +2360,13 @@
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
           "button": {
             "onPress": {
-              "Command": "12102 (>K:ROTOR_BRAKE) 12102 (>K:ROTOR_BRAKE) 12102 (>K:ROTOR_BRAKE) 12101 (>K:ROTOR_BRAKE) 12101 (>K:ROTOR_BRAKE) 12101 (>K:ROTOR_BRAKE)",
+              "Command": "0 (L:switch_121_73X, number) - 10 div s0 :1 l0 0 > if{ 12107 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 12108 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -2383,13 +2383,13 @@
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
           "button": {
             "onPress": {
-              "Command": "11902 (>K:ROTOR_BRAKE) 11902 (>K:ROTOR_BRAKE) 11902 (>K:ROTOR_BRAKE) 12102 (>K:ROTOR_BRAKE) 12102 (>K:ROTOR_BRAKE) 12102 (>K:ROTOR_BRAKE)",
+              "Command": "30 (L:switch_119_73X, number) - 10 div s0 :1 l0 0 > if{ 11907 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 11908 (>K:ROTOR_BRAKE) l0 ++ s0 g1 } 30 (L:switch_121_73X, number) - 10 div s0 :2 l0 0 > if{ 12107 (>K:ROTOR_BRAKE) l0 -- s0 g2 } l0 0 < if{ 12108 (>K:ROTOR_BRAKE) l0 ++ s0 g2 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -2406,13 +2406,13 @@
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
           "button": {
             "onPress": {
-              "Command": "11902 (>K:ROTOR_BRAKE) 11902 (>K:ROTOR_BRAKE) 11902 (>K:ROTOR_BRAKE) 11901 (>K:ROTOR_BRAKE) 11901 (>K:ROTOR_BRAKE) 12102 (>K:ROTOR_BRAKE) 12102 (>K:ROTOR_BRAKE) 12102 (>K:ROTOR_BRAKE) 12101 (>K:ROTOR_BRAKE) 12101 (>K:ROTOR_BRAKE)",
+              "Command": "10 (L:switch_119_73X, number) - 10 div s0 :1 l0 0 > if{ 11907 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 11908 (>K:ROTOR_BRAKE) l0 ++ s0 g1 } 10 (L:switch_121_73X, number) - 10 div s0 :2 l0 0 > if{ 12107 (>K:ROTOR_BRAKE) l0 -- s0 g2 } l0 0 < if{ 12108 (>K:ROTOR_BRAKE) l0 ++ s0 g2 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -2429,13 +2429,13 @@
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
           "button": {
             "onPress": {
-              "Command": "11902 (>K:ROTOR_BRAKE) 11902 (>K:ROTOR_BRAKE) 11902 (>K:ROTOR_BRAKE) 11901 (>K:ROTOR_BRAKE) 12102 (>K:ROTOR_BRAKE) 12102 (>K:ROTOR_BRAKE) 12102 (>K:ROTOR_BRAKE) 12101 (>K:ROTOR_BRAKE)",
+              "Command": "20 (L:switch_119_73X, number) - 10 div s0 :1 l0 0 > if{ 11907 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 11908 (>K:ROTOR_BRAKE) l0 ++ s0 g1 } 20 (L:switch_121_73X, number) - 10 div s0 :2 l0 0 > if{ 12107 (>K:ROTOR_BRAKE) l0 -- s0 g2 } l0 0 < if{ 12108 (>K:ROTOR_BRAKE) l0 ++ s0 g2 }",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -2452,7 +2452,7 @@
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
@@ -2475,13 +2475,13 @@
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
           "button": {
-            "onPress": {
-              "Command": "68401 (>K:ROTOR_BRAKE)",
+            "onHold": {
+              "Command": "68701 (>K:ROTOR_BRAKE)",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -2494,379 +2494,21 @@
           },
           "GUID": "eb3a45f3-d2e2-593f-b0a8-c3ff28dcf4ec",
           "Active": true,
-          "Name": "THROTTLE 2 A/THR -> TO/GA",
+          "Name": "THROTTLE 2 A/THR (segurar) -> TO/GA",
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "button": {
-            "onPress": {
-              "Command": "2 (>L:MF_THR1_DET, number) (L:MF_THR1_RAW, number) 1 + (>L:MF_THR1_TOGA, number)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "onRelease": {
-              "Command": "0 (>L:MF_THR1_DET, number)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "LongReleaseDelay": 350,
-            "HoldDelay": 350,
-            "RepeatDelay": 0
-          },
-          "Device": {
-            "Type": "Button",
-            "Name": "THROTTLE 1 TOGA"
-          },
-          "GUID": "decc4cb7-a663-51af-9eea-5449e60cc39b",
-          "Active": true,
-          "Name": "THR 1 TOGA -> calibra TOGA",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "button": {
-            "onPress": {
-              "Command": "1 (>L:MF_THR1_DET, number) (L:MF_THR1_RAW, number) 1 + (>L:MF_THR1_IDLE, number)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "onRelease": {
-              "Command": "0 (>L:MF_THR1_DET, number)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "LongReleaseDelay": 350,
-            "HoldDelay": 350,
-            "RepeatDelay": 0
-          },
-          "Device": {
-            "Type": "Button",
-            "Name": "THROTTLE 1 IDLE"
-          },
-          "GUID": "f63bbd65-6c83-57a5-aa62-c1934322ac71",
-          "Active": true,
-          "Name": "THR 1 IDLE -> calibra IDLE",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "button": {
-            "onPress": {
-              "Command": "3 (>L:MF_THR1_DET, number) (L:MF_THR1_RAW, number) 1 + (>L:MF_THR1_FULLREV, number)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "onRelease": {
-              "Command": "0 (>L:MF_THR1_DET, number)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "LongReleaseDelay": 350,
-            "HoldDelay": 350,
-            "RepeatDelay": 0
-          },
-          "Device": {
-            "Type": "Button",
-            "Name": "THROTTLE 1 FULL REV"
-          },
-          "GUID": "f413eaf1-7e7c-51a3-ab69-e92a889decd4",
-          "Active": true,
-          "Name": "THR 1 FULL REV -> calibra FULL REV",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "button": {
-            "onPress": {
-              "Command": "2 (>L:MF_THR2_DET, number) (L:MF_THR2_RAW, number) 1 + (>L:MF_THR2_TOGA, number)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "onRelease": {
-              "Command": "0 (>L:MF_THR2_DET, number)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "LongReleaseDelay": 350,
-            "HoldDelay": 350,
-            "RepeatDelay": 0
-          },
-          "Device": {
-            "Type": "Button",
-            "Name": "THROTTLE 2 TOGA"
-          },
-          "GUID": "57aaeec2-0178-5c26-afd8-66c3a5030ed6",
-          "Active": true,
-          "Name": "THR 2 TOGA -> calibra TOGA",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "button": {
-            "onPress": {
-              "Command": "1 (>L:MF_THR2_DET, number) (L:MF_THR2_RAW, number) 1 + (>L:MF_THR2_IDLE, number)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "onRelease": {
-              "Command": "0 (>L:MF_THR2_DET, number)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "LongReleaseDelay": 350,
-            "HoldDelay": 350,
-            "RepeatDelay": 0
-          },
-          "Device": {
-            "Type": "Button",
-            "Name": "THROTTLE 2 IDLE"
-          },
-          "GUID": "4d984e2b-be67-5b2f-801b-c25ab76f4988",
-          "Active": true,
-          "Name": "THR 2 IDLE -> calibra IDLE",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "button": {
-            "onPress": {
-              "Command": "3 (>L:MF_THR2_DET, number) (L:MF_THR2_RAW, number) 1 + (>L:MF_THR2_FULLREV, number)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "onRelease": {
-              "Command": "0 (>L:MF_THR2_DET, number)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "LongReleaseDelay": 350,
-            "HoldDelay": 350,
-            "RepeatDelay": 0
-          },
-          "Device": {
-            "Type": "Button",
-            "Name": "THROTTLE 2 FULL REV"
-          },
-          "GUID": "80665c58-9017-56d7-86c3-6c0bbbe089b7",
-          "Active": true,
-          "Name": "THR 2 FULL REV -> calibra FULL REV",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "button": {
-            "onPress": {
-              "Command": "1 (>L:MF_THR1_REVLATCH, number)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "onRelease": {
-              "Command": "0 (>L:MF_THR1_REVLATCH, number)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "LongReleaseDelay": 350,
-            "HoldDelay": 350,
-            "RepeatDelay": 0
-          },
-          "Device": {
-            "Type": "Button",
-            "Name": "THROTTLE 1 REVERSE LEVER"
-          },
-          "GUID": "dfd8339a-f612-5b08-a49c-2ff31fd707ea",
-          "Active": true,
-          "Name": "THR 1 REVERSE LEVER -> libera reverso 1",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "button": {
-            "onPress": {
-              "Command": "1 (>L:MF_THR2_REVLATCH, number)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "onRelease": {
-              "Command": "0 (>L:MF_THR2_REVLATCH, number)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "LongReleaseDelay": 350,
-            "HoldDelay": 350,
-            "RepeatDelay": 0
-          },
-          "Device": {
-            "Type": "Button",
-            "Name": "THROTTLE 2 REVERSE LEVER"
-          },
-          "GUID": "bec624e8-9407-5616-99ea-79bc0c0b5ae4",
-          "Active": true,
-          "Name": "THR 2 REVERSE LEVER -> libera reverso 2",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "button": {
-            "onPress": {
-              "Command": "0 (>K:RUDDER_TRIM_SET)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "LongReleaseDelay": 350,
-            "HoldDelay": 350,
-            "RepeatDelay": 0
-          },
-          "Device": {
-            "Type": "Button",
-            "Name": "TRIM RESET BUTTON"
-          },
-          "GUID": "7622111f-e71c-57a1-8bbc-2bbe06292334",
-          "Active": true,
-          "Name": "TRIM RESET -> centraliza rudder trim",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "button": {
-            "onPress": {
-              "Command": "(>K:RUDDER_TRIM_LEFT)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "onHold": {
-              "Command": "(>K:RUDDER_TRIM_LEFT)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "LongReleaseDelay": 350,
-            "HoldDelay": 300,
-            "RepeatDelay": 100
-          },
-          "Device": {
-            "Type": "Button",
-            "Name": "TRIM NOSE L"
-          },
-          "GUID": "9cdef0cd-7a1f-5960-99c8-382386fa118f",
-          "Active": true,
-          "Name": "TRIM NOSE L -> rudder trim esquerda (segurar repete)",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "button": {
-            "onPress": {
-              "Command": "(>K:RUDDER_TRIM_RIGHT)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "onHold": {
-              "Command": "(>K:RUDDER_TRIM_RIGHT)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "LongReleaseDelay": 350,
-            "HoldDelay": 300,
-            "RepeatDelay": 100
-          },
-          "Device": {
-            "Type": "Button",
-            "Name": "TRIM NOSE R"
-          },
-          "GUID": "5f638c87-355d-5f9c-b83e-6f8281c83b74",
-          "Active": true,
-          "Name": "TRIM NOSE R -> rudder trim direita (segurar repete)",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "button": {
-            "onPress": {
-              "Command": "(A:BRAKE PARKING POSITION, Bool) if{ (>K:PARKING_BRAKES) }",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "LongReleaseDelay": 350,
-            "HoldDelay": 350,
-            "RepeatDelay": 0
-          },
-          "Device": {
-            "Type": "Button",
-            "Name": "PARKING BRK OFF"
-          },
-          "GUID": "3475477a-c11a-5430-aebe-04b4e8f36e4e",
-          "Active": true,
-          "Name": "PARKING BRK OFF -> solta parking brake",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "button": {
-            "onPress": {
-              "Command": "(A:BRAKE PARKING POSITION, Bool) ! if{ (>K:PARKING_BRAKES) }",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "LongReleaseDelay": 350,
-            "HoldDelay": 350,
-            "RepeatDelay": 0
-          },
-          "Device": {
-            "Type": "Button",
-            "Name": "PARKING BRK ON"
-          },
-          "GUID": "0253afaf-360a-51fb-b2a7-11536f6573e1",
-          "Active": true,
-          "Name": "PARKING BRK ON -> aplica parking brake",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "button": {
-            "onPress": {
-              "Command": "679101 (>K:ROTOR_BRAKE)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "LongReleaseDelay": 350,
-            "HoldDelay": 350,
-            "RepeatDelay": 0
-          },
-          "Device": {
-            "Type": "Button",
-            "Name": "SPOILERS RET"
-          },
-          "GUID": "482f7d10-20e1-5334-8c07-c50506cab3fc",
-          "Active": true,
-          "Name": "SPOILERS RET -> speedbrake DOWN",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
           "button": {
             "onPress": {
               "Command": "679201 (>K:ROTOR_BRAKE)",
+              "Type": "MSFS2020CustomInputAction"
+            },
+            "onRelease": {
+              "Command": "679101 (>K:ROTOR_BRAKE)",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -2879,57 +2521,11 @@
           },
           "GUID": "dcd90d40-e658-5c5b-992f-e0a79ba5d909",
           "Active": true,
-          "Name": "SPOILERS ARMED -> speedbrake ARM",
+          "Name": "SPOILERS ARMED -> speedbrake ARM (ao sair: DOWN)",
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "button": {
-            "onPress": {
-              "Command": "679401 (>K:ROTOR_BRAKE)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "LongReleaseDelay": 350,
-            "HoldDelay": 350,
-            "RepeatDelay": 0
-          },
-          "Device": {
-            "Type": "Button",
-            "Name": "SPOILERS HALF"
-          },
-          "GUID": "eef294d8-1929-5002-b906-5f465635d8cf",
-          "Active": true,
-          "Name": "SPOILERS HALF -> speedbrake FLIGHT DETENT",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "button": {
-            "onPress": {
-              "Command": "679501 (>K:ROTOR_BRAKE)",
-              "Type": "MSFS2020CustomInputAction"
-            },
-            "LongReleaseDelay": 350,
-            "HoldDelay": 350,
-            "RepeatDelay": 0
-          },
-          "Device": {
-            "Type": "Button",
-            "Name": "SPOILERS FULL"
-          },
-          "GUID": "0fd59564-1674-5721-bcb9-1b18d27ad4fc",
-          "Active": true,
-          "Name": "SPOILERS FULL -> speedbrake UP",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
@@ -2952,7 +2548,7 @@
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
@@ -2975,7 +2571,7 @@
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
@@ -2998,7 +2594,7 @@
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
@@ -3021,7 +2617,7 @@
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
@@ -3044,167 +2640,7 @@
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "analog": {
-            "onChange": {
-              "Command": "@ (>L:MF_THR1_RAW, number) (L:MF_THR1_DET, number) 1 == if{ @ 1 + (>L:MF_THR1_IDLE, number) } (L:MF_THR1_DET, number) 2 == if{ @ 1 + (>L:MF_THR1_TOGA, number) } (L:MF_THR1_DET, number) 3 == if{ @ 1 + (>L:MF_THR1_FULLREV, number) } (L:MF_THR1_IDLE, number) 0 > if{ (L:MF_THR1_IDLE, number) 1 - } els{ 16384 } s4 (L:MF_THR1_TOGA, number) 0 > if{ (L:MF_THR1_TOGA, number) 1 - } els{ 65535 } s5 (L:MF_THR1_FULLREV, number) 0 > if{ (L:MF_THR1_FULLREV, number) 1 - } els{ 0 } s6 @ l4 < (L:MF_THR1_REVLATCH, number) and if{ l4 @ - l4 l6 - / 0 max 1 min 19 * near 1 + } els{ 0 } (>L:MF_THR1_REVTGT, number) @ l4 - l5 l4 - / 0 max 1 min 32768 * 16384 - flr (>L:MF_THR1_FWD, number)",
-              "Type": "MSFS2020CustomInputAction"
-            }
-          },
-          "Device": {
-            "Type": "AnalogInput",
-            "Name": "Axis RotationX"
-          },
-          "GUID": "64290412-e66c-54ab-8bfa-c53b4f82a351",
-          "Active": true,
-          "Name": "Manete 1 (1/4) -> calcula empuxo e reverso",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "analog": {
-            "onChange": {
-              "Command": "(L:MF_THR1_REVTGT, number) 0 > if{ -16384 (>K:THROTTLE1_AXIS_SET_EX1) } (L:MF_THR1_REVTGT, number) (L:MF_THR1_REVSTEP, number) - s3 l3 0 > if{ (>K:THROTTLE1_DECR) } l3 1 > if{ (>K:THROTTLE1_DECR) } l3 2 > if{ (>K:THROTTLE1_DECR) } l3 3 > if{ (>K:THROTTLE1_DECR) } l3 4 > if{ (>K:THROTTLE1_DECR) } l3 5 > if{ (>K:THROTTLE1_DECR) } l3 6 > if{ (>K:THROTTLE1_DECR) } l3 7 > if{ (>K:THROTTLE1_DECR) } l3 8 > if{ (>K:THROTTLE1_DECR) } l3 9 > if{ (>K:THROTTLE1_DECR) } l3 10 > if{ (>K:THROTTLE1_DECR) } l3 11 > if{ (>K:THROTTLE1_DECR) } l3 12 > if{ (>K:THROTTLE1_DECR) } l3 13 > if{ (>K:THROTTLE1_DECR) } l3 14 > if{ (>K:THROTTLE1_DECR) } l3 15 > if{ (>K:THROTTLE1_DECR) } l3 16 > if{ (>K:THROTTLE1_DECR) } l3 17 > if{ (>K:THROTTLE1_DECR) } l3 18 > if{ (>K:THROTTLE1_DECR) } l3 19 > if{ (>K:THROTTLE1_DECR) }",
-              "Type": "MSFS2020CustomInputAction"
-            }
-          },
-          "Device": {
-            "Type": "AnalogInput",
-            "Name": "Axis RotationX"
-          },
-          "GUID": "be668ecb-ef5f-59f2-9810-347efa8594dc",
-          "Active": true,
-          "Name": "Manete 1 (2/4) -> abre reverso",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "analog": {
-            "onChange": {
-              "Command": "(L:MF_THR1_REVTGT, number) (L:MF_THR1_REVSTEP, number) - s3 l3 0 < if{ (>K:THROTTLE1_INCR) } l3 -1 < if{ (>K:THROTTLE1_INCR) } l3 -2 < if{ (>K:THROTTLE1_INCR) } l3 -3 < if{ (>K:THROTTLE1_INCR) } l3 -4 < if{ (>K:THROTTLE1_INCR) } l3 -5 < if{ (>K:THROTTLE1_INCR) } l3 -6 < if{ (>K:THROTTLE1_INCR) } l3 -7 < if{ (>K:THROTTLE1_INCR) } l3 -8 < if{ (>K:THROTTLE1_INCR) } l3 -9 < if{ (>K:THROTTLE1_INCR) } l3 -10 < if{ (>K:THROTTLE1_INCR) } l3 -11 < if{ (>K:THROTTLE1_INCR) } l3 -12 < if{ (>K:THROTTLE1_INCR) } l3 -13 < if{ (>K:THROTTLE1_INCR) } l3 -14 < if{ (>K:THROTTLE1_INCR) } l3 -15 < if{ (>K:THROTTLE1_INCR) } l3 -16 < if{ (>K:THROTTLE1_INCR) } l3 -17 < if{ (>K:THROTTLE1_INCR) } l3 -18 < if{ (>K:THROTTLE1_INCR) } l3 -19 < if{ (>K:THROTTLE1_INCR) } (L:MF_THR1_REVTGT, number) (>L:MF_THR1_REVSTEP, number)",
-              "Type": "MSFS2020CustomInputAction"
-            }
-          },
-          "Device": {
-            "Type": "AnalogInput",
-            "Name": "Axis RotationX"
-          },
-          "GUID": "597eb224-77ce-5ec7-ba37-ec71a0805ac7",
-          "Active": true,
-          "Name": "Manete 1 (3/4) -> recolhe reverso",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "analog": {
-            "onChange": {
-              "Command": "(L:MF_THR1_REVTGT, number) 0 == if{ (L:MF_THR1_FWD, number) (>K:THROTTLE1_AXIS_SET_EX1) }",
-              "Type": "MSFS2020CustomInputAction"
-            }
-          },
-          "Device": {
-            "Type": "AnalogInput",
-            "Name": "Axis RotationX"
-          },
-          "GUID": "167ad077-6240-52ce-af7a-c6151a9d48e9",
-          "Active": true,
-          "Name": "Manete 1 (4/4) -> empuxo",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "analog": {
-            "onChange": {
-              "Command": "@ (>L:MF_THR2_RAW, number) (L:MF_THR2_DET, number) 1 == if{ @ 1 + (>L:MF_THR2_IDLE, number) } (L:MF_THR2_DET, number) 2 == if{ @ 1 + (>L:MF_THR2_TOGA, number) } (L:MF_THR2_DET, number) 3 == if{ @ 1 + (>L:MF_THR2_FULLREV, number) } (L:MF_THR2_IDLE, number) 0 > if{ (L:MF_THR2_IDLE, number) 1 - } els{ 16384 } s4 (L:MF_THR2_TOGA, number) 0 > if{ (L:MF_THR2_TOGA, number) 1 - } els{ 65535 } s5 (L:MF_THR2_FULLREV, number) 0 > if{ (L:MF_THR2_FULLREV, number) 1 - } els{ 0 } s6 @ l4 < (L:MF_THR2_REVLATCH, number) and if{ l4 @ - l4 l6 - / 0 max 1 min 19 * near 1 + } els{ 0 } (>L:MF_THR2_REVTGT, number) @ l4 - l5 l4 - / 0 max 1 min 32768 * 16384 - flr (>L:MF_THR2_FWD, number)",
-              "Type": "MSFS2020CustomInputAction"
-            }
-          },
-          "Device": {
-            "Type": "AnalogInput",
-            "Name": "Axis RotationY"
-          },
-          "GUID": "ea244a04-e333-5451-95ee-9ae77628a36b",
-          "Active": true,
-          "Name": "Manete 2 (1/4) -> calcula empuxo e reverso",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "analog": {
-            "onChange": {
-              "Command": "(L:MF_THR2_REVTGT, number) 0 > if{ -16384 (>K:THROTTLE2_AXIS_SET_EX1) } (L:MF_THR2_REVTGT, number) (L:MF_THR2_REVSTEP, number) - s3 l3 0 > if{ (>K:THROTTLE2_DECR) } l3 1 > if{ (>K:THROTTLE2_DECR) } l3 2 > if{ (>K:THROTTLE2_DECR) } l3 3 > if{ (>K:THROTTLE2_DECR) } l3 4 > if{ (>K:THROTTLE2_DECR) } l3 5 > if{ (>K:THROTTLE2_DECR) } l3 6 > if{ (>K:THROTTLE2_DECR) } l3 7 > if{ (>K:THROTTLE2_DECR) } l3 8 > if{ (>K:THROTTLE2_DECR) } l3 9 > if{ (>K:THROTTLE2_DECR) } l3 10 > if{ (>K:THROTTLE2_DECR) } l3 11 > if{ (>K:THROTTLE2_DECR) } l3 12 > if{ (>K:THROTTLE2_DECR) } l3 13 > if{ (>K:THROTTLE2_DECR) } l3 14 > if{ (>K:THROTTLE2_DECR) } l3 15 > if{ (>K:THROTTLE2_DECR) } l3 16 > if{ (>K:THROTTLE2_DECR) } l3 17 > if{ (>K:THROTTLE2_DECR) } l3 18 > if{ (>K:THROTTLE2_DECR) } l3 19 > if{ (>K:THROTTLE2_DECR) }",
-              "Type": "MSFS2020CustomInputAction"
-            }
-          },
-          "Device": {
-            "Type": "AnalogInput",
-            "Name": "Axis RotationY"
-          },
-          "GUID": "47e0275c-fdd6-541a-ac9a-d5336c5f0b31",
-          "Active": true,
-          "Name": "Manete 2 (2/4) -> abre reverso",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "analog": {
-            "onChange": {
-              "Command": "(L:MF_THR2_REVTGT, number) (L:MF_THR2_REVSTEP, number) - s3 l3 0 < if{ (>K:THROTTLE2_INCR) } l3 -1 < if{ (>K:THROTTLE2_INCR) } l3 -2 < if{ (>K:THROTTLE2_INCR) } l3 -3 < if{ (>K:THROTTLE2_INCR) } l3 -4 < if{ (>K:THROTTLE2_INCR) } l3 -5 < if{ (>K:THROTTLE2_INCR) } l3 -6 < if{ (>K:THROTTLE2_INCR) } l3 -7 < if{ (>K:THROTTLE2_INCR) } l3 -8 < if{ (>K:THROTTLE2_INCR) } l3 -9 < if{ (>K:THROTTLE2_INCR) } l3 -10 < if{ (>K:THROTTLE2_INCR) } l3 -11 < if{ (>K:THROTTLE2_INCR) } l3 -12 < if{ (>K:THROTTLE2_INCR) } l3 -13 < if{ (>K:THROTTLE2_INCR) } l3 -14 < if{ (>K:THROTTLE2_INCR) } l3 -15 < if{ (>K:THROTTLE2_INCR) } l3 -16 < if{ (>K:THROTTLE2_INCR) } l3 -17 < if{ (>K:THROTTLE2_INCR) } l3 -18 < if{ (>K:THROTTLE2_INCR) } l3 -19 < if{ (>K:THROTTLE2_INCR) } (L:MF_THR2_REVTGT, number) (>L:MF_THR2_REVSTEP, number)",
-              "Type": "MSFS2020CustomInputAction"
-            }
-          },
-          "Device": {
-            "Type": "AnalogInput",
-            "Name": "Axis RotationY"
-          },
-          "GUID": "b96d22de-86c5-55f2-a240-f7a31e0900d9",
-          "Active": true,
-          "Name": "Manete 2 (3/4) -> recolhe reverso",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
-          }
-        },
-        {
-          "analog": {
-            "onChange": {
-              "Command": "(L:MF_THR2_REVTGT, number) 0 == if{ (L:MF_THR2_FWD, number) (>K:THROTTLE2_AXIS_SET_EX1) }",
-              "Type": "MSFS2020CustomInputAction"
-            }
-          },
-          "Device": {
-            "Type": "AnalogInput",
-            "Name": "Axis RotationY"
-          },
-          "GUID": "6912cff9-3d5d-5e67-aacb-145c5baa2fe1",
-          "Active": true,
-          "Name": "Manete 2 (4/4) -> empuxo",
-          "Type": "InputConfigItem",
-          "Controller": {
-            "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
@@ -3235,7 +2671,7 @@
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
@@ -3266,14 +2702,14 @@
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
           "Source": {
             "SimConnectValue": {
               "UUID": "06e58f2d-e3d3-5015-937f-6282aef175c3",
-              "Value": "(A:GENERAL ENG STARTER:1, Bool)",
+              "Value": "(L:switch_119_73X, number) 0 ==",
               "VarType": 2
             },
             "Type": "SimConnectSource"
@@ -3293,18 +2729,18 @@
           "DeviceName": "FAULT_1",
           "GUID": "bf1072a5-2fbf-5adf-9ac0-c6bf6c48c2c7",
           "Active": true,
-          "Name": "LED FAULT 1 - motor de partida 1 acionado (GRD)",
+          "Name": "LED FAULT 1 - start switch 1 em GRD",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
           "Source": {
             "SimConnectValue": {
               "UUID": "147e4c5e-8256-5367-b4b3-3ee9e6be45cd",
-              "Value": "(A:GENERAL ENG STARTER:2, Bool)",
+              "Value": "(L:switch_121_73X, number) 0 ==",
               "VarType": 2
             },
             "Type": "SimConnectSource"
@@ -3324,18 +2760,18 @@
           "DeviceName": "FAULT_2",
           "GUID": "0a89d386-39e0-5d79-b724-d706ef1a017c",
           "Active": true,
-          "Name": "LED FAULT 2 - motor de partida 2 acionado (GRD)",
+          "Name": "LED FAULT 2 - start switch 2 em GRD",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
           "Source": {
             "SimConnectValue": {
               "UUID": "e438b156-de42-565b-b386-4578ec447f0a",
-              "Value": "(A:RUDDER TRIM PCT, percent) 0.16 *",
+              "Value": "(L:switch_809_73X, number) 50 - 0.34 * 10 * near 10 /",
               "VarType": 2
             },
             "Type": "SimConnectSource"
@@ -3358,7 +2794,7 @@
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
@@ -3388,7 +2824,7 @@
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
@@ -3419,7 +2855,7 @@
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
@@ -3450,21 +2886,21 @@
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
           "Source": {
             "SimConnectValue": {
               "UUID": "fe450345-c2b5-5f40-a9a7-d44b1e650bb4",
-              "Value": "60",
+              "Value": "(L:BL_MainCA, number) 50 * 100 min",
               "VarType": 2
             },
             "Type": "SimConnectSource"
           },
           "TestValue": {
             "type": 1,
-            "Float64": 60.0
+            "Float64": 50.0
           },
           "Device": {
             "Name": "Backlight Percentage",
@@ -3477,18 +2913,18 @@
           "DeviceName": "Backlight Percentage",
           "GUID": "7ef2fd32-fac1-5a94-b8de-07768463f35e",
           "Active": true,
-          "Name": "Brilho backlight",
+          "Name": "Brilho backlight - dimmer de painel do 737",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
           "Source": {
             "SimConnectValue": {
               "UUID": "b9753444-cd94-5c82-aa70-8cd9284156a4",
-              "Value": "100",
+              "Value": "(L:switch_01_73X, number) 0 > 100 *",
               "VarType": 2
             },
             "Type": "SimConnectSource"
@@ -3508,18 +2944,18 @@
           "DeviceName": "LCD Percentage",
           "GUID": "c35c13c5-de29-54fc-844d-f927fded7d55",
           "Active": true,
-          "Name": "Brilho display de trim",
+          "Name": "Brilho display de trim - com bateria ligada",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         },
         {
           "Source": {
             "SimConnectValue": {
               "UUID": "d3f4ca5e-88c6-5e72-be55-a06c07227584",
-              "Value": "100",
+              "Value": "(L:switch_01_73X, number) 0 > 100 *",
               "VarType": 2
             },
             "Type": "SimConnectSource"
@@ -3539,11 +2975,11 @@
           "DeviceName": "LED Percentage",
           "GUID": "f02bc0ff-4a27-52a5-94f2-85e89280df4c",
           "Active": true,
-          "Name": "Brilho LEDs",
+          "Name": "Brilho LEDs - com bateria ligada",
           "Type": "OutputConfigItem",
           "Controller": {
             "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-            "Serial": "JS-00000000-0000-0000-0000-000000000000"
+            "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000"
           }
         }
       ]

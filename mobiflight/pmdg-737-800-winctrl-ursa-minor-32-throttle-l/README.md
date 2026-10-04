@@ -1,103 +1,82 @@
-# WINCTRL URSA MINOR 32 Throttle Metal L → PMDG 737-800 (MSFS 2024) — profile MobiFlight
+# WINCTRL URSA MINOR 32 Throttle Metal L → PMDG 737-800 (MSFS 2024)
 
-Arquivo: `PMDG_737-800_WINCTRL_URSA_MINOR_32_THROTTLE_L.mfproj`.
-O arquivo é gerado por `tools/generate_profile.py`: ajuste as constantes lá e rode o script de novo.
-
+Arquivo MobiFlight: `PMDG_737-800_WINCTRL_URSA_MINOR_32_THROTTLE_L.mfproj` (gerado por `tools/generate_profile.py`).
 Para usar junto com o AGP e o TCAS, abra `../PMDG_737-800_WINCTRL_COCKPIT.mfproj`, que traz os três painéis no mesmo projeto.
 
-## Requisitos
+## Modelo híbrido
 
-- MobiFlight Connector **10.x ou superior**, com suporte nativo ao painel (VID 0x4098 / PID 0xB920). O profile espera que ele apareça como **"WINCTRL URSA MINOR 32 Throttle Metal L"**.
-- O **SimAppPro da WinWing fechado** enquanto o MobiFlight estiver rodando.
-- O módulo WASM do MobiFlight instalado (*Extras → Install WASM Module*).
-- **Nenhum eixo do throttle atribuído nos controles do MSFS.** Se as manetes também estiverem configuradas no sim, os dois brigam pelo empuxo.
+O throttle é configurado em dois lugares, como num profile da comunidade testado no PMDG 737-800 do MSFS 2024:
 
-## Instalação
+- **MSFS 2024:** manetes, reverso, eixo do speedbrake, rudder trim e parking brake. São os comandos nativos que o PMDG aceita direto.
+- **MobiFlight:** o que é específico do PMDG (start levers, start switches, flaps, speedbrake ARM, A/T disengage, TO/GA), mais o display de trim, os LEDs, a vibração e o brilho.
 
-1. Abra o `.mfproj` pelo MobiFlight (*File → Open*).
-2. O auto-binding associa o painel pelo nome. Se aparecer o diálogo *Controller Bindings*, escolha o seu throttle.
-3. Clique em **Run** com o 737 carregado.
-4. **Calibração:** com o MobiFlight rodando, leve cada manete até IDLE e depois até TOGA (e até FULL REV com a trava de reverso levantada). Enquanto a manete está num desses detentes, o profile grava o valor do eixo e passa a usá-lo. Isso precisa ser feito a cada vez que o sim for aberto; até lá, valem os padrões do gerador.
+Não atribua no MSFS os botões que o MobiFlight usa (tabela "MobiFlight" abaixo), e vice-versa.
 
-## Mapeamento — entradas
+## 1. SimAppPro
 
-A primeira coluna usa os nomes exatos dos botões na definição do MobiFlight (`winwing_airbus_throttle_left.joystick.json`).
+No SimAppPro, em **WINCTRL URSA MINOR 32 Throttle Metal L**, selecione **"Double-stroke four-axle"** e calibre o throttle. Nesse modo, RX/RY cobrem só o empuxo para frente e o reverso sai separado, como o PMDG espera. Depois **feche o SimAppPro**, porque ele disputa o painel com o MobiFlight.
 
-### Manetes
+## 2. MSFS 2024: perfil de controles
 
-| Painel | 737-800 |
-|---|---|
-| Eixo das manetes 1 e 2 (`Axis RotationX` / `Axis RotationY`) | Empuxo do motor 1 / 2, de IDLE a TOGA (`K:THROTTLEn_AXIS_SET_EX1`, o mesmo evento de um eixo atribuído nos controles do MSFS) |
-| Manete abaixo de IDLE com THROTTLE n REVERSE LEVER levantada | Reverso: abre em idle reverse logo abaixo de IDLE e aumenta até o máximo em FULL REV (`K:THROTTLEn_DECR`); ao voltar, recolhe (`K:THROTTLEn_INCR`) |
-| THROTTLE n IDLE / TOGA / FULL REV | Calibram o eixo (gravam o valor naquele detente) |
-| THROTTLE 1 A/THR Button | A/T disengage |
-| THROTTLE 2 A/THR Button | TO/GA |
+Crie um perfil de controles para o PMDG 737-800 no dispositivo **WINCTRL URSA MINOR 32 Throttle Metal L** com:
 
-Sem a trava de reverso levantada, a manete abaixo de IDLE fica em IDLE. Isso evita reverso acidental se a calibração estiver errada. Os detentes FLEX, CL e REV IDLE não têm função, porque o 737 não tem detentes nas manetes.
+| Comando do MSFS 2024 | Tipo | Entrada do throttle | Opções |
+|---|---|---|---|
+| THROTTLE 1 AXIS | Eixo | JOYSTICK RAXIS X | Padrão |
+| THROTTLE 2 AXIS | Eixo | JOYSTICK RAXIS Y | Padrão |
+| THROTTLE 1 DECREASE | Digital | Botões 17 e 23 (FULL REV) | Input Repetition: ON |
+| THROTTLE 1 IDLE | Digital | Botões 17 e 23 (FULL REV) | Set Control on Release: ON |
+| THROTTLE 2 DECREASE | Digital | Botões 17 e 23 (FULL REV) | Input Repetition: ON |
+| THROTTLE 2 IDLE | Digital | Botões 17 e 23 (FULL REV) | Set Control on Release: ON |
+| DECREASE THROTTLE | Digital | Botões 40 e 41 (trava de reverso) | Input Repetition: OFF |
+| SPOILERS AXIS | Eixo | JOYSTICK SLIDER X | Padrão |
+| RUDDER TRIM LEFT | Digital | Botão 26 | Input Repetition: OFF |
+| RESET RUDDER TRIM | Digital | Botão 25 | Input Repetition: OFF |
+| RUDDER TRIM RIGHT | Digital | Botão 28 | Input Repetition: OFF |
+| PARKING BRAKES ON | Digital | Botão 30 | Input Repetition: OFF |
+| PARKING BRAKES OFF | Digital | Botão 29 | Input Repetition: OFF |
+| TOGGLE PARKING BRAKES | Digital | Botão 30 | Input Repetition: OFF |
 
-### Partida dos motores
+O reverso funciona assim: levantar a trava abre o reverso em idle; levar a manete a FULL REV aumenta o reverso enquanto ela estiver lá; sair de FULL REV volta a idle. O reverso atua nos dois motores juntos.
 
-| Painel | 737-800 |
+**Parking brake:** no PMDG atual é preciso **segurar o freio (~2 s) antes** de puxar o parking brake; sem isso a alavanca volta para OFF. Use um botão ou tecla com o comando BRAKES enquanto aciona PARKING BRK ON.
+
+O trem de pouso fica na alavanca do AGP, então o botão 24 não é usado.
+
+## 3. MobiFlight
+
+1. Abra o `.mfproj` (*File → Open*) e clique em **Run** com o 737 carregado.
+2. O profile já vem com o serial do seu throttle (`JS-c4381ce0-8065-11f1-8004-444553540000`, o GUID mostrado no SimAppPro). Em outro computador, o auto-binding reassocia pelo nome.
+
+| Painel (nome na definição do MobiFlight) | 737-800 |
 |---|---|
 | ENGINE MASTER1 ON / OFF | Start lever 1 IDLE / CUTOFF |
 | ENGINE MASTER2 ON / OFF | Start lever 2 IDLE / CUTOFF |
-| ENGINE FIRE1 Button | Start switch 1 em **GRD** |
-| ENGINE FIRE2 Button | Start switch 2 em **GRD** |
+| ENGINE FIRE1 Button / ENGINE FIRE2 Button | Start switch 1 / 2 em **GRD** |
 | ENGINE NORM MODE | Os dois start switches em OFF |
 | ENGINE IGN MODE | Os dois start switches em CONT |
 | ENGINE CRANK MODE | Os dois start switches em FLT |
-
-Partida típica: seletor em NORM; FIRE2 (start switch 2 em GRD); com N2 em 25 %, MASTER2 ON. Repita com FIRE1 e MASTER1. O start switch volta sozinho para OFF quando o motor de partida desliga.
-
-Os start switches nunca passam por GRD ao trocar entre OFF, CONT e FLT. Só os botões FIRE acionam o motor de partida.
-
-### Flaps, speedbrake, trim e freio
-
-| Painel | 737-800 |
-|---|---|
+| THROTTLE 1 A/THR Button | A/T disengage |
+| THROTTLE 2 A/THR Button (segurar) | TO/GA |
+| SPOILERS ARMED | Speedbrake ARM; ao sair do detente, DOWN (o eixo do MSFS assume em seguida) |
 | FLAPS 0 / 1 / 2 / 3 / FULL | Flaps UP / 5 / 15 / 30 / 40 |
-| SPOILERS RET | Speedbrake DOWN |
-| SPOILERS ARMED | Speedbrake ARM |
-| SPOILERS HALF | Speedbrake FLIGHT DETENT |
-| SPOILERS FULL | Speedbrake UP |
-| TRIM NOSE L / R | Rudder trim esquerda / direita (segurar repete) |
-| TRIM RESET BUTTON | Centraliza o rudder trim |
-| PARKING BRK ON / OFF | Aplica / solta o parking brake |
 
-O parking brake saiu do AGP: as chaves BRK FAN ficaram livres, e o LED HOT do AGP continua mostrando o parking brake.
+Os start levers e start switches leem a posição atual no PMDG (`L:switch_688/689_73X` e `L:switch_119/121_73X`) e só mexem no que precisa, no mesmo padrão do profile testado. Partida típica: seletor em NORM; FIRE2 (start switch 2 em GRD); com N2 em 25 %, MASTER2 ON. O start switch volta sozinho para OFF quando o motor de partida desliga.
 
-### Não mapeado
+TO/GA só dispara com o botão **segurado** (~0,35 s), para evitar acionamento acidental.
 
-- ENGINE MODE BUTTON, TRIM NOSE NEUTRAL, THROTTLE n FLEX / CL / REV IDLE: sem equivalente no 737.
-- Eixos SLIDER FLAPS e SLIDER SPOILERS: flaps e speedbrake usam os detentes, que são mais precisos.
-
-## Mapeamento — saídas
-
-| Painel | Mostra |
+| Saída | Mostra |
 |---|---|
 | LED FIRE 1 / 2 | Fogo no motor 1 / 2 |
-| LED FAULT 1 / 2 | Motor de partida do motor 1 / 2 acionado (start switch em GRD) |
-| Display de trim | Rudder trim em unidades, L/R |
+| LED FAULT 1 / 2 | Start switch 1 / 2 em GRD (motor de partida acionado) |
+| Display de trim | Rudder trim em unidades, L/R (`L:switch_809_73X`, 50 = neutro, ±17 unidades) |
 | Vibração 1 / 2 | Corrida no solo acima de 30 kt, proporcional à velocidade (máx. 40 %) |
-| Brilho | Fixo: backlight 60 %, LCD 100 %, LED 100 % |
-
-## Se as manetes não derem potência
-
-1. **Run ligado:** o MobiFlight só envia comandos com *Run* ativo e conectado ao sim.
-2. **Nenhum eixo do throttle nos controles do MSFS:** um eixo atribuído no sim sobrescreve o que o MobiFlight envia.
-3. **Nome dos eixos:** em MobiFlight, abra a entrada "Manete 1 (1/4)" e use o botão de detecção de entrada (*scan*) movendo a manete 1. O dispositivo detectado deve ser `Axis RotationX` (manete 2: `Axis RotationY`). Se aparecer outro nome, troque `AXIS_THROTTLE` no gerador.
-4. **Calibração:** se a potência só começa no meio do curso, leve a manete até IDLE e depois até TOGA para recalibrar.
-5. **Log do MobiFlight** (*Extras → Settings → Debug*, nível *Debug*): ao mover a manete devem aparecer quatro linhas `Executing "Manete 1 (1/4) …"` a `(4/4)`. Se aparecerem e o 737 não responder, o problema está no evento enviado ao PMDG; se não aparecerem, o problema está no reconhecimento do eixo.
-
-### Por que cada manete tem quatro entradas
-
-O MobiFlight envia cada comando ao módulo WASM do sim num bloco fixo de 1024 bytes, e um comando maior é descartado sem aviso. A lógica de empuxo + reverso não cabe num comando só, então ela foi dividida em quatro entradas ligadas ao mesmo eixo, que o MobiFlight executa em ordem: (1) calcula empuxo e reverso, (2) abre o reverso, (3) recolhe o reverso, (4) envia o empuxo. Não apague nem reordene essas entradas. O gerador e o `combine_profiles.py` recusam qualquer comando acima do limite.
+| Brilho | Backlight acompanha o dimmer de painel do 737 (`L:BL_MainCA`); display e LEDs acendem só com a bateria ligada |
 
 ## Verifique no primeiro voo
 
-1. **Manete × motor.** Os eixos `Axis RotationX` e `Axis RotationY` foram confirmados no painel; confira se a manete da esquerda move o motor 1. Se estiverem trocados, inverta os dois em `AXIS_THROTTLE` no gerador.
-2. **Curso do reverso.** O reverso é aberto em `REVERSE_STEPS` passos (20). Se FULL REV não chegar ao reverso máximo, aumente esse valor; se o máximo chegar antes do fim do curso, diminua.
-3. **Sentido dos cliques do PMDG** (start levers e start switches). Se MASTER ON levar a alavanca para CUTOFF, ou se o seletor andar ao contrário, inverta `LEFT_CLICK` e `RIGHT_CLICK`.
-4. **Rudder trim** via eventos padrão (`K:RUDDER_TRIM_LEFT/RIGHT/SET`). Se o PMDG ignorar, troco pelo knob do PMDG (EVT_FCTL_RUDDER_TRIM).
+1. **Manetes e reverso** pelo MSFS: confira que IDLE dá empuxo mínimo, TOGA o máximo, e que o reverso abre com a trava e aumenta em FULL REV.
+2. **LED FIRE** usa a simvar padrão `ENG ON FIRE`. Se não acender no teste de fogo do PMDG, me avise.
+3. Se um start switch ou start lever não responder, confira no *Watch Variable* do MobiFlight os valores de `L:switch_119_73X` (0 GRD, 10 OFF, 20 CONT, 30 FLT) e `L:switch_688_73X` (0 IDLE, 100 CUTOFF).
 
 Depois de qualquer ajuste: `python3 tools/generate_profile.py`, `python3 ../combine_profiles.py` e reabra o profile no MobiFlight.

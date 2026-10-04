@@ -12,7 +12,11 @@ precisar de ajuste no seu sim, altere aqui e rode o script de novo.
 
 import json
 import os
+import sys
 import uuid
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+from pmdg737_common import backlight_rpn, powered_rpn, rotor, step_to, toggle_to  # noqa: E402
 
 # --------------------------------------------------------------------------
 # Hardware: definicao oficial do MobiFlight (winwing_tcas.joystick.json)
@@ -55,24 +59,19 @@ BUTTON_LABELS = {
 }
 
 # --------------------------------------------------------------------------
-# PMDG 737 (SDK PMDG_NG3_SDK.h) -> parametro do K:ROTOR_BRAKE
-# parametro = (EVENT_ID - 69632) * 100 + acao do mouse
+# PMDG 737 (SDK PMDG_NG3_SDK.h); convencoes de ROTOR_BRAKE e L:switch em
+# ../../pmdg737_common.py
 # --------------------------------------------------------------------------
-THIRD_PARTY_EVENT_ID_MIN = 69632
-LEFT_CLICK = 1   # PMDG: clique esquerdo  (seletor gira anti-horario)
-RIGHT_CLICK = 2  # PMDG: clique direito   (seletor gira horario)
 
 EVT_TCAS_XPNDR = 70430   # chave XPNDR 1 / 2
 EVT_TCAS_MODE = 70432    # seletor de modo
 EVT_TCAS_IDENT = 70438   # botao IDENT
 
-# Seletor de modo do 737, da esquerda para a direita
+# Seletor de modo do 737, da esquerda para a direita (L:switch_800_73X = indice * 10)
 MODE_STBY, MODE_ALT_OFF, MODE_XPNDR, MODE_TA_ONLY, MODE_TA_RA = range(5)
-MODE_POSITIONS = 5
-XPNDR_POSITIONS = 2      # 0 = XPNDR 1, 1 = XPNDR 2
+# Chave XPNDR: L:switch_798_73X = 0 na posicao 1, diferente de 0 na posicao 2
 
-# Brilho fixo do painel (0-100 %)
-BACKLIGHT_PCT = 60
+# Brilho com a bateria do 737 ligada (0-100 %); o backlight segue o dimmer de painel
 LCD_PCT = 100
 LED_PCT = 100
 
@@ -87,24 +86,6 @@ def guid(key):
     return str(uuid.uuid5(_NS, key))
 
 
-def rotor(event_id, action):
-    return f"{(event_id - THIRD_PARTY_EVENT_ID_MIN) * 100 + action} (>K:ROTOR_BRAKE)"
-
-
-def set_selector(event_id, positions, target_rpn):
-    """Leva um seletor do PMDG a uma posicao absoluta sem depender de ler o
-    estado atual: gira tudo para a esquerda (o seletor para no batente) e depois
-    clica para a direita o numero de posicoes do alvo. Repetir o comando e
-    seguro, mesmo com varios eventos chegando no mesmo frame."""
-    down = rotor(event_id, LEFT_CLICK)
-    up = rotor(event_id, RIGHT_CLICK)
-    parts = [down] * (positions - 1)
-    parts.append(f"{target_rpn} s0")
-    for n in range(positions - 1):
-        parts.append(f"l0 {n} > if{{ {up} }}")
-    return " ".join(parts)
-
-
 # --------------------------------------------------------------------------
 # Seletor de modo: o 737 tem um unico seletor (STBY / ALT RPTG OFF / XPNDR /
 # TA ONLY / TA/RA). As tres chaves do painel Airbus guardam seu estado em
@@ -116,9 +97,10 @@ def set_selector(event_id, positions, target_rpn):
 MODE_TARGET = (
     f"(L:MF_TCAS_XPDR, number) 0 == if{{ {MODE_STBY} }} "
     f"els{{ (L:MF_TCAS_ALTRPT, number) 0 == if{{ {MODE_ALT_OFF} }} "
-    f"els{{ (L:MF_TCAS_MODE, number) {MODE_XPNDR} + }} }}"
+    f"els{{ (L:MF_TCAS_MODE, number) {MODE_XPNDR} + }} }} 10 *"
 )
-APPLY_MODE = set_selector(EVT_TCAS_MODE, MODE_POSITIONS, MODE_TARGET)
+# Le a posicao atual e gira so o necessario, sem passar por STBY
+APPLY_MODE = step_to(EVT_TCAS_MODE, MODE_TARGET)
 
 
 def mode_switch(lvar, value):
@@ -206,8 +188,8 @@ def led(pin, name, rpn, test=1.0):
     }
 
 
-def brightness(pin, name, pct):
-    item = led(pin, name, str(pct), test=float(pct))
+def brightness(pin, name, rpn, test):
+    item = led(pin, name, rpn, test=float(test))
     item["Device"]["PwmMode"] = True
     return item
 
@@ -237,12 +219,12 @@ inputs = [button(btn_id, f"Key {d} -> digita squawk", key(d)) for d, btn_id in K
 inputs += [
     button(9, "Key CLR -> apaga ultimo digito | segurar 1 s = cancela edicao",
            KEY_CLR, on_hold=KEY_CLR_ALL, hold_delay=1000),
-    button(10, "Ident Button -> IDENT", rotor(EVT_TCAS_IDENT, LEFT_CLICK)),
+    button(10, "Ident Button -> IDENT", rotor(EVT_TCAS_IDENT)),
     button(11, "XPDR STBY -> modo STBY", mode_switch("MF_TCAS_XPDR", 0)),
     button(12, "XPDR AUTO -> transponder ligado", mode_switch("MF_TCAS_XPDR", 1)),
     button(13, "XPDR ON -> transponder ligado", mode_switch("MF_TCAS_XPDR", 2)),
-    button(14, "XPDR SYS 1 -> XPNDR 1", set_selector(EVT_TCAS_XPNDR, XPNDR_POSITIONS, "0")),
-    button(15, "XPDR SYS 2 -> XPNDR 2", set_selector(EVT_TCAS_XPNDR, XPNDR_POSITIONS, "1")),
+    button(14, "XPDR SYS 1 -> XPNDR 1", toggle_to(EVT_TCAS_XPNDR, want_on=False)),
+    button(15, "XPDR SYS 2 -> XPNDR 2", toggle_to(EVT_TCAS_XPNDR, want_on=True)),
     button(16, "ALT RPTG OFF -> modo ALT RPTG OFF", mode_switch("MF_TCAS_ALTRPT", 0)),
     button(17, "ALT RPTG ON -> volta ao modo do TCAS", mode_switch("MF_TCAS_ALTRPT", 1)),
     button(22, "TCAS STBY -> modo XPNDR", mode_switch("MF_TCAS_MODE", 0)),
@@ -261,9 +243,9 @@ outputs = [
             "els{ (A:TRANSPONDER CODE:1, number) }", test=1200.0),
     led("ATC_FAIL", "LED ATC FAIL - transponder em STBY com o aviao no ar",
         "(A:SIM ON GROUND, Bool) ! (L:MF_TCAS_XPDR, number) 0 == and"),
-    brightness("Backlight Percentage", "Brilho backlight", BACKLIGHT_PCT),
-    brightness("LCD Percentage", "Brilho display", LCD_PCT),
-    brightness("LED Percentage", "Brilho LED", LED_PCT),
+    brightness("Backlight Percentage", "Brilho backlight - dimmer de painel do 737", backlight_rpn(), 50),
+    brightness("LCD Percentage", "Brilho display - com bateria ligada", powered_rpn(LCD_PCT), LCD_PCT),
+    brightness("LED Percentage", "Brilho LED - com bateria ligada", powered_rpn(LED_PCT), LED_PCT),
 ]
 
 project = {

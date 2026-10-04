@@ -12,7 +12,11 @@ precisar de ajuste no seu sim, altere aqui e rode o script de novo.
 
 import json
 import os
+import sys
 import uuid
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+from pmdg737_common import backlight_rpn, powered_rpn, rotor, step_to  # noqa: E402
 
 # --------------------------------------------------------------------------
 # Hardware: definicao oficial do MobiFlight (winwing_agp.joystick.json)
@@ -56,12 +60,9 @@ BUTTON_LABELS = {
 }
 
 # --------------------------------------------------------------------------
-# PMDG 737 (SDK PMDG_NG3_SDK.h) -> parametro do K:ROTOR_BRAKE
-# parametro = (EVENT_ID - 69632) * 100 + acao do mouse
+# PMDG 737 (SDK PMDG_NG3_SDK.h); convencoes de ROTOR_BRAKE e L:switch em
+# ../../pmdg737_common.py
 # --------------------------------------------------------------------------
-THIRD_PARTY_EVENT_ID_MIN = 69632
-LEFT_CLICK = 1   # PMDG: clique esquerdo  (seletor gira anti-horario)
-RIGHT_CLICK = 2  # PMDG: clique direito   (seletor gira horario)
 
 EVT_MPM_AUTOBRAKE_SELECTOR = 70092
 EVT_GEAR_LEVER_OFF = 74183
@@ -80,8 +81,7 @@ LVAR_CHRONO_L_ET = "L:switch_321_73X"  # 0=RESET 10=HLD 20=RUN
 AB_RTO, AB_OFF, AB_1, AB_2, AB_3, AB_MAX = range(6)
 ET_RESET, ET_HLD, ET_RUN = range(3)
 
-# Brilho fixo do painel (0-100 %)
-BACKLIGHT_PCT = 60
+# Brilho com a bateria do 737 ligada (0-100 %); o backlight segue o dimmer de painel
 LCD_PCT = 100
 LED_PCT = 100
 
@@ -96,27 +96,10 @@ def guid(key):
     return str(uuid.uuid5(_NS, key))
 
 
-def rotor(event_id, action):
-    return f"{(event_id - THIRD_PARTY_EVENT_ID_MIN) * 100 + action} (>K:ROTOR_BRAKE)"
-
-
-def step_selector(lvar, event_id, target_rpn, max_steps=5):
-    """RPN que leva um seletor rotativo do PMDG ate o indice alvo, clicando
-    a quantidade necessaria de vezes para o lado certo."""
-    up = rotor(event_id, RIGHT_CLICK)
-    down = rotor(event_id, LEFT_CLICK)
-    parts = [f"{target_rpn} ({lvar}, number) 10 / near - s0"]
-    for n in range(max_steps):
-        parts.append(f"l0 {n} > if{{ {up} }}")
-    for n in range(max_steps):
-        parts.append(f"l0 {-n} < if{{ {down} }}")
-    return " ".join(parts)
-
-
 def autobrake_toggle(level):
     """Vai para o nivel; se ja estiver nele, volta para OFF (estilo Airbus)."""
-    target = f"({LVAR_AUTOBRAKE}, number) 10 / near {level} == if{{ {AB_OFF} }} els{{ {level} }}"
-    return step_selector(LVAR_AUTOBRAKE, EVT_MPM_AUTOBRAKE_SELECTOR, target)
+    target = f"({LVAR_AUTOBRAKE}, number) {level * 10} == if{{ {AB_OFF * 10} }} els{{ {level * 10} }}"
+    return step_to(EVT_MPM_AUTOBRAKE_SELECTOR, target)
 
 
 # --------------------------------------------------------------------------
@@ -207,8 +190,8 @@ def led(pin, name, rpn, test=1.0):
     }
 
 
-def brightness(pin, name, pct):
-    item = led(pin, name, str(pct), test=float(pct))
+def brightness(pin, name, rpn, test):
+    item = led(pin, name, rpn, test=float(test))
     item["Device"]["PwmMode"] = True
     return item
 
@@ -232,12 +215,12 @@ def display(address, name, rpn, test=12.0):
 # Entradas (25 botoes do AGP)
 # --------------------------------------------------------------------------
 
-CLK_PLUS = rotor(EVT_CHRONO_L_PLUS, LEFT_CLICK)
-CLK_MINUS = rotor(EVT_CHRONO_L_MINUS, LEFT_CLICK)
+CLK_PLUS = rotor(EVT_CHRONO_L_PLUS)
+CLK_MINUS = rotor(EVT_CHRONO_L_MINUS)
 
 
 def et_select(index):
-    return step_selector(LVAR_CHRONO_L_ET, EVT_CHRONO_L_ET, str(index), max_steps=2)
+    return step_to(EVT_CHRONO_L_ET, str(index * 10))
 
 
 inputs = [
@@ -246,35 +229,35 @@ inputs = [
     button(2, "BRK FAN OFF -> (livre)"),
     button(3, "AUTO BRK LO -> Autobrake 1 (toggle OFF) | segurar 1 s = RTO",
            autobrake_toggle(AB_1),
-           on_hold=step_selector(LVAR_AUTOBRAKE, EVT_MPM_AUTOBRAKE_SELECTOR, str(AB_RTO)),
+           on_hold=step_to(EVT_MPM_AUTOBRAKE_SELECTOR, str(AB_RTO * 10)),
            hold_delay=1000),
     button(4, "AUTO BRK MED -> Autobrake 2 (toggle OFF)", autobrake_toggle(AB_2)),
     button(5, "AUTO BRK MAX -> Autobrake 3 (toggle OFF)", autobrake_toggle(AB_3)),
     button(6, "A/SKID ON -> (sem acao, rearma a chave)", None),
-    button(7, "A/SKID OFF -> Gear lever OFF", rotor(EVT_GEAR_LEVER_OFF, LEFT_CLICK)),
+    button(7, "A/SKID OFF -> Gear lever OFF", rotor(EVT_GEAR_LEVER_OFF)),
     button(8, "RST DEC -> Clock CPT MINUS", CLK_MINUS),
     button(9, "RST -> Clock CPT RESET + zera CHR local",
-           f"{rotor(EVT_CHRONO_L_RESET, LEFT_CLICK)} {CHR_RESET}"),
+           f"{rotor(EVT_CHRONO_L_RESET)} {CHR_RESET}"),
     button(10, "RST INC -> Clock CPT PLUS", CLK_PLUS),
     button(11, "CHR DEC -> Clock CPT MINUS", CLK_MINUS),
     button(12, "CHR -> Clock CPT CHR (start/stop/reset) + CHR local",
-           f"{rotor(EVT_CHRONO_L_CHR, LEFT_CLICK)} {CHR_CYCLE}"),
+           f"{rotor(EVT_CHRONO_L_CHR)} {CHR_CYCLE}"),
     button(13, "CHR INC -> Clock CPT PLUS", CLK_PLUS),
     button(14, "DATE DEC -> Clock CPT MINUS", CLK_MINUS),
     button(15, "DATE -> Clock CPT TIME/DATE + alterna hora/data",
-           f"{rotor(EVT_CHRONO_L_TIME_DATE, LEFT_CLICK)} {DATE_MODE} ! (>L:MF_AGP_DATE, number)"),
+           f"{rotor(EVT_CHRONO_L_TIME_DATE)} {DATE_MODE} ! (>L:MF_AGP_DATE, number)"),
     button(16, "DATE INC -> Clock CPT PLUS", CLK_PLUS),
     button(17, "UTC GPS -> display mostra UTC do sim", "0 (>L:MF_AGP_UTC_SRC, number)"),
     button(18, "UTC INT -> display mostra hora local do sim", "1 (>L:MF_AGP_UTC_SRC, number)"),
     button(19, "UTC SET -> Clock CPT SET",
-           f"2 (>L:MF_AGP_UTC_SRC, number) {rotor(EVT_CHRONO_L_SET, LEFT_CLICK)}"),
+           f"2 (>L:MF_AGP_UTC_SRC, number) {rotor(EVT_CHRONO_L_SET)}"),
     button(20, "ET RUN -> Clock CPT ET RUN + ET local", f"{et_select(ET_RUN)} {ET_RUN_LOCAL}"),
     button(21, "ET STP -> Clock CPT ET HLD + ET local", f"{et_select(ET_HLD)} {ET_STOP_LOCAL}"),
     button(22, "ET RST -> Clock CPT ET RESET + ET local",
            f"{et_select(ET_RESET)} {ET_RESET_LOCAL}",
            on_release=et_select(ET_HLD)),
     button(23, "TERR ON ND -> EFIS CPT TERR",
-           f"{rotor(EVT_EFIS_CPT_TERR, LEFT_CLICK)} (L:MF_AGP_TERR, number) ! (>L:MF_AGP_TERR, number)"),
+           f"{rotor(EVT_EFIS_CPT_TERR)} (L:MF_AGP_TERR, number) ! (>L:MF_AGP_TERR, number)"),
     button(24, "GEAR UP -> Gear lever UP", "(>K:GEAR_UP)"),
     button(25, "GEAR DOWN -> Gear lever DN", "(>K:GEAR_DOWN)"),
 ]
@@ -315,9 +298,9 @@ leds = [
     led("BRK_FAN_HOT", "LED BRK FAN HOT - parking brake aplicado", "(A:BRAKE PARKING POSITION, Bool)"),
     led("BRK_FAN_ON", "LED BRK FAN ON - (nao usado no 737)", "0", test=0.0),
     led("TERR_ON_ND_ON", "LED TERR ON ND - estado do TERR no ND do CPT", "(L:MF_AGP_TERR, number)"),
-    brightness("Backlight Percentage", "Brilho backlight", BACKLIGHT_PCT),
-    brightness("LCD Percentage", "Brilho displays", LCD_PCT),
-    brightness("LED Percentage", "Brilho LEDs", LED_PCT),
+    brightness("Backlight Percentage", "Brilho backlight - dimmer de painel do 737", backlight_rpn(), 50),
+    brightness("LCD Percentage", "Brilho displays - com bateria ligada", powered_rpn(LCD_PCT), LCD_PCT),
+    brightness("LED Percentage", "Brilho LEDs - com bateria ligada", powered_rpn(LED_PCT), LED_PCT),
 ]
 
 # --------------------------------------------------------------------------

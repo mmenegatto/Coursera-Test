@@ -6,14 +6,25 @@ para o PMDG 737-800 (MSFS 2024).
 Uso:
     python3 generate_profile.py   # grava ../PMDG_737-800_WINCTRL_URSA_MINOR_32_THROTTLE_L.mfproj
 
+Modelo hibrido (como no profile da comunidade testado no sim):
+  - MSFS 2024: manetes, reverso, eixo de speedbrake, rudder trim, parking brake
+    (tabela no README). SimAppPro em "Double-stroke four-axle".
+  - MobiFlight (este arquivo): o que e especifico do PMDG -- start levers,
+    start switches, flaps, speedbrake ARM, A/T disengage, TO/GA, display de
+    trim, LEDs, vibracao e brilho.
+
 Os GUIDs sao deterministicos (uuid5), entao regenerar o arquivo nao muda os IDs.
-Todos os valores especificos do PMDG e da calibracao ficam nas constantes
-abaixo: se algum precisar de ajuste no seu sim, altere aqui e rode de novo.
 """
 
 import json
 import os
+import sys
 import uuid
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+from pmdg737_common import (  # noqa: E402
+    backlight_rpn, powered_rpn, rotor, step_to, switch_var, toggle_to,
+)
 
 # --------------------------------------------------------------------------
 # Hardware: definicao oficial do MobiFlight (winwing_airbus_throttle_left.joystick.json)
@@ -21,9 +32,9 @@ import uuid
 CONTROLLER = {
     # Nome com que o Windows/DirectInput expoe o painel (e o que o MobiFlight mostra)
     "Name": "WINCTRL URSA MINOR 32 Throttle Metal L",
-    # Serial "coringa": o auto-binding do MobiFlight associa pelo nome
-    # quando ha um unico throttle L conectado.
-    "Serial": "JS-00000000-0000-0000-0000-000000000000",
+    # Serial do seu painel (GUID mostrado no SimAppPro). Em outro computador o
+    # auto-binding do MobiFlight reassocia pelo nome.
+    "Serial": "JS-c4381ce0-8065-11f1-8004-444553540000",
 }
 
 # Rotulos dos botoes, exatamente como na definicao (Id -> Label).
@@ -71,59 +82,30 @@ BUTTON_LABELS = {
     41: "THROTTLE 2 REVERSE LEVER",
 }
 
-# Eixos das manetes: nao estao rotulados na definicao, entao o MobiFlight usa
-# o nome DirectInput. Se no seu painel as manetes forem outros eixos (veja no
-# MobiFlight qual eixo se mexe), troque aqui.
-AXIS_THROTTLE = {1: "Axis RotationX", 2: "Axis RotationY"}
-
 # --------------------------------------------------------------------------
-# Calibracao das manetes (valor bruto do eixo, 0-65535)
-# Valores padrao; o profile se recalibra sozinho ao passar pelos detentes
-# FULL REV, IDLE e TOGA (grava o valor bruto do eixo naquele momento).
+# PMDG 737 (SDK PMDG_NG3_SDK.h); convencoes de ROTOR_BRAKE e L:switch em
+# ../../pmdg737_common.py
 # --------------------------------------------------------------------------
-DEFAULT_FULL_REV = 0
-DEFAULT_IDLE = 16384
-DEFAULT_TOGA = 65535
-
-# Quantos THROTTLEn_DECR levam o reverso do PMDG ao maximo. O primeiro DECR
-# (sempre enviado ao entrar na zona de reverso) abre o reverso em idle.
-# Se FULL REV nao der reverso total, aumente; se o reverso maximo chegar
-# antes do fim do curso, diminua.
-REVERSE_STEPS = 20
-
-# --------------------------------------------------------------------------
-# PMDG 737 (SDK PMDG_NG3_SDK.h) -> parametro do K:ROTOR_BRAKE
-# parametro = (EVENT_ID - 69632) * 100 + acao do mouse
-# --------------------------------------------------------------------------
-THIRD_PARTY_EVENT_ID_MIN = 69632
-LEFT_CLICK = 1   # PMDG: clique esquerdo  (seletor gira anti-horario)
-RIGHT_CLICK = 2  # PMDG: clique direito   (seletor gira horario)
-
-EVT_START_SWITCH = {1: 69751, 2: 69753}           # EVT_OH_LIGHTS_L/R_ENGINE_START
-EVT_START_LEVER = {1: 70320, 2: 70321}            # EVT_CONTROL_STAND_ENG1/2_START_LEVER
-EVT_AT1_DISENGAGE = 70314                          # EVT_CONTROL_STAND_AT1_DISENGAGE_SWITCH
-EVT_TOGA1 = 70316                                  # EVT_CONTROL_STAND_TOGA1_SWITCH
+EVT_START_SWITCH = {1: 69751, 2: 69753}   # EVT_OH_LIGHTS_L/R_ENGINE_START (L:switch_119/121_73X)
+EVT_START_LEVER = {1: 70320, 2: 70321}    # EVT_CONTROL_STAND_ENG1/2_START_LEVER (L:switch_688/689_73X)
+EVT_AT1_DISENGAGE = 70314                 # EVT_CONTROL_STAND_AT1_DISENGAGE_SWITCH
+EVT_TOGA2 = 70319                         # EVT_CONTROL_STAND_TOGA2_SWITCH
 EVT_FLAPS = {0: 76773, 1: 76774, 2: 76775, 5: 76776, 10: 76777,
              15: 76778, 25: 76779, 30: 76780, 40: 76781}   # EVT_CONTROL_STAND_FLAPS_LEVER_x
 EVT_SPEEDBRAKE_DOWN = 76423
 EVT_SPEEDBRAKE_ARM = 76424
-EVT_SPEEDBRAKE_FLT_DET = 76426
-EVT_SPEEDBRAKE_UP = 76427
+EVT_RUDDER_TRIM_IND = 70441               # L:switch_809_73X: 0 = todo L, 50 = neutro, 100 = todo R
 
-# Start switch do 737, da esquerda para a direita
-SS_GRD, SS_OFF, SS_CONT, SS_FLT = range(4)
-SS_POSITIONS = 4
-# Start lever: 0 = CUTOFF, 1 = IDLE
-LEVER_CUTOFF, LEVER_IDLE = 0, 1
+# Start switch do 737 (valor da L:switch): GRD, OFF, CONT, FLT
+SS_GRD, SS_OFF, SS_CONT, SS_FLT = 0, 10, 20, 30
 
 # Detentes de flaps do Ursa Minor -> posicao do 737
 FLAPS_MAP = {35: 0, 34: 5, 33: 15, 32: 30, 31: 40}
 
-# Brilho fixo (0-100 %)
-BACKLIGHT_PCT = 60
 LCD_PCT = 100
 LED_PCT = 100
 VIBRATION_MAX_PCT = 40   # vibracao maxima na corrida de solo
+WASM_COMMAND_LIMIT = 1000  # bloco de 1024 bytes do MobiFlight, com margem
 
 PROFILE_FILE = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), "..",
@@ -137,119 +119,9 @@ def guid(key):
     return str(uuid.uuid5(_NS, key))
 
 
-def rotor(event_id, action=LEFT_CLICK):
-    return f"{(event_id - THIRD_PARTY_EVENT_ID_MIN) * 100 + action} (>K:ROTOR_BRAKE)"
-
-
-def set_selector(event_id, positions, target):
-    """Posicao absoluta sem ler o estado do PMDG: gira ate o batente da
-    esquerda e clica para a direita ate o alvo."""
-    parts = [rotor(event_id, LEFT_CLICK)] * (positions - 1)
-    parts += [rotor(event_id, RIGHT_CLICK)] * target
-    return " ".join(parts)
-
-
-def set_selector_from_right(event_id, positions, target):
-    """Mesmo que set_selector, mas partindo do batente da direita. Usado no
-    start switch para nunca passar por GRD (que aciona o motor de partida)."""
-    parts = [rotor(event_id, RIGHT_CLICK)] * (positions - 1)
-    parts += [rotor(event_id, LEFT_CLICK)] * (positions - 1 - target)
-    return " ".join(parts)
-
-
-# --------------------------------------------------------------------------
-# Manetes
-# O PMDG so aceita empuxo pelos eventos de EIXO (os mesmos de quando um eixo
-# e atribuido nos controles do MSFS): THROTTLEn_AXIS_SET_EX1, de -16384
-# (idle) a +16384 (maximo). O reverso do PMDG e acionado com THROTTLEn_DECR
-# com a manete em idle (cada evento abre mais o reverso) e recolhido com
-# THROTTLEn_INCR.
-#
-# LIMITE DO MOBIFLIGHT: cada comando vai ao modulo WASM num bloco de 1024
-# bytes; um comando maior e descartado sem aviso. Por isso cada eixo usa
-# varias entradas pequenas, que o MobiFlight executa em ordem a cada
-# movimento da manete:
-#   1. calcula   - grava o valor bruto, calibra e calcula alvo de reverso e empuxo
-#   2. abre rev  - envia os THROTTLEn_DECR que faltam
-#   3. fecha rev - envia os THROTTLEn_INCR que sobram e registra a posicao
-#   4. empuxo    - fora do reverso, envia o empuxo para frente
-#
-# L:vars por motor n:
-#   MF_THRn_RAW       ultimo valor bruto do eixo
-#   MF_THRn_DET       detente atual: 1 = IDLE, 2 = TOGA, 3 = FULL REV, 0 = fora
-#   MF_THRn_IDLE/TOGA/FULLREV  calibracao (valor bruto + 1; 0 = usar padrao)
-#   MF_THRn_REVLATCH  1 com a trava de reverso levantada
-#   MF_THRn_REVTGT    passos de reverso desejados (0 = sem reverso)
-#   MF_THRn_REVSTEP   passos de reverso ja enviados
-#   MF_THRn_FWD       empuxo para frente a enviar (-16384 a 16384)
-# --------------------------------------------------------------------------
-DET_IDLE, DET_TOGA, DET_FULL_REV = 1, 2, 3
-WASM_COMMAND_LIMIT = 1000  # margem sob os 1024 bytes, ja contando o prefixo do MobiFlight
-
-
-def cal(n, name, default):
-    return f"(L:MF_THR{n}_{name}, number) 0 > if{{ (L:MF_THR{n}_{name}, number) 1 - }} els{{ {default} }}"
-
-
-def throttle_compute(n):
-    calibration = " ".join(
-        f"(L:MF_THR{n}_DET, number) {det} == if{{ @ 1 + (>L:MF_THR{n}_{name}, number) }}"
-        for det, name in ((DET_IDLE, "IDLE"), (DET_TOGA, "TOGA"), (DET_FULL_REV, "FULLREV"))
-    )
-    return (
-        f"@ (>L:MF_THR{n}_RAW, number) {calibration} "
-        f"{cal(n, 'IDLE', DEFAULT_IDLE)} s4 "
-        f"{cal(n, 'TOGA', DEFAULT_TOGA)} s5 "
-        f"{cal(n, 'FULLREV', DEFAULT_FULL_REV)} s6 "
-        f"@ l4 < (L:MF_THR{n}_REVLATCH, number) and "
-        f"if{{ l4 @ - l4 l6 - / 0 max 1 min {REVERSE_STEPS - 1} * near 1 + }} els{{ 0 }} "
-        f"(>L:MF_THR{n}_REVTGT, number) "
-        f"@ l4 - l5 l4 - / 0 max 1 min 32768 * 16384 - flr (>L:MF_THR{n}_FWD, number)"
-    )
-
-
-def throttle_open_reverse(n):
-    sends = " ".join(f"l3 {k} > if{{ (>K:THROTTLE{n}_DECR) }}" for k in range(REVERSE_STEPS))
-    return (
-        f"(L:MF_THR{n}_REVTGT, number) 0 > if{{ -16384 (>K:THROTTLE{n}_AXIS_SET_EX1) }} "
-        f"(L:MF_THR{n}_REVTGT, number) (L:MF_THR{n}_REVSTEP, number) - s3 {sends}"
-    )
-
-
-def throttle_close_reverse(n):
-    sends = " ".join(f"l3 {-k} < if{{ (>K:THROTTLE{n}_INCR) }}" for k in range(REVERSE_STEPS))
-    return (
-        f"(L:MF_THR{n}_REVTGT, number) (L:MF_THR{n}_REVSTEP, number) - s3 {sends} "
-        f"(L:MF_THR{n}_REVTGT, number) (>L:MF_THR{n}_REVSTEP, number)"
-    )
-
-
-def throttle_forward(n):
-    return (
-        f"(L:MF_THR{n}_REVTGT, number) 0 == if{{ "
-        f"(L:MF_THR{n}_FWD, number) (>K:THROTTLE{n}_AXIS_SET_EX1) }}"
-    )
-
-
-def detent(n, det, name):
-    """Botao de detente: marca o detente (para a calibracao no eixo) e ja grava
-    o ultimo valor bruto conhecido."""
-    return (
-        f"{det} (>L:MF_THR{n}_DET, number) "
-        f"(L:MF_THR{n}_RAW, number) 1 + (>L:MF_THR{n}_{name}, number)"
-    )
-
-
-def leave_detent(n):
-    return f"0 (>L:MF_THR{n}_DET, number)"
-
-
 def start_switches(target):
-    return " ".join(set_selector_from_right(EVT_START_SWITCH[n], SS_POSITIONS, target) for n in (1, 2))
-
-
-PARK_SET = "(A:BRAKE PARKING POSITION, Bool) ! if{ (>K:PARKING_BRAKES) }"
-PARK_RELEASE = "(A:BRAKE PARKING POSITION, Bool) if{ (>K:PARKING_BRAKES) }"
+    """Os dois start switches; labels diferentes porque os dois lacos ficam no mesmo comando."""
+    return f"{step_to(EVT_START_SWITCH[1], str(target), label=1)} {step_to(EVT_START_SWITCH[2], str(target), label=2)}"
 
 
 # --------------------------------------------------------------------------
@@ -273,18 +145,6 @@ def button(btn_id, name, on_press=None, on_release=None, on_hold=None,
         "button": btn,
         "Device": {"Type": "Button", "Name": BUTTON_LABELS[btn_id]},
         "GUID": guid(f"in-{btn_id}"),
-        "Active": True,
-        "Name": name,
-        "Type": "InputConfigItem",
-        "Controller": dict(CONTROLLER),
-    }
-
-
-def axis(device_name, name, on_change, part=""):
-    return {
-        "analog": {"onChange": rpn_action(on_change)},
-        "Device": {"Type": "AnalogInput", "Name": device_name},
-        "GUID": guid(f"axis-{device_name}{part}"),
         "Active": True,
         "Name": name,
         "Type": "InputConfigItem",
@@ -335,78 +195,31 @@ def display(address, name, rpn, test):
 
 
 # --------------------------------------------------------------------------
-# Entradas
+# Entradas (o resto dos botoes e eixos fica no MSFS 2024, veja o README)
 # --------------------------------------------------------------------------
 inputs = [
-    # Partida
-    button(1, "ENG MASTER 1 ON -> start lever 1 IDLE",
-           set_selector(EVT_START_LEVER[1], 2, LEVER_IDLE)),
-    button(2, "ENG MASTER 1 OFF -> start lever 1 CUTOFF",
-           set_selector(EVT_START_LEVER[1], 2, LEVER_CUTOFF)),
-    button(3, "ENG MASTER 2 ON -> start lever 2 IDLE",
-           set_selector(EVT_START_LEVER[2], 2, LEVER_IDLE)),
-    button(4, "ENG MASTER 2 OFF -> start lever 2 CUTOFF",
-           set_selector(EVT_START_LEVER[2], 2, LEVER_CUTOFF)),
-    button(5, "ENGINE FIRE 1 -> start switch 1 GRD",
-           set_selector_from_right(EVT_START_SWITCH[1], SS_POSITIONS, SS_GRD)),
-    button(6, "ENGINE FIRE 2 -> start switch 2 GRD",
-           set_selector_from_right(EVT_START_SWITCH[2], SS_POSITIONS, SS_GRD)),
+    # Start levers: L:switch = 0 em IDLE, 100 em CUTOFF; clica so se precisar
+    button(1, "ENG MASTER 1 ON -> start lever 1 IDLE", toggle_to(EVT_START_LEVER[1], want_on=False)),
+    button(2, "ENG MASTER 1 OFF -> start lever 1 CUTOFF", toggle_to(EVT_START_LEVER[1], want_on=True)),
+    button(3, "ENG MASTER 2 ON -> start lever 2 IDLE", toggle_to(EVT_START_LEVER[2], want_on=False)),
+    button(4, "ENG MASTER 2 OFF -> start lever 2 CUTOFF", toggle_to(EVT_START_LEVER[2], want_on=True)),
+    # Start switches
+    button(5, "ENGINE FIRE 1 -> start switch 1 GRD", step_to(EVT_START_SWITCH[1], str(SS_GRD))),
+    button(6, "ENGINE FIRE 2 -> start switch 2 GRD", step_to(EVT_START_SWITCH[2], str(SS_GRD))),
     button(7, "ENG MODE CRANK -> start switches FLT", start_switches(SS_FLT)),
     button(8, "ENG MODE NORM -> start switches OFF", start_switches(SS_OFF)),
     button(9, "ENG MODE IGN -> start switches CONT", start_switches(SS_CONT)),
     # Botoes nas manetes
     button(10, "THROTTLE 1 A/THR -> A/T disengage", rotor(EVT_AT1_DISENGAGE)),
-    button(11, "THROTTLE 2 A/THR -> TO/GA", rotor(EVT_TOGA1)),
-    # Detentes usados para calibrar as manetes
-    button(12, "THR 1 TOGA -> calibra TOGA", detent(1, DET_TOGA, "TOGA"), on_release=leave_detent(1)),
-    button(15, "THR 1 IDLE -> calibra IDLE", detent(1, DET_IDLE, "IDLE"), on_release=leave_detent(1)),
-    button(17, "THR 1 FULL REV -> calibra FULL REV", detent(1, DET_FULL_REV, "FULLREV"), on_release=leave_detent(1)),
-    button(18, "THR 2 TOGA -> calibra TOGA", detent(2, DET_TOGA, "TOGA"), on_release=leave_detent(2)),
-    button(21, "THR 2 IDLE -> calibra IDLE", detent(2, DET_IDLE, "IDLE"), on_release=leave_detent(2)),
-    button(23, "THR 2 FULL REV -> calibra FULL REV", detent(2, DET_FULL_REV, "FULLREV"), on_release=leave_detent(2)),
-    button(40, "THR 1 REVERSE LEVER -> libera reverso 1",
-           "1 (>L:MF_THR1_REVLATCH, number)", on_release="0 (>L:MF_THR1_REVLATCH, number)"),
-    button(41, "THR 2 REVERSE LEVER -> libera reverso 2",
-           "1 (>L:MF_THR2_REVLATCH, number)", on_release="0 (>L:MF_THR2_REVLATCH, number)"),
-    # Trim de leme
-    button(25, "TRIM RESET -> centraliza rudder trim", "0 (>K:RUDDER_TRIM_SET)"),
-    button(26, "TRIM NOSE L -> rudder trim esquerda (segurar repete)",
-           "(>K:RUDDER_TRIM_LEFT)", on_hold="(>K:RUDDER_TRIM_LEFT)", hold_delay=300, repeat_delay=100),
-    button(28, "TRIM NOSE R -> rudder trim direita (segurar repete)",
-           "(>K:RUDDER_TRIM_RIGHT)", on_hold="(>K:RUDDER_TRIM_RIGHT)", hold_delay=300, repeat_delay=100),
-    # Parking brake
-    button(29, "PARKING BRK OFF -> solta parking brake", PARK_RELEASE),
-    button(30, "PARKING BRK ON -> aplica parking brake", PARK_SET),
-    # Speedbrake
-    button(38, "SPOILERS RET -> speedbrake DOWN", rotor(EVT_SPEEDBRAKE_DOWN)),
-    button(39, "SPOILERS ARMED -> speedbrake ARM", rotor(EVT_SPEEDBRAKE_ARM)),
-    button(37, "SPOILERS HALF -> speedbrake FLIGHT DETENT", rotor(EVT_SPEEDBRAKE_FLT_DET)),
-    button(36, "SPOILERS FULL -> speedbrake UP", rotor(EVT_SPEEDBRAKE_UP)),
+    button(11, "THROTTLE 2 A/THR (segurar) -> TO/GA", on_hold=rotor(EVT_TOGA2)),
+    # Speedbrake: o eixo fica no MSFS; ARMED arma e, ao sair do detente, baixa
+    button(39, "SPOILERS ARMED -> speedbrake ARM (ao sair: DOWN)",
+           rotor(EVT_SPEEDBRAKE_ARM), on_release=rotor(EVT_SPEEDBRAKE_DOWN)),
 ]
 inputs += [
     button(btn_id, f"{BUTTON_LABELS[btn_id]} -> flaps {pos if pos else 'UP'}", rotor(EVT_FLAPS[pos]))
     for btn_id, pos in FLAPS_MAP.items()
 ]
-for n in (1, 2):
-    inputs += [
-        axis(AXIS_THROTTLE[n], f"Manete {n} (1/4) -> calcula empuxo e reverso", throttle_compute(n)),
-        axis(AXIS_THROTTLE[n], f"Manete {n} (2/4) -> abre reverso", throttle_open_reverse(n), "-open"),
-        axis(AXIS_THROTTLE[n], f"Manete {n} (3/4) -> recolhe reverso", throttle_close_reverse(n), "-close"),
-        axis(AXIS_THROTTLE[n], f"Manete {n} (4/4) -> empuxo", throttle_forward(n), "-fwd"),
-    ]
-
-
-def _commands(item):
-    """Comandos que o MobiFlight envia ao WASM para este item, ja com o
-    prefixo e com '@' no pior caso (5 digitos)."""
-    if "button" in item:
-        for action in item["button"].values():
-            if isinstance(action, dict):
-                yield "MF.SimVars.Set." + action["Command"]
-    if "analog" in item:
-        yield "MF.SimVars.Set." + item["analog"]["onChange"]["Command"].replace("@", "65535")
-    if "Source" in item:
-        yield "MF.SimVars.Add." + item["Source"]["SimConnectValue"]["Value"]
 
 # --------------------------------------------------------------------------
 # Saidas
@@ -419,16 +232,28 @@ GROUND_ROLL = (
 outputs = [
     led("FIRE_1", "LED FIRE 1 - fogo no motor 1", "(A:ENG ON FIRE:1, Bool)"),
     led("FIRE_2", "LED FIRE 2 - fogo no motor 2", "(A:ENG ON FIRE:2, Bool)"),
-    led("FAULT_1", "LED FAULT 1 - motor de partida 1 acionado (GRD)", "(A:GENERAL ENG STARTER:1, Bool)"),
-    led("FAULT_2", "LED FAULT 2 - motor de partida 2 acionado (GRD)", "(A:GENERAL ENG STARTER:2, Bool)"),
-    display("Trim Value", "Rudder trim em unidades (L/R)", "(A:RUDDER TRIM PCT, percent) 0.16 *", test=-2.5),
+    led("FAULT_1", "LED FAULT 1 - start switch 1 em GRD", f"{switch_var(EVT_START_SWITCH[1])} {SS_GRD} =="),
+    led("FAULT_2", "LED FAULT 2 - start switch 2 em GRD", f"{switch_var(EVT_START_SWITCH[2])} {SS_GRD} =="),
+    display("Trim Value", "Rudder trim em unidades (L/R)",
+            f"{switch_var(EVT_RUDDER_TRIM_IND)} 50 - 0.34 * 10 * near 10 /", test=-2.5),
     display("Trim Dashes On/Off", "Trim tracejado (nao usado)", "0", test=0.0),
     level("Vibration 1 Percentage", "Vibracao 1 - corrida no solo", GROUND_ROLL, 20),
     level("Vibration 2 Percentage", "Vibracao 2 - corrida no solo", GROUND_ROLL, 20),
-    level("Backlight Percentage", "Brilho backlight", str(BACKLIGHT_PCT), BACKLIGHT_PCT),
-    level("LCD Percentage", "Brilho display de trim", str(LCD_PCT), LCD_PCT),
-    level("LED Percentage", "Brilho LEDs", str(LED_PCT), LED_PCT),
+    level("Backlight Percentage", "Brilho backlight - dimmer de painel do 737", backlight_rpn(), 50),
+    level("LCD Percentage", "Brilho display de trim - com bateria ligada", powered_rpn(LCD_PCT), LCD_PCT),
+    level("LED Percentage", "Brilho LEDs - com bateria ligada", powered_rpn(LED_PCT), LED_PCT),
 ]
+
+
+def _commands(item):
+    """Comandos que o MobiFlight envia ao WASM para este item, com o prefixo."""
+    if "button" in item:
+        for action in item["button"].values():
+            if isinstance(action, dict):
+                yield "MF.SimVars.Set." + action["Command"]
+    if "Source" in item:
+        yield "MF.SimVars.Add." + item["Source"]["SimConnectValue"]["Value"]
+
 
 project = {
     "Name": "PMDG 737-800 - WINCTRL URSA MINOR 32 Throttle Metal L",
