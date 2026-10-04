@@ -5,7 +5,7 @@ O arquivo é gerado por `tools/generate_profile.py`: ajuste as constantes lá e 
 
 ## Requisitos
 
-- MobiFlight Connector **10.x ou superior**, com suporte nativo ao "WINWING AGP" (VID 0x4098 / PID 0xBB80). Versões mais antigas não acendem LEDs nem displays.
+- MobiFlight Connector **10.x ou superior**, com suporte nativo ao AGP (VID 0x4098 / PID 0xBB80). O painel aparece no MobiFlight como **"WINCTRL 32 AGP Metal"**. Versões mais antigas não acendem LEDs nem displays.
 - O **SimAppPro da WinWing fechado** enquanto o MobiFlight estiver rodando, porque os dois disputam o painel.
 - O módulo WASM do MobiFlight instalado (*Extras → Install WASM Module*).
 - PMDG 737-800 para MSFS 2024.
@@ -13,32 +13,34 @@ O arquivo é gerado por `tools/generate_profile.py`: ajuste as constantes lá e 
 ## Instalação
 
 1. Copie o `.mfproj` para qualquer pasta e abra pelo MobiFlight (*File → Open*).
-2. O profile usa um serial genérico. Com um único AGP conectado, o **auto-binding** associa o painel pelo nome "WINWING AGP". Se aparecer o diálogo *Controller Bindings*, escolha o seu AGP.
+2. O profile usa um serial genérico. Com um único AGP conectado, o **auto-binding** associa o painel pelo nome "WINCTRL 32 AGP Metal". Se aparecer o diálogo *Controller Bindings*, escolha o seu AGP. Se a sua versão do MobiFlight não tiver auto-binding, troque o serial `JS-00000000-0000-0000-0000-000000000000` no `.mfproj` pelo serial do seu painel (aparece ao editar qualquer entrada dele no MobiFlight).
 3. Clique em **Run** com o 737 carregado.
 
 ## Mapeamento — entradas
+
+A primeira coluna usa os nomes exatos dos botões na definição do MobiFlight (`winwing_agp.joystick.json`), que são os nomes gravados no profile.
 
 | AGP | 737-800 | Comando |
 |---|---|---|
 | GEAR UP | Alavanca do trem UP | `K:GEAR_UP` |
 | GEAR DOWN | Alavanca do trem DN | `K:GEAR_DOWN` |
-| A/SKID → OFF | Alavanca do trem **OFF** | ROTOR_BRAKE `455101` (EVT_GEAR_LEVER_OFF) |
-| A/SKID → ON | sem ação (só rearma a chave) | — |
-| BRK FAN ON / OFF | Parking brake aplica / solta | `K:PARKING_BRAKES` condicional ao estado |
-| AUTO BRK LO | Autobrake **1** (apertar de novo = OFF) | seletor 460 por passos |
-| AUTO BRK LO (segurar 1 s) | Autobrake **RTO** | seletor 460 |
-| AUTO BRK MED | Autobrake **2** (apertar de novo = OFF) | seletor 460 |
-| AUTO BRK MAX | Autobrake **3** (apertar de novo = OFF) | seletor 460 |
-| TERR ON ND | EFIS CPT TERR | `37501` |
-| CHR | Relógio CPT CHR (start/stop/reset) + display CHR | `31401` |
-| RST | Relógio CPT RESET + zera display CHR | `32001` |
-| DATE | Relógio CPT TIME/DATE + alterna hora/data no display | `31501` |
+| A/SKID OFF | Alavanca do trem **OFF** | ROTOR_BRAKE `455101` (EVT_GEAR_LEVER_OFF) |
+| A/SKID ON | sem ação (só rearma a chave) | — |
+| BRK FAN ON / BRK FAN OFF | Parking brake aplica / solta | `K:PARKING_BRAKES` condicional ao estado |
+| AUTO BRK LO Button | Autobrake **1** (apertar de novo = OFF) | seletor 460 por passos |
+| AUTO BRK LO Button (segurar 1 s) | Autobrake **RTO** | seletor 460 |
+| AUTO BRK MED Button | Autobrake **2** (apertar de novo = OFF) | seletor 460 |
+| AUTO BRK MAX Button | Autobrake **3** (apertar de novo = OFF) | seletor 460 |
+| TERR ON ND Button | EFIS CPT TERR | `37501` |
+| CHR Button | Relógio CPT CHR (start/stop/reset) + display CHR | `31401` |
+| RST Button | Relógio CPT RESET + zera display CHR | `32001` |
+| DATE Button | Relógio CPT TIME/DATE + alterna hora/data no display | `31501` |
 | UTC GPS | Display mostra UTC do sim | — |
 | UTC INT | Display mostra hora local do sim | — |
 | UTC SET | Relógio CPT SET | `31601` |
 | RST / CHR / DATE INC | Relógio CPT + | `31701` |
 | RST / CHR / DATE DEC | Relógio CPT − | `31801` |
-| ET RUN / STP / RST | Chave ET do relógio CPT RUN / HLD / RESET + display ET | seletor 321 |
+| ET RUN / ET STP / ET RST | Chave ET do relógio CPT RUN / HLD / RESET + display ET | seletor 321 |
 
 Fluxo do trem na decolagem: GEAR UP e depois A/SKID em OFF. No pouso: GEAR DOWN. Volte o A/SKID para ON antes do próximo voo.
 
