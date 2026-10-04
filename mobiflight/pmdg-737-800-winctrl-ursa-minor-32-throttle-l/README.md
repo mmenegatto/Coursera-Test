@@ -17,7 +17,7 @@ Para usar junto com o AGP e o TCAS, abra `../PMDG_737-800_WINCTRL_COCKPIT.mfproj
 1. Abra o `.mfproj` pelo MobiFlight (*File → Open*).
 2. O auto-binding associa o painel pelo nome. Se aparecer o diálogo *Controller Bindings*, escolha o seu throttle.
 3. Clique em **Run** com o 737 carregado.
-4. **Calibração:** com o MobiFlight rodando, leve cada manete até FULL REV (com a trava de reverso levantada), depois até IDLE e depois até TOGA. O profile grava o valor do eixo em cada detente e passa a usar esses valores. Isso precisa ser feito a cada vez que o sim for aberto; até lá, valem os padrões do gerador.
+4. **Calibração:** com o MobiFlight rodando, leve cada manete até IDLE e depois até TOGA (e até FULL REV com a trava de reverso levantada). Enquanto a manete está num desses detentes, o profile grava o valor do eixo e passa a usá-lo. Isso precisa ser feito a cada vez que o sim for aberto; até lá, valem os padrões do gerador.
 
 ## Mapeamento — entradas
 
@@ -27,8 +27,8 @@ A primeira coluna usa os nomes exatos dos botões na definição do MobiFlight (
 
 | Painel | 737-800 |
 |---|---|
-| Eixo das manetes 1 e 2 (`Axis X` / `Axis Y`) | Empuxo do motor 1 / 2, de IDLE a TOGA (`K:THROTTLEn_SET`) |
-| Manete abaixo de IDLE com THROTTLE n REVERSE LEVER levantada | Reverso proporcional, até o máximo em FULL REV |
+| Eixo das manetes 1 e 2 (`Axis X` / `Axis Y`) | Empuxo do motor 1 / 2, de IDLE a TOGA (`K:THROTTLEn_AXIS_SET_EX1`, o mesmo evento de um eixo atribuído nos controles do MSFS) |
+| Manete abaixo de IDLE com THROTTLE n REVERSE LEVER levantada | Reverso: abre em idle reverse logo abaixo de IDLE e aumenta até o máximo em FULL REV (`K:THROTTLEn_DECR`); ao voltar, recolhe (`K:THROTTLEn_INCR`) |
 | THROTTLE n IDLE / TOGA / FULL REV | Calibram o eixo (gravam o valor naquele detente) |
 | THROTTLE 1 A/THR Button | A/T disengage |
 | THROTTLE 2 A/THR Button | TO/GA |
@@ -81,10 +81,17 @@ O parking brake saiu do AGP: as chaves BRK FAN ficaram livres, e o LED HOT do AG
 | Vibração 1 / 2 | Corrida no solo acima de 30 kt, proporcional à velocidade (máx. 40 %) |
 | Brilho | Fixo: backlight 60 %, LCD 100 %, LED 100 % |
 
+## Se as manetes não derem potência
+
+1. **Run ligado:** o MobiFlight só envia comandos com *Run* ativo e conectado ao sim.
+2. **Nenhum eixo do throttle nos controles do MSFS:** um eixo atribuído no sim sobrescreve o que o MobiFlight envia.
+3. **Nome dos eixos:** em MobiFlight, abra a entrada "Manete 1" e use o botão de detecção de entrada (*scan*) movendo a manete 1. O dispositivo detectado deve ser `Axis X` (manete 2: `Axis Y`). Se aparecer outro nome, me diga qual que eu ajusto, ou troque `AXIS_THROTTLE` no gerador.
+4. **Calibração:** se a potência só começa no meio do curso, leve a manete até IDLE e depois até TOGA para recalibrar.
+
 ## Verifique no primeiro voo
 
 1. **Eixos das manetes.** Confira no MobiFlight qual eixo se mexe com cada manete. Se não forem `Axis X` (motor 1) e `Axis Y` (motor 2), troque `AXIS_THROTTLE` no gerador.
-2. **Reverso via `K:THROTTLEn_SET` negativo.** Se o PMDG não abrir o reverso, me avise que troco pelo evento de reverso do PMDG.
+2. **Curso do reverso.** O reverso é aberto em `REVERSE_STEPS` passos (20). Se FULL REV não chegar ao reverso máximo, aumente esse valor; se o máximo chegar antes do fim do curso, diminua.
 3. **Sentido dos cliques do PMDG** (start levers e start switches). Se MASTER ON levar a alavanca para CUTOFF, ou se o seletor andar ao contrário, inverta `LEFT_CLICK` e `RIGHT_CLICK`.
 4. **Rudder trim** via eventos padrão (`K:RUDDER_TRIM_LEFT/RIGHT/SET`). Se o PMDG ignorar, troco pelo knob do PMDG (EVT_FCTL_RUDDER_TRIM).
 

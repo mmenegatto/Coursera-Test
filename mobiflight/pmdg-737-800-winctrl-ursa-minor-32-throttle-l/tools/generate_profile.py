@@ -85,8 +85,11 @@ DEFAULT_FULL_REV = 0
 DEFAULT_IDLE = 16384
 DEFAULT_TOGA = 65535
 
-THROTTLE_MAX = 16383   # K:THROTTLEn_SET a 100 %
-REVERSE_MAX = 4096     # K:THROTTLEn_SET negativo = reverso (4096 ~ 25 %, reverso maximo do sim)
+# Quantos THROTTLEn_DECR levam o reverso do PMDG ao maximo. O primeiro DECR
+# (sempre enviado ao entrar na zona de reverso) abre o reverso em idle.
+# Se FULL REV nao der reverso total, aumente; se o reverso maximo chegar
+# antes do fim do curso, diminua.
+REVERSE_STEPS = 20
 
 # --------------------------------------------------------------------------
 # PMDG 737 (SDK PMDG_NG3_SDK.h) -> parametro do K:ROTOR_BRAKE
@@ -156,35 +159,78 @@ def set_selector_from_right(event_id, positions, target):
 
 # --------------------------------------------------------------------------
 # Manetes
+# O PMDG so aceita empuxo pelos eventos de EIXO (os mesmos de quando um eixo
+# e atribuido nos controles do MSFS): THROTTLEn_AXIS_SET_EX1, de -16384
+# (idle) a +16384 (maximo). O reverso do PMDG e acionado com THROTTLEn_DECR
+# com a manete em idle (cada evento abre mais o reverso) e recolhido com
+# THROTTLEn_INCR.
+#
 # L:vars por motor n:
 #   MF_THRn_RAW       ultimo valor bruto do eixo
+#   MF_THRn_DET       detente atual: 1 = IDLE, 2 = TOGA, 3 = FULL REV, 0 = fora
 #   MF_THRn_IDLE/TOGA/FULLREV  calibracao (valor bruto + 1; 0 = usar padrao)
 #   MF_THRn_REVLATCH  1 com a trava de reverso levantada
+#   MF_THRn_REVSTEP   quantos THROTTLEn_DECR de reverso ja foram enviados
 # --------------------------------------------------------------------------
+DET_IDLE, DET_TOGA, DET_FULL_REV = 1, 2, 3
+
+
 def cal(n, name, default):
     return f"(L:MF_THR{n}_{name}, number) 0 > if{{ (L:MF_THR{n}_{name}, number) 1 - }} els{{ {default} }}"
+
+
+def _repeat_signed(delta_reg, event_pos, event_neg, steps):
+    """Envia event_pos 'delta' vezes se delta > 0, ou event_neg '-delta' vezes
+    se delta < 0 (RPN nao tem laco, entao o envio e desenrolado)."""
+    parts = [f"{delta_reg} {k} > if{{ (>K:{event_pos}) }}" for k in range(steps)]
+    parts += [f"{delta_reg} {-k} < if{{ (>K:{event_neg}) }}" for k in range(steps)]
+    return " ".join(parts)
 
 
 def throttle_axis(n):
     idle = cal(n, "IDLE", DEFAULT_IDLE)
     toga = cal(n, "TOGA", DEFAULT_TOGA)
     full_rev = cal(n, "FULLREV", DEFAULT_FULL_REV)
+    revstep = f"(L:MF_THR{n}_REVSTEP, number)"
+
+    # Calibra enquanto a manete esta parada num detente
+    calibration = " ".join(
+        f"(L:MF_THR{n}_DET, number) {det} == if{{ @ 1 + (>L:MF_THR{n}_{name}, number) }}"
+        for det, name in ((DET_IDLE, "IDLE"), (DET_TOGA, "TOGA"), (DET_FULL_REV, "FULLREV"))
+    )
+    stow_reverse = (
+        f"0 {revstep} - s3 {_repeat_signed('l3', f'THROTTLE{n}_DECR', f'THROTTLE{n}_INCR', REVERSE_STEPS)} "
+        f"0 (>L:MF_THR{n}_REVSTEP, number)"
+    )
     forward = (
-        f"@ {idle} - {toga} {idle} - / 0 max 1 min {THROTTLE_MAX} * flr "
-        f"(>K:THROTTLE{n}_SET)"
+        f"{stow_reverse} "
+        f"@ {idle} - {toga} {idle} - / 0 max 1 min 32768 * 16384 - flr "
+        f"(>K:THROTTLE{n}_AXIS_SET_EX1)"
     )
     reverse = (
-        f"{idle} @ - {idle} {full_rev} - / 0 max 1 min {REVERSE_MAX - 1} * 1 + flr neg "
-        f"(>K:THROTTLE{n}_SET)"
+        f"-16384 (>K:THROTTLE{n}_AXIS_SET_EX1) "
+        f"{idle} @ - {idle} {full_rev} - / 0 max 1 min {REVERSE_STEPS - 1} * near 1 + s2 "
+        f"l2 {revstep} - s3 "
+        f"{_repeat_signed('l3', f'THROTTLE{n}_DECR', f'THROTTLE{n}_INCR', REVERSE_STEPS)} "
+        f"l2 (>L:MF_THR{n}_REVSTEP, number)"
     )
     return (
-        f"@ (>L:MF_THR{n}_RAW, number) "
+        f"@ (>L:MF_THR{n}_RAW, number) {calibration} "
         f"@ {idle} < (L:MF_THR{n}_REVLATCH, number) and if{{ {reverse} }} els{{ {forward} }}"
     )
 
 
-def calibrate(n, name):
-    return f"(L:MF_THR{n}_RAW, number) 1 + (>L:MF_THR{n}_{name}, number)"
+def detent(n, det, name):
+    """Botao de detente: marca o detente (para a calibracao no eixo) e ja grava
+    o ultimo valor bruto conhecido."""
+    return (
+        f"{det} (>L:MF_THR{n}_DET, number) "
+        f"(L:MF_THR{n}_RAW, number) 1 + (>L:MF_THR{n}_{name}, number)"
+    )
+
+
+def leave_detent(n):
+    return f"0 (>L:MF_THR{n}_DET, number)"
 
 
 def start_switches(target):
@@ -301,12 +347,12 @@ inputs = [
     button(10, "THROTTLE 1 A/THR -> A/T disengage", rotor(EVT_AT1_DISENGAGE)),
     button(11, "THROTTLE 2 A/THR -> TO/GA", rotor(EVT_TOGA1)),
     # Detentes usados para calibrar as manetes
-    button(12, "THR 1 TOGA -> calibra TOGA", calibrate(1, "TOGA")),
-    button(15, "THR 1 IDLE -> calibra IDLE", calibrate(1, "IDLE")),
-    button(17, "THR 1 FULL REV -> calibra FULL REV", calibrate(1, "FULLREV")),
-    button(18, "THR 2 TOGA -> calibra TOGA", calibrate(2, "TOGA")),
-    button(21, "THR 2 IDLE -> calibra IDLE", calibrate(2, "IDLE")),
-    button(23, "THR 2 FULL REV -> calibra FULL REV", calibrate(2, "FULLREV")),
+    button(12, "THR 1 TOGA -> calibra TOGA", detent(1, DET_TOGA, "TOGA"), on_release=leave_detent(1)),
+    button(15, "THR 1 IDLE -> calibra IDLE", detent(1, DET_IDLE, "IDLE"), on_release=leave_detent(1)),
+    button(17, "THR 1 FULL REV -> calibra FULL REV", detent(1, DET_FULL_REV, "FULLREV"), on_release=leave_detent(1)),
+    button(18, "THR 2 TOGA -> calibra TOGA", detent(2, DET_TOGA, "TOGA"), on_release=leave_detent(2)),
+    button(21, "THR 2 IDLE -> calibra IDLE", detent(2, DET_IDLE, "IDLE"), on_release=leave_detent(2)),
+    button(23, "THR 2 FULL REV -> calibra FULL REV", detent(2, DET_FULL_REV, "FULLREV"), on_release=leave_detent(2)),
     button(40, "THR 1 REVERSE LEVER -> libera reverso 1",
            "1 (>L:MF_THR1_REVLATCH, number)", on_release="0 (>L:MF_THR1_REVLATCH, number)"),
     button(41, "THR 2 REVERSE LEVER -> libera reverso 2",
