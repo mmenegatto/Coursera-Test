@@ -2,7 +2,7 @@
   "Name": "PMDG 737-800 - WINCTRL 32 AGP Metal",
   "ConfigFiles": [
     {
-      "Label": "WINCTRL 32 AGP",
+      "Label": "WINCTRL 32 AGP Metal",
       "ReferenceOnly": false,
       "EmbedContent": true,
       "ConfigItems": [
@@ -18,14 +18,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 1"
+            "Name": "BRK FAN ON"
           },
           "GUID": "5a7ddecf-e8ea-5c29-bf84-c9a51cecac92",
           "Active": true,
           "Name": "BRK FAN ON -> Parking brake SET",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -41,14 +41,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 2"
+            "Name": "BRK FAN OFF"
           },
           "GUID": "701437b3-2469-5280-8d8e-d6fad3db8262",
           "Active": true,
           "Name": "BRK FAN OFF -> Parking brake RELEASE",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -68,14 +68,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 3"
+            "Name": "AUTO BRK LO Button"
           },
           "GUID": "dcdfd9a2-8da5-5d15-84f3-4db8f6126e6e",
           "Active": true,
           "Name": "AUTO BRK LO -> Autobrake 1 (toggle OFF) | segurar 1 s = RTO",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -91,14 +91,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 4"
+            "Name": "AUTO BRK MED Button"
           },
           "GUID": "11745283-785f-5656-b153-40ab66410484",
           "Active": true,
           "Name": "AUTO BRK MED -> Autobrake 2 (toggle OFF)",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -114,14 +114,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 5"
+            "Name": "AUTO BRK MAX Button"
           },
           "GUID": "91b6ba72-cfc0-510c-9f10-1b1d41cb8f3f",
           "Active": true,
           "Name": "AUTO BRK MAX -> Autobrake 3 (toggle OFF)",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -133,14 +133,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 6"
+            "Name": "A/SKID ON"
           },
           "GUID": "81af84ab-6de8-5ce1-9fc7-98c2a35b8921",
           "Active": true,
           "Name": "A/SKID ON -> (sem acao, rearma a chave)",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -156,14 +156,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 7"
+            "Name": "A/SKID OFF"
           },
           "GUID": "159ed485-294a-558a-a3bb-9e6f895adfea",
           "Active": true,
           "Name": "A/SKID OFF -> Gear lever OFF",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -179,14 +179,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 8"
+            "Name": "RST DEC"
           },
           "GUID": "64f8577a-858a-5edd-a6bb-2de5775cd218",
           "Active": true,
           "Name": "RST DEC -> Clock CPT MINUS",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -202,14 +202,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 9"
+            "Name": "RST Button"
           },
           "GUID": "c5becef0-ee38-5e17-995f-3cb88b19a0a0",
           "Active": true,
           "Name": "RST -> Clock CPT RESET + zera CHR local",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -225,14 +225,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 10"
+            "Name": "RST INC"
           },
           "GUID": "3fe05592-3c41-514a-9bcc-ca3eac8a3337",
           "Active": true,
           "Name": "RST INC -> Clock CPT PLUS",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -248,14 +248,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 11"
+            "Name": "CHR DEC"
           },
           "GUID": "ff7aa938-97b1-5a54-9a2b-2719e97be0dc",
           "Active": true,
           "Name": "CHR DEC -> Clock CPT MINUS",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -271,14 +271,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 12"
+            "Name": "CHR Button"
           },
           "GUID": "ee906171-6326-5716-b714-03c2d89845cf",
           "Active": true,
           "Name": "CHR -> Clock CPT CHR (start/stop/reset) + CHR local",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -294,14 +294,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 13"
+            "Name": "CHR INC"
           },
           "GUID": "7097378d-c9c7-5994-829a-05f2ac26d31e",
           "Active": true,
           "Name": "CHR INC -> Clock CPT PLUS",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -317,14 +317,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 14"
+            "Name": "DATE DEC"
           },
           "GUID": "abcfea37-e012-5918-a395-f975dfe2b817",
           "Active": true,
           "Name": "DATE DEC -> Clock CPT MINUS",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -340,14 +340,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 15"
+            "Name": "DATE Button"
           },
           "GUID": "deaae1e1-f2b7-53c9-9481-ab54569293d4",
           "Active": true,
           "Name": "DATE -> Clock CPT TIME/DATE + alterna hora/data",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -363,14 +363,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 16"
+            "Name": "DATE INC"
           },
           "GUID": "58eacb14-057c-5107-bab2-521e48f64922",
           "Active": true,
           "Name": "DATE INC -> Clock CPT PLUS",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -386,14 +386,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 17"
+            "Name": "UTC GPS"
           },
           "GUID": "340d35e0-cbc1-5b2a-bd2b-42924872dba9",
           "Active": true,
           "Name": "UTC GPS -> display mostra UTC do sim",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -409,14 +409,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 18"
+            "Name": "UTC INT"
           },
           "GUID": "9d241fe5-01ad-5ac9-8638-ab4924d94db9",
           "Active": true,
           "Name": "UTC INT -> display mostra hora local do sim",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -432,14 +432,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 19"
+            "Name": "UTC SET"
           },
           "GUID": "2d5ca90a-7fdb-5272-a7c6-b137e1f7427f",
           "Active": true,
           "Name": "UTC SET -> Clock CPT SET",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -455,14 +455,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 20"
+            "Name": "ET RUN"
           },
           "GUID": "220311b6-beca-53c1-aa78-f3e5b6171b34",
           "Active": true,
           "Name": "ET RUN -> Clock CPT ET RUN + ET local",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -478,14 +478,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 21"
+            "Name": "ET STP"
           },
           "GUID": "7b4d838d-5d27-5591-b2d9-6532650e2f54",
           "Active": true,
           "Name": "ET STP -> Clock CPT ET HLD + ET local",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -505,14 +505,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 22"
+            "Name": "ET RST"
           },
           "GUID": "76bceab7-afc9-555c-b58b-d15618c87fb7",
           "Active": true,
           "Name": "ET RST -> Clock CPT ET RESET + ET local",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -528,14 +528,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 23"
+            "Name": "TERR ON ND Button"
           },
           "GUID": "35af7751-6410-5d3a-9120-b37e0cff65e2",
           "Active": true,
           "Name": "TERR ON ND -> EFIS CPT TERR",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -551,14 +551,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 24"
+            "Name": "GEAR UP"
           },
           "GUID": "2022da07-07d0-561b-b65a-d921fdd54f65",
           "Active": true,
           "Name": "GEAR UP -> Gear lever UP",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -574,14 +574,14 @@
           },
           "Device": {
             "Type": "Button",
-            "Name": "Button 25"
+            "Name": "GEAR DOWN"
           },
           "GUID": "7ea2a74a-1faf-5c06-8523-2ab717ea3436",
           "Active": true,
           "Name": "GEAR DOWN -> Gear lever DN",
           "Type": "InputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -612,7 +612,7 @@
           "Name": "LED Gear 1 (L) verde - travado embaixo",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -643,7 +643,7 @@
           "Name": "LED Gear 2 (NOSE) verde - travado embaixo",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -674,7 +674,7 @@
           "Name": "LED Gear 3 (R) verde - travado embaixo",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -705,7 +705,7 @@
           "Name": "LED Gear 1 (L) vermelho - em transito",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -736,7 +736,7 @@
           "Name": "LED Gear 2 (NOSE) vermelho - em transito",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -767,7 +767,7 @@
           "Name": "LED Gear 3 (R) vermelho - em transito",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -798,7 +798,7 @@
           "Name": "LED seta vermelha - trem em cima, flaps >= 25, < 800 ft RA",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -829,7 +829,7 @@
           "Name": "LED AUTO BRK LO ON - autobrake 1",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -860,7 +860,7 @@
           "Name": "LED AUTO BRK MED ON - autobrake 2",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -891,7 +891,7 @@
           "Name": "LED AUTO BRK MAX ON - autobrake 3",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -922,7 +922,7 @@
           "Name": "LED AUTO BRK LO DECEL",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -953,7 +953,7 @@
           "Name": "LED AUTO BRK MED DECEL",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -984,7 +984,7 @@
           "Name": "LED AUTO BRK MAX DECEL",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1015,7 +1015,7 @@
           "Name": "LED BRK FAN HOT - parking brake aplicado",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1046,7 +1046,7 @@
           "Name": "LED BRK FAN ON - (nao usado no 737)",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1077,7 +1077,7 @@
           "Name": "LED TERR ON ND - estado do TERR no ND do CPT",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1108,7 +1108,7 @@
           "Name": "Brilho backlight",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1139,7 +1139,7 @@
           "Name": "Brilho displays",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1170,7 +1170,7 @@
           "Name": "Brilho LEDs",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1200,7 +1200,7 @@
           "Name": "UTC hora (ou mes no modo DATE)",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1230,7 +1230,7 @@
           "Name": "UTC minuto (ou dia no modo DATE)",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1260,7 +1260,7 @@
           "Name": "UTC segundo (ou ano no modo DATE)",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1290,7 +1290,7 @@
           "Name": "UTC visivel",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1320,7 +1320,7 @@
           "Name": "UTC ':' esquerdo (oculto no modo DATE)",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1350,7 +1350,7 @@
           "Name": "UTC ':' direito (oculto no modo DATE)",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1380,7 +1380,7 @@
           "Name": "CHR minutos",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1410,7 +1410,7 @@
           "Name": "CHR segundos",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1440,7 +1440,7 @@
           "Name": "CHR visivel quando rodando/parado",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1470,7 +1470,7 @@
           "Name": "CHR ':'",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1500,7 +1500,7 @@
           "Name": "ET horas",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1530,7 +1530,7 @@
           "Name": "ET minutos",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1560,7 +1560,7 @@
           "Name": "ET visivel quando rodando/parado",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         },
@@ -1590,7 +1590,7 @@
           "Name": "ET ':'",
           "Type": "OutputConfigItem",
           "Controller": {
-            "Name": "WINWING AGP",
+            "Name": "WINCTRL 32 AGP Metal",
             "Serial": "JS-00000000-0000-0000-0000-000000000000"
           }
         }

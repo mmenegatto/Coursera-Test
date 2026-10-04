@@ -18,10 +18,41 @@ import uuid
 # Hardware: definicao oficial do MobiFlight (winwing_agp.joystick.json)
 # --------------------------------------------------------------------------
 CONTROLLER = {
-    "Name": "WINWING AGP",
+    # Nome com que o Windows/DirectInput expoe o painel (e o que o MobiFlight mostra)
+    "Name": "WINCTRL 32 AGP Metal",
     # Serial "coringa": o auto-binding do MobiFlight associa pelo nome
     # quando ha um unico AGP conectado.
     "Serial": "JS-00000000-0000-0000-0000-000000000000",
+}
+
+# Rotulos dos botoes, exatamente como em winwing_agp.joystick.json (Id -> Label).
+# O profile grava o rotulo como nome do dispositivo de entrada.
+BUTTON_LABELS = {
+    1: "BRK FAN ON",
+    2: "BRK FAN OFF",
+    3: "AUTO BRK LO Button",
+    4: "AUTO BRK MED Button",
+    5: "AUTO BRK MAX Button",
+    6: "A/SKID ON",
+    7: "A/SKID OFF",
+    8: "RST DEC",
+    9: "RST Button",
+    10: "RST INC",
+    11: "CHR DEC",
+    12: "CHR Button",
+    13: "CHR INC",
+    14: "DATE DEC",
+    15: "DATE Button",
+    16: "DATE INC",
+    17: "UTC GPS",
+    18: "UTC INT",
+    19: "UTC SET",
+    20: "ET RUN",
+    21: "ET STP",
+    22: "ET RST",
+    23: "TERR ON ND Button",
+    24: "GEAR UP",
+    25: "GEAR DOWN",
 }
 
 # --------------------------------------------------------------------------
@@ -145,7 +176,7 @@ def button(btn_id, name, on_press=None, on_release=None, on_hold=None, hold_dela
     btn.update({"LongReleaseDelay": 350, "HoldDelay": hold_delay, "RepeatDelay": 0})
     return {
         "button": btn,
-        "Device": {"Type": "Button", "Name": f"Button {btn_id}"},
+        "Device": {"Type": "Button", "Name": BUTTON_LABELS[btn_id]},
         "GUID": guid(f"in-{btn_id}"),
         "Active": True,
         "Name": name,
@@ -320,7 +351,7 @@ project = {
     "Name": "PMDG 737-800 - WINCTRL 32 AGP Metal",
     "ConfigFiles": [
         {
-            "Label": "WINCTRL 32 AGP",
+            "Label": "WINCTRL 32 AGP Metal",
             "ReferenceOnly": False,
             "EmbedContent": True,
             "ConfigItems": inputs + leds + displays,
