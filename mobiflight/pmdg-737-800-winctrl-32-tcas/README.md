@@ -12,7 +12,7 @@ O arquivo é gerado por `tools/generate_profile.py`: ajuste as constantes lá e 
 
 ## Instalação
 
-1. Abra o `.mfproj` pelo MobiFlight (*File → Open*). Ele pode ser usado junto com o profile do AGP: abra um e use *File → Merge* para juntar o outro.
+1. Abra o `.mfproj` pelo MobiFlight (*File → Open*). Para usar junto com o AGP, abra `../PMDG_737-800_WINCTRL_AGP_TCAS.mfproj`, que já traz os dois painéis no mesmo projeto.
 2. O profile usa um serial genérico. Com um único painel TCAS conectado, o **auto-binding** associa pelo nome "WINCTRL 32 TCAS". Se aparecer o diálogo *Controller Bindings*, escolha o seu painel. Sem auto-binding na sua versão, troque o serial `JS-00000000-0000-0000-0000-000000000000` no `.mfproj` pelo serial do seu painel (aparece ao editar qualquer entrada dele no MobiFlight).
 3. Clique em **Run** com o 737 carregado.
 
