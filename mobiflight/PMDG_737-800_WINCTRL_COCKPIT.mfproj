@@ -3056,9 +3056,9 @@
           },
           "Device": {
             "Type": "AnalogInput",
-            "Name": "Axis X"
+            "Name": "Axis RotationX"
           },
-          "GUID": "0f94a270-40b8-518d-a87d-83ba2f14a955",
+          "GUID": "64290412-e66c-54ab-8bfa-c53b4f82a351",
           "Active": true,
           "Name": "Manete 1 -> thrust 1 (com reverso)",
           "Type": "InputConfigItem",
@@ -3076,9 +3076,9 @@
           },
           "Device": {
             "Type": "AnalogInput",
-            "Name": "Axis Y"
+            "Name": "Axis RotationY"
           },
-          "GUID": "ddd79dcf-593c-5926-b588-c10a685c21a7",
+          "GUID": "ea244a04-e333-5451-95ee-9ae77628a36b",
           "Active": true,
           "Name": "Manete 2 -> thrust 2 (com reverso)",
           "Type": "InputConfigItem",

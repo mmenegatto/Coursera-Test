@@ -74,7 +74,7 @@ BUTTON_LABELS = {
 # Eixos das manetes: nao estao rotulados na definicao, entao o MobiFlight usa
 # o nome DirectInput. Se no seu painel as manetes forem outros eixos (veja no
 # MobiFlight qual eixo se mexe), troque aqui.
-AXIS_THROTTLE = {1: "Axis X", 2: "Axis Y"}
+AXIS_THROTTLE = {1: "Axis RotationX", 2: "Axis RotationY"}
 
 # --------------------------------------------------------------------------
 # Calibracao das manetes (valor bruto do eixo, 0-65535)
