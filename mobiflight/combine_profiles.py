@@ -30,6 +30,23 @@ for path in SOURCES:
 guids = [item["GUID"] for cf in config_files for item in cf["ConfigItems"]]
 assert len(guids) == len(set(guids)), "GUID duplicado entre os profiles"
 
+# O MobiFlight envia cada comando ao modulo WASM num bloco de 1024 bytes;
+# um comando maior e descartado sem aviso.
+WASM_COMMAND_LIMIT = 1000
+for cf in config_files:
+    for item in cf["ConfigItems"]:
+        commands = []
+        if "button" in item:
+            commands += ["MF.SimVars.Set." + a["Command"] for a in item["button"].values() if isinstance(a, dict)]
+        if "analog" in item:
+            commands.append("MF.SimVars.Set." + item["analog"]["onChange"]["Command"].replace("@", "65535"))
+        if "Source" in item:
+            commands.append("MF.SimVars.Add." + item["Source"]["SimConnectValue"]["Value"])
+        for command in commands:
+            assert len(command) <= WASM_COMMAND_LIMIT, (
+                f"{cf['Label']}: comando de {len(command)} bytes em '{item['Name']}' excede o limite do MobiFlight"
+            )
+
 project = {
     "Name": "PMDG 737-800 - WINCTRL 32 AGP Metal + 32 TCAS + URSA MINOR 32 Throttle L",
     "ConfigFiles": config_files,

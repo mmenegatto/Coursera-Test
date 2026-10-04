@@ -165,58 +165,69 @@ def set_selector_from_right(event_id, positions, target):
 # com a manete em idle (cada evento abre mais o reverso) e recolhido com
 # THROTTLEn_INCR.
 #
+# LIMITE DO MOBIFLIGHT: cada comando vai ao modulo WASM num bloco de 1024
+# bytes; um comando maior e descartado sem aviso. Por isso cada eixo usa
+# varias entradas pequenas, que o MobiFlight executa em ordem a cada
+# movimento da manete:
+#   1. calcula   - grava o valor bruto, calibra e calcula alvo de reverso e empuxo
+#   2. abre rev  - envia os THROTTLEn_DECR que faltam
+#   3. fecha rev - envia os THROTTLEn_INCR que sobram e registra a posicao
+#   4. empuxo    - fora do reverso, envia o empuxo para frente
+#
 # L:vars por motor n:
 #   MF_THRn_RAW       ultimo valor bruto do eixo
 #   MF_THRn_DET       detente atual: 1 = IDLE, 2 = TOGA, 3 = FULL REV, 0 = fora
 #   MF_THRn_IDLE/TOGA/FULLREV  calibracao (valor bruto + 1; 0 = usar padrao)
 #   MF_THRn_REVLATCH  1 com a trava de reverso levantada
-#   MF_THRn_REVSTEP   quantos THROTTLEn_DECR de reverso ja foram enviados
+#   MF_THRn_REVTGT    passos de reverso desejados (0 = sem reverso)
+#   MF_THRn_REVSTEP   passos de reverso ja enviados
+#   MF_THRn_FWD       empuxo para frente a enviar (-16384 a 16384)
 # --------------------------------------------------------------------------
 DET_IDLE, DET_TOGA, DET_FULL_REV = 1, 2, 3
+WASM_COMMAND_LIMIT = 1000  # margem sob os 1024 bytes, ja contando o prefixo do MobiFlight
 
 
 def cal(n, name, default):
     return f"(L:MF_THR{n}_{name}, number) 0 > if{{ (L:MF_THR{n}_{name}, number) 1 - }} els{{ {default} }}"
 
 
-def _repeat_signed(delta_reg, event_pos, event_neg, steps):
-    """Envia event_pos 'delta' vezes se delta > 0, ou event_neg '-delta' vezes
-    se delta < 0 (RPN nao tem laco, entao o envio e desenrolado)."""
-    parts = [f"{delta_reg} {k} > if{{ (>K:{event_pos}) }}" for k in range(steps)]
-    parts += [f"{delta_reg} {-k} < if{{ (>K:{event_neg}) }}" for k in range(steps)]
-    return " ".join(parts)
-
-
-def throttle_axis(n):
-    idle = cal(n, "IDLE", DEFAULT_IDLE)
-    toga = cal(n, "TOGA", DEFAULT_TOGA)
-    full_rev = cal(n, "FULLREV", DEFAULT_FULL_REV)
-    revstep = f"(L:MF_THR{n}_REVSTEP, number)"
-
-    # Calibra enquanto a manete esta parada num detente
+def throttle_compute(n):
     calibration = " ".join(
         f"(L:MF_THR{n}_DET, number) {det} == if{{ @ 1 + (>L:MF_THR{n}_{name}, number) }}"
         for det, name in ((DET_IDLE, "IDLE"), (DET_TOGA, "TOGA"), (DET_FULL_REV, "FULLREV"))
     )
-    stow_reverse = (
-        f"0 {revstep} - s3 {_repeat_signed('l3', f'THROTTLE{n}_DECR', f'THROTTLE{n}_INCR', REVERSE_STEPS)} "
-        f"0 (>L:MF_THR{n}_REVSTEP, number)"
-    )
-    forward = (
-        f"{stow_reverse} "
-        f"@ {idle} - {toga} {idle} - / 0 max 1 min 32768 * 16384 - flr "
-        f"(>K:THROTTLE{n}_AXIS_SET_EX1)"
-    )
-    reverse = (
-        f"-16384 (>K:THROTTLE{n}_AXIS_SET_EX1) "
-        f"{idle} @ - {idle} {full_rev} - / 0 max 1 min {REVERSE_STEPS - 1} * near 1 + s2 "
-        f"l2 {revstep} - s3 "
-        f"{_repeat_signed('l3', f'THROTTLE{n}_DECR', f'THROTTLE{n}_INCR', REVERSE_STEPS)} "
-        f"l2 (>L:MF_THR{n}_REVSTEP, number)"
-    )
     return (
         f"@ (>L:MF_THR{n}_RAW, number) {calibration} "
-        f"@ {idle} < (L:MF_THR{n}_REVLATCH, number) and if{{ {reverse} }} els{{ {forward} }}"
+        f"{cal(n, 'IDLE', DEFAULT_IDLE)} s4 "
+        f"{cal(n, 'TOGA', DEFAULT_TOGA)} s5 "
+        f"{cal(n, 'FULLREV', DEFAULT_FULL_REV)} s6 "
+        f"@ l4 < (L:MF_THR{n}_REVLATCH, number) and "
+        f"if{{ l4 @ - l4 l6 - / 0 max 1 min {REVERSE_STEPS - 1} * near 1 + }} els{{ 0 }} "
+        f"(>L:MF_THR{n}_REVTGT, number) "
+        f"@ l4 - l5 l4 - / 0 max 1 min 32768 * 16384 - flr (>L:MF_THR{n}_FWD, number)"
+    )
+
+
+def throttle_open_reverse(n):
+    sends = " ".join(f"l3 {k} > if{{ (>K:THROTTLE{n}_DECR) }}" for k in range(REVERSE_STEPS))
+    return (
+        f"(L:MF_THR{n}_REVTGT, number) 0 > if{{ -16384 (>K:THROTTLE{n}_AXIS_SET_EX1) }} "
+        f"(L:MF_THR{n}_REVTGT, number) (L:MF_THR{n}_REVSTEP, number) - s3 {sends}"
+    )
+
+
+def throttle_close_reverse(n):
+    sends = " ".join(f"l3 {-k} < if{{ (>K:THROTTLE{n}_INCR) }}" for k in range(REVERSE_STEPS))
+    return (
+        f"(L:MF_THR{n}_REVTGT, number) (L:MF_THR{n}_REVSTEP, number) - s3 {sends} "
+        f"(L:MF_THR{n}_REVTGT, number) (>L:MF_THR{n}_REVSTEP, number)"
+    )
+
+
+def throttle_forward(n):
+    return (
+        f"(L:MF_THR{n}_REVTGT, number) 0 == if{{ "
+        f"(L:MF_THR{n}_FWD, number) (>K:THROTTLE{n}_AXIS_SET_EX1) }}"
     )
 
 
@@ -269,11 +280,11 @@ def button(btn_id, name, on_press=None, on_release=None, on_hold=None,
     }
 
 
-def axis(device_name, name, on_change):
+def axis(device_name, name, on_change, part=""):
     return {
         "analog": {"onChange": rpn_action(on_change)},
         "Device": {"Type": "AnalogInput", "Name": device_name},
-        "GUID": guid(f"axis-{device_name}"),
+        "GUID": guid(f"axis-{device_name}{part}"),
         "Active": True,
         "Name": name,
         "Type": "InputConfigItem",
@@ -376,10 +387,26 @@ inputs += [
     button(btn_id, f"{BUTTON_LABELS[btn_id]} -> flaps {pos if pos else 'UP'}", rotor(EVT_FLAPS[pos]))
     for btn_id, pos in FLAPS_MAP.items()
 ]
-inputs += [
-    axis(AXIS_THROTTLE[n], f"Manete {n} -> thrust {n} (com reverso)", throttle_axis(n))
-    for n in (1, 2)
-]
+for n in (1, 2):
+    inputs += [
+        axis(AXIS_THROTTLE[n], f"Manete {n} (1/4) -> calcula empuxo e reverso", throttle_compute(n)),
+        axis(AXIS_THROTTLE[n], f"Manete {n} (2/4) -> abre reverso", throttle_open_reverse(n), "-open"),
+        axis(AXIS_THROTTLE[n], f"Manete {n} (3/4) -> recolhe reverso", throttle_close_reverse(n), "-close"),
+        axis(AXIS_THROTTLE[n], f"Manete {n} (4/4) -> empuxo", throttle_forward(n), "-fwd"),
+    ]
+
+
+def _commands(item):
+    """Comandos que o MobiFlight envia ao WASM para este item, ja com o
+    prefixo e com '@' no pior caso (5 digitos)."""
+    if "button" in item:
+        for action in item["button"].values():
+            if isinstance(action, dict):
+                yield "MF.SimVars.Set." + action["Command"]
+    if "analog" in item:
+        yield "MF.SimVars.Set." + item["analog"]["onChange"]["Command"].replace("@", "65535")
+    if "Source" in item:
+        yield "MF.SimVars.Add." + item["Source"]["SimConnectValue"]["Value"]
 
 # --------------------------------------------------------------------------
 # Saidas
@@ -419,6 +446,11 @@ project = {
 }
 
 if __name__ == "__main__":
+    for item in inputs + outputs:
+        for command in _commands(item):
+            assert len(command) <= WASM_COMMAND_LIMIT, (
+                f"comando de {len(command)} bytes em '{item['Name']}' excede o limite do MobiFlight"
+            )
     with open(PROFILE_FILE, "w", encoding="utf-8") as f:
         json.dump(project, f, indent=2, ensure_ascii=False)
         f.write("\n")

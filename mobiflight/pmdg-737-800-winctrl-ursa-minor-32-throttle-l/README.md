@@ -85,8 +85,13 @@ O parking brake saiu do AGP: as chaves BRK FAN ficaram livres, e o LED HOT do AG
 
 1. **Run ligado:** o MobiFlight só envia comandos com *Run* ativo e conectado ao sim.
 2. **Nenhum eixo do throttle nos controles do MSFS:** um eixo atribuído no sim sobrescreve o que o MobiFlight envia.
-3. **Nome dos eixos:** em MobiFlight, abra a entrada "Manete 1" e use o botão de detecção de entrada (*scan*) movendo a manete 1. O dispositivo detectado deve ser `Axis RotationX` (manete 2: `Axis RotationY`). Se aparecer outro nome, troque `AXIS_THROTTLE` no gerador.
+3. **Nome dos eixos:** em MobiFlight, abra a entrada "Manete 1 (1/4)" e use o botão de detecção de entrada (*scan*) movendo a manete 1. O dispositivo detectado deve ser `Axis RotationX` (manete 2: `Axis RotationY`). Se aparecer outro nome, troque `AXIS_THROTTLE` no gerador.
 4. **Calibração:** se a potência só começa no meio do curso, leve a manete até IDLE e depois até TOGA para recalibrar.
+5. **Log do MobiFlight** (*Extras → Settings → Debug*, nível *Debug*): ao mover a manete devem aparecer quatro linhas `Executing "Manete 1 (1/4) …"` a `(4/4)`. Se aparecerem e o 737 não responder, o problema está no evento enviado ao PMDG; se não aparecerem, o problema está no reconhecimento do eixo.
+
+### Por que cada manete tem quatro entradas
+
+O MobiFlight envia cada comando ao módulo WASM do sim num bloco fixo de 1024 bytes, e um comando maior é descartado sem aviso. A lógica de empuxo + reverso não cabe num comando só, então ela foi dividida em quatro entradas ligadas ao mesmo eixo, que o MobiFlight executa em ordem: (1) calcula empuxo e reverso, (2) abre o reverso, (3) recolhe o reverso, (4) envia o empuxo. Não apague nem reordene essas entradas. O gerador e o `combine_profiles.py` recusam qualquer comando acima do limite.
 
 ## Verifique no primeiro voo
 
