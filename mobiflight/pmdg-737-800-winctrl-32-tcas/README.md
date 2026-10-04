@@ -26,14 +26,15 @@ A primeira coluna usa os nomes exatos dos botões na definição do MobiFlight (
 | Key CLR | Apaga o último dígito digitado | — |
 | Key CLR (segurar 1 s) | Cancela a edição e volta a mostrar o squawk atual | — |
 | Ident Button | IDENT | ROTOR_BRAKE `80601` |
-| XPDR SYS 1 / XPDR SYS 2 | Chave XPNDR 1 / 2 | seletor 798 |
-| XPDR STBY | Seletor de modo em **STBY** | seletor 800 |
-| XPDR AUTO / XPDR ON | Transponder ligado (modo vem das outras chaves) | seletor 800 |
-| ALT RPTG OFF | Seletor em **ALT RPTG OFF** | seletor 800 |
-| ALT RPTG ON | Volta ao modo definido pelo TCAS | seletor 800 |
-| TCAS STBY | Seletor em **XPNDR** | seletor 800 |
-| TCAS TA | Seletor em **TA ONLY** | seletor 800 |
-| TCAS TA/RA | Seletor em **TA/RA** | seletor 800 |
+| XPDR SYS 1 / XPDR SYS 2 | Chave XPNDR 1 / 2 | `0` / `1 (>K:#70430)` |
+| XPDR STBY | Transponder **STBY** (e seletor de modo em STBY) | `0 (>K:#70931)` + `#70432` |
+| XPDR ON | Transponder **ON** (modo vem das outras chaves) | `1 (>K:#70931)` + `#70432` |
+| XPDR AUTO | Transponder **AUTO** (modo vem das outras chaves) | `2 (>K:#70931)` + `#70432` |
+| ALT RPTG OFF | Seletor em **ALT RPTG OFF** | `1 (>K:#70432)` |
+| ALT RPTG ON | Volta ao modo definido pelo TCAS | `#70432` |
+| TCAS STBY | Seletor em **XPNDR** | `2 (>K:#70432)` |
+| TCAS TA | Seletor em **TA ONLY** | `3 (>K:#70432)` |
+| TCAS TA/RA | Seletor em **TA/RA** | `4 (>K:#70432)` |
 | TCAS THRT / ALL / ABV / BLW | **Não mapeado** (não existe no 737) | — |
 
 ### Como as três chaves viram o seletor único do 737
@@ -48,9 +49,9 @@ O 737 tem um único seletor (STBY / ALT RPTG OFF / XPNDR / TA ONLY / TA/RA), e o
 | AUTO ou ON | ON | TA | TA ONLY |
 | AUTO ou ON | ON | TA/RA | TA/RA |
 
-AUTO e ON fazem a mesma coisa, porque o 737 não tem modo automático. No início do voo, mexa uma vez em cada uma das três chaves (ou coloque-as na posição desejada) para o MobiFlight registrar a posição física delas.
+No 737-800 do MSFS 2024, o transponder tem um seletor próprio STBY / ON / AUTO (evento `70931`), comandado direto pela chave XPDR do painel. Em versões do 737 sem esse seletor, o evento é ignorado e o STBY continua vindo do seletor de modo. No início do voo, mexa uma vez em cada uma das três chaves (ou coloque-as na posição desejada) para o MobiFlight registrar a posição física delas.
 
-O seletor lê a posição atual no PMDG (`L:switch_800_73X`) e gira só o necessário com a roda do mouse (eventos 07/08), sem passar por STBY. A chave XPNDR 1/2 só é clicada quando está na posição errada.
+Os seletores são comandados enviando a posição direto no evento do PMDG (`N (>K:#evento)`), método relatado por usuários do 737 no MSFS 2024. A posição vai direto, sem girar e sem passar por posições intermediárias.
 
 ## Mapeamento — saídas
 
@@ -63,7 +64,7 @@ O seletor lê a posição atual no PMDG (`L:switch_800_73X`) e gira só o necess
 ## Verifique no primeiro voo
 
 1. **Squawk via `K:XPNDR_SET`.** Se o código digitado não aparecer no painel do PMDG, o 737 está ignorando o evento padrão. Me avise que troco por cliques nos quatro knobs do PMDG (EVT_TCAS_KNOB1 a 4).
-2. **Posições do seletor de modo** (`L:switch_800_73X`, assumido 0 = STBY, 10 = ALT RPTG OFF, 20 = XPNDR, 30 = TA ONLY, 40 = TA/RA). Confira no *Watch Variable* do MobiFlight.
-3. **Chave XPNDR 1/2.** Se SYS 1 e SYS 2 ficarem trocados, inverta `want_on` dos botões 14 e 15 no gerador.
+2. **Seletores.** Se algum seletor não se mover, abra o log do MobiFlight (nível *Debug*) e confira se aparece `Executing "XPDR …"` / `"TCAS …"` ao mexer na chave. Se aparecer e o 737 não responder, me mande o trecho do log.
+3. **Chave XPNDR 1/2.** Se SYS 1 e SYS 2 ficarem trocados, inverta as posições `0` e `1` dos botões 14 e 15 no gerador.
 
 Depois de qualquer ajuste: `python3 tools/generate_profile.py` e reabra o profile no MobiFlight.

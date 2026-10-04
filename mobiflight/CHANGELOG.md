@@ -1,5 +1,10 @@
 # Changelog — profiles WINCTRL para o PMDG 737-800 (MSFS 2024)
 
+## v2.1
+
+**TCAS**
+- Seletores comandados com a posição direto no evento do PMDG (`N (>K:#evento)`), método relatado para o 737 do MSFS 2024: seletor de modo (`#70432`), chave XPNDR 1/2 (`#70430`) e o seletor STBY / ON / AUTO do transponder (`#70931`), que agora segue a chave XPDR do painel. Antes, nenhum seletor respondia.
+
 ## v2
 
 Ajustes a partir de um profile da comunidade testado no PMDG 737-800 do MSFS 2024.

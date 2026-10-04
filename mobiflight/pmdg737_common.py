@@ -48,6 +48,14 @@ def step_to(event_id, target_rpn, label=1):
     )
 
 
+def set_position(event_id, position_rpn):
+    """Coloca um seletor direto numa posicao enviando o evento do PMDG com a
+    posicao como parametro (0, 1, 2 ...), sem clique: N (>K:#<event_id>).
+    E o metodo relatado por usuarios do 737 no MSFS 2024 para o painel de
+    transponder/TCAS."""
+    return f"{position_rpn} (>K:#{event_id})"
+
+
 def toggle_to(event_id, want_on):
     """Chave/alavanca de duas posicoes: clica so se a posicao atual (0 ou nao
     zero) for diferente da desejada."""

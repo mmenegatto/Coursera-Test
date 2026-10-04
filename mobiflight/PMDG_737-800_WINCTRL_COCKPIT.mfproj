@@ -1830,7 +1830,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "0 (>L:MF_TCAS_XPDR, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
+              "Command": "0 (>K:#70931) 0 (>L:MF_TCAS_XPDR, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } (>K:#70432)",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -1843,7 +1843,7 @@
           },
           "GUID": "d2f7cf75-56b5-5403-9323-fcd443480968",
           "Active": true,
-          "Name": "XPDR STBY -> modo STBY",
+          "Name": "XPDR STBY -> transponder STBY",
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 TCAS",
@@ -1853,7 +1853,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "1 (>L:MF_TCAS_XPDR, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
+              "Command": "2 (>K:#70931) 1 (>L:MF_TCAS_XPDR, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } (>K:#70432)",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -1866,7 +1866,7 @@
           },
           "GUID": "7aa5bb88-bdab-5131-8b40-ee2327006245",
           "Active": true,
-          "Name": "XPDR AUTO -> transponder ligado",
+          "Name": "XPDR AUTO -> transponder AUTO",
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 TCAS",
@@ -1876,7 +1876,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "2 (>L:MF_TCAS_XPDR, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
+              "Command": "1 (>K:#70931) 2 (>L:MF_TCAS_XPDR, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } (>K:#70432)",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -1889,7 +1889,7 @@
           },
           "GUID": "f9f15eee-5e1f-52e3-9308-5827072e374f",
           "Active": true,
-          "Name": "XPDR ON -> transponder ligado",
+          "Name": "XPDR ON -> transponder ON",
           "Type": "InputConfigItem",
           "Controller": {
             "Name": "WINCTRL 32 TCAS",
@@ -1899,7 +1899,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "(L:switch_798_73X, number) 0 > 0 != if{ 79801 (>K:ROTOR_BRAKE) }",
+              "Command": "0 (>K:#70430)",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -1922,7 +1922,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "(L:switch_798_73X, number) 0 > 1 != if{ 79801 (>K:ROTOR_BRAKE) }",
+              "Command": "1 (>K:#70430)",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -1945,7 +1945,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "0 (>L:MF_TCAS_ALTRPT, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
+              "Command": "0 (>L:MF_TCAS_ALTRPT, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } (>K:#70432)",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -1968,7 +1968,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "1 (>L:MF_TCAS_ALTRPT, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
+              "Command": "1 (>L:MF_TCAS_ALTRPT, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } (>K:#70432)",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -1991,7 +1991,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "0 (>L:MF_TCAS_MODE, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
+              "Command": "0 (>L:MF_TCAS_MODE, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } (>K:#70432)",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -2014,7 +2014,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "1 (>L:MF_TCAS_MODE, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
+              "Command": "1 (>L:MF_TCAS_MODE, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } (>K:#70432)",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
@@ -2037,7 +2037,7 @@
         {
           "button": {
             "onPress": {
-              "Command": "2 (>L:MF_TCAS_MODE, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } 10 * (L:switch_800_73X, number) - 10 div s0 :1 l0 0 > if{ 80007 (>K:ROTOR_BRAKE) l0 -- s0 g1 } l0 0 < if{ 80008 (>K:ROTOR_BRAKE) l0 ++ s0 g1 }",
+              "Command": "2 (>L:MF_TCAS_MODE, number) (L:MF_TCAS_XPDR, number) 0 == if{ 0 } els{ (L:MF_TCAS_ALTRPT, number) 0 == if{ 1 } els{ (L:MF_TCAS_MODE, number) 2 + } } (>K:#70432)",
               "Type": "MSFS2020CustomInputAction"
             },
             "LongReleaseDelay": 350,
